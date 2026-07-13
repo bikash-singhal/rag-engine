@@ -6,8 +6,7 @@ from src.chunker import Chunker
 from src.embedder import Embedder
 from src.faiss_store import FAISSVectorStore
 from src.prompt_builder import PromptBuilder
-from src.llm import LLM
-
+from src.llm.base import LLMProvider
 
 class RAGPipeline:
     """
@@ -20,7 +19,7 @@ class RAGPipeline:
         embedder: Embedder,
         vector_store: FAISSVectorStore,
         prompt_builder: PromptBuilder,
-        llm: LLM,
+        llm: LLMProvider,
     ) -> None:
 
         self.chunker = chunker

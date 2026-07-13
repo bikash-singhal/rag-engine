@@ -1,21 +1,21 @@
 from argparse import ArgumentParser
 
 from dotenv import load_dotenv
-from openai import OpenAI
 
 from config import (
     CHUNK_OVERLAP,
     CHUNK_SIZE,
     EMBEDDING_MODEL,
     LLM_MODEL,
+    LLM_PROVIDER,
     TOP_K,
 )
 
+from src.llm.factory import get_provider
 from src.chunker import Chunker
 from src.embedder import Embedder
 from src.faiss_store import FAISSVectorStore
 from src.prompt_builder import PromptBuilder
-from src.llm import LLM
 from src.rag_pipeline import RAGPipeline
 
 
@@ -60,10 +60,8 @@ def main():
 
     prompt_builder = PromptBuilder()
 
-    client = OpenAI()
-
-    llm = LLM(
-        client=client,
+    llm = get_provider(
+        provider_name=LLM_PROVIDER,
         model=LLM_MODEL,
     )
 
