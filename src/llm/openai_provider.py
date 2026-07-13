@@ -4,20 +4,13 @@ from src.llm.base import LLMProvider
 
 
 class OpenAIProvider(LLMProvider):
-    """
-    OpenAI implementation of the LLM provider interface.
-    """
 
-    def __init__(
-        self,
-        client: OpenAI,
-        model: str,
-    ) -> None:
+    def __init__(self, model: str,) -> None:
 
-        self.client = client
+        self.client = OpenAI()
         self.model = model
 
-    def generate(self, prompt: str) -> str:
+    def generate(self, prompt: str,) -> str:
 
         response = self.client.chat.completions.create(
             model=self.model,

@@ -1,21 +1,17 @@
-from openai import OpenAI
-
 from src.llm.openai_provider import OpenAIProvider
 from src.llm.bedrock_provider import BedrockProvider
 
 
-def get_provider(provider_name: str, model: str,):    
-    """
-    Factory method that returns the configured LLM provider.
-    """
+def get_provider(
+    provider_name: str,
+    model: str,
+):
 
     provider = provider_name.lower()
-    
+
     if provider == "openai":
-        client = OpenAI()
 
         return OpenAIProvider(
-            client=client,
             model=model,
         )
 
@@ -25,7 +21,6 @@ def get_provider(provider_name: str, model: str,):
             model=model,
         )
 
-    else:
-        raise ValueError(
-            f"Unsupported LLM provider: {LLM_PROVIDER}"
-        )
+    raise ValueError(
+        f"Unsupported provider: {provider_name}"
+    )
