@@ -1,4 +1,4 @@
-# config.py
+# settings.py
 
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 

@@ -1,11 +1,11 @@
 from pathlib import Path
 
-from src.models import Chunk, SearchResult
-from src.pdf_reader import read_pdf
-from src.chunker import Chunker
-from src.embedder import Embedder
-from src.faiss_store import FAISSVectorStore
-from src.prompt_builder import PromptBuilder
+from src.core.models import Chunk, SearchResult
+from src.ingestion.reader import read_pdf
+from src.ingestion.chunker import Chunker
+from src.embeddings.embedder import Embedder
+from src.vectorstores.faiss_store import FAISSVectorStore
+from src.rag.prompt_builder import PromptBuilder
 from src.llm.base import LLMProvider
 
 class RAGPipeline:
