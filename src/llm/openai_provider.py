@@ -1,3 +1,5 @@
+import os
+
 from openai import OpenAI
 
 from src.llm.base import LLMProvider
@@ -5,12 +7,15 @@ from src.llm.base import LLMProvider
 
 class OpenAIProvider(LLMProvider):
 
-    def __init__(self, model: str,) -> None:
+    def __init__(self, model: str) -> None:
 
-        self.client = OpenAI()
+        self.client = OpenAI(
+            api_key=os.getenv("OPENAI_API_KEY")
+        )
+
         self.model = model
 
-    def generate(self, prompt: str,) -> str:
+    def generate(self, prompt: str) -> str:
 
         response = self.client.chat.completions.create(
             model=self.model,

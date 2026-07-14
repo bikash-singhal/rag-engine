@@ -1,25 +1,42 @@
+import json
+import os
+
+from src.aws.session import get_bedrock_runtime_client
 from src.llm.base import LLMProvider
 
 
 class BedrockProvider(LLMProvider):
     """
-    AWS Bedrock implementation.
-
-    Will be implemented next.
+    Amazon Bedrock implementation.
     """
 
-    def __init__(
-        self,
-        model: str,
-    ) -> None:
+    def __init__(self, model: str):
 
-        self.model = model
+        self.client = get_bedrock_runtime_client()
 
-    def generate(
-        self,
-        prompt: str,
-    ) -> str:
+        self.model_id = model
 
-        raise NotImplementedError(
-            "Bedrock provider not implemented yet."
+    def generate(self, prompt: str) -> str:
+
+        body = {
+            "messages": [
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "text": prompt
+                        }
+                    ]
+                }
+            ]
+        }
+
+       
+        response = self.client.converse(
+            modelId=self.model_id,
+            messages=body["messages"]
         )
+
+        output = response["output"]["message"]["content"]
+
+        return output[0]["text"]

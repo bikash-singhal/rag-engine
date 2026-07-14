@@ -1,6 +1,3 @@
-from src.llm.openai_provider import OpenAIProvider
-from src.llm.bedrock_provider import BedrockProvider
-
 
 def get_provider(
     provider_name: str,
@@ -10,17 +7,18 @@ def get_provider(
     provider = provider_name.lower()
 
     if provider == "openai":
+        from src.llm.openai_provider import OpenAIProvider
 
         return OpenAIProvider(
             model=model,
         )
 
     elif provider == "bedrock":
+        from src.llm.bedrock_provider import BedrockProvider
 
-        return BedrockProvider(
-            model=model,
-        )
-
+        return BedrockProvider(model=model,)
+    
     raise ValueError(
         f"Unsupported provider: {provider_name}"
     )
+    
