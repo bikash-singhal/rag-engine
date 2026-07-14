@@ -1,4 +1,5 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from typing import Any
 
 import numpy as np
 
@@ -42,3 +43,14 @@ class SearchResult:
 
     chunk: Chunk
     score: float
+
+
+@dataclass(slots=True)
+class Page:
+    """
+    Represents one page of a document.
+    """
+
+    page_number: int
+    text: str
+    metadata: dict[str, Any] = field(default_factory=dict)

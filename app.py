@@ -2,7 +2,7 @@ from argparse import ArgumentParser
 
 from dotenv import load_dotenv
 
-from config import (
+from src.config.settings import (
     CHUNK_OVERLAP,
     CHUNK_SIZE,
     EMBEDDING_MODEL,
@@ -12,11 +12,11 @@ from config import (
 )
 
 from src.llm.factory import get_provider
-from src.chunker import Chunker
-from src.embedder import Embedder
-from src.faiss_store import FAISSVectorStore
-from src.prompt_builder import PromptBuilder
-from src.rag_pipeline import RAGPipeline
+from src.ingestion.chunker import Chunker
+from src.embeddings.embedder import Embedder
+from src.vectorstores.faiss_store import FAISSVectorStore
+from src.rag.prompt_builder import PromptBuilder
+from src.rag.rag_pipeline import RAGPipeline
 
 
 def parse_args():

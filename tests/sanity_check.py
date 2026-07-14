@@ -3,20 +3,20 @@ from pathlib import Path
 from dotenv import load_dotenv
 from openai import OpenAI
 
-from config import (
+from src.config.settings import (
     CHUNK_OVERLAP,
     CHUNK_SIZE,
     EMBEDDING_MODEL,
     LLM_MODEL,
 )
 
-from src.chunker import Chunker
-from src.embedder import Embedder
-from src.faiss_store import FAISSVectorStore
+from src.ingestion.chunker import Chunker
+from src.embeddings.embedder import Embedder
+from src.vectorstores.faiss_store import FAISSVectorStore
 from src.llm import LLM
 from src.pdf_reader import read_pdf
-from src.prompt_builder import PromptBuilder
-from src.rag_pipeline import RAGPipeline
+from src.rag.prompt_builder import PromptBuilder
+from src.rag.rag_pipeline import RAGPipeline
 
 
 def main() -> None:

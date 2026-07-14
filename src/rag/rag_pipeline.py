@@ -1,48 +1,25 @@
-from pathlib import Path
-
-from src.core.models import Chunk, SearchResult
-from src.ingestion.reader import read_pdf
-from src.ingestion.chunker import Chunker
+from src.core.models import SearchResult
 from src.embeddings.embedder import Embedder
-from src.vectorstores.faiss_store import FAISSVectorStore
-from src.rag.prompt_builder import PromptBuilder
 from src.llm.base import LLMProvider
+from src.rag.prompt_builder import PromptBuilder
+from src.vectorstores.faiss_store import FAISSVectorStore
+
 
 class RAGPipeline:
     """
-    Coordinates the complete RAG workflow.
+    Coordinates retrieval and answer generation.
     """
 
     def __init__(
         self,
-        chunker: Chunker,
         embedder: Embedder,
         vector_store: FAISSVectorStore,
-        prompt_builder: PromptBuilder,
         llm: LLMProvider,
     ) -> None:
 
-        self.chunker = chunker
         self.embedder = embedder
         self.vector_store = vector_store
-        self.prompt_builder = prompt_builder
         self.llm = llm
-
-    def index(
-        self,
-        pdf_path: str | Path,
-    ) -> None:
-        """
-        Reads, chunks, embeds and indexes a PDF.
-        """
-
-        document = read_pdf(pdf_path)
-
-        chunks = self.chunker.chunk(document)
-
-        embedded_chunks = self.embedder.embed(chunks)
-
-        self.vector_store.add(embedded_chunks)
 
     def retrieve(
         self,
@@ -50,24 +27,16 @@ class RAGPipeline:
         top_k: int = 5,
     ) -> list[SearchResult]:
         """
-        Retrieves the most relevant chunks.
+        Retrieves the most relevant chunks for a user question.
         """
 
-        query_chunk = Chunk(
-            chunk_index=-1,
-            source="query",
-            text=question,
-        )
-
-        query_embedding = (
-            self.embedder
-            .embed([query_chunk])[0]
-            .embedding
+        query_embedding = self.embedder.embed_query(
+            question
         )
 
         return self.vector_store.search(
-            query_embedding,
-            top_k,
+            query_embedding=query_embedding,
+            top_k=top_k,
         )
 
     def ask(
@@ -76,17 +45,17 @@ class RAGPipeline:
         top_k: int = 5,
     ) -> str:
         """
-        Executes the complete RAG pipeline.
+        Executes the complete Retrieval-Augmented Generation workflow.
         """
 
         results = self.retrieve(
-            question,
-            top_k,
+            question=question,
+            top_k=top_k,
         )
 
-        prompt = self.prompt_builder.build(
-            question,
-            results,
+        prompt = PromptBuilder.build(
+            question=question,
+            results=results,
         )
 
         return self.llm.generate(prompt)

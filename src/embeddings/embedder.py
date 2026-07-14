@@ -1,6 +1,7 @@
+import numpy as np
 from sentence_transformers import SentenceTransformer
 
-from src.models import Chunk, EmbeddedChunk
+from src.core.models import Chunk, EmbeddedChunk
 
 
 class Embedder:
@@ -67,3 +68,22 @@ class Embedder:
             )
 
         return embedded_chunks
+    
+
+    def embed_query(
+    self,
+    query: str,
+    ) -> np.ndarray:
+        
+        """
+        Generates an embedding for a user query.
+        """
+
+        embedding = self.model.encode(
+            query,
+            convert_to_numpy=True,
+            normalize_embeddings=True,
+            show_progress_bar=False,
+        )
+
+        return embedding.astype(np.float32)

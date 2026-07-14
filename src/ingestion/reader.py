@@ -1,21 +1,22 @@
 from pathlib import Path
+from collections.abc import Iterator
 
 from pypdf import PdfReader
 
-from src.models import Document
+from src.core.models import Page
 
 
-def read_pdf(
+def reader(
     pdf_path: str | Path,
-) -> Document:
+) -> Iterator[Page]:
     """
-    Reads a PDF file and extracts all readable text.
+    Reads a PDF file lazily.
 
     Args:
         pdf_path: Path to the PDF file.
 
-    Returns:
-        A Document object containing the extracted text.
+    Yields:
+        Page objects extracted from the PDF.
     """
 
     pdf_path = Path(pdf_path)
@@ -27,23 +28,13 @@ def read_pdf(
             f"Could not read PDF: {pdf_path}"
         ) from exc
 
-    pages: list[str] = []
-
-    for page in reader.pages:
+    for page_number, page in enumerate(reader.pages, start=1):
 
         text = page.extract_text()
 
         if text and text.strip():
-            pages.append(text.strip())
 
-    full_text = "\n\n".join(pages)
-
-    if not full_text:
-        raise ValueError(
-            f"No readable text found in '{pdf_path.name}'."
-        )
-
-    return Document(
-        source=pdf_path.name,
-        text=full_text,
-    )
+            yield Page(
+                page_number=page_number,
+                text=text,
+            )

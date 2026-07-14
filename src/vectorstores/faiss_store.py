@@ -1,13 +1,19 @@
 import faiss
 import numpy as np
 
-from src.models import EmbeddedChunk, SearchResult
+from src.core.models import (
+    EmbeddedChunk,
+    SearchResult,
+)
 
 
 class FAISSVectorStore:
     """
-    A simple in-memory FAISS vector store using cosine similarity
-    (implemented as Inner Product on normalized vectors).
+    Simple in-memory FAISS vector store.
+
+    Note:
+        Assumes embeddings are already L2-normalized.
+        With normalized vectors, IndexFlatIP performs cosine similarity search.
     """
 
     def __init__(
@@ -16,12 +22,12 @@ class FAISSVectorStore:
     ) -> None:
         """
         Args:
-            embedding_dim: Dimension of the embedding vectors.
+            embedding_dim: Dimension of embedding vectors.
         """
 
         self.index = faiss.IndexFlatIP(embedding_dim)
 
-        self.id_to_chunk: dict[int, EmbeddedChunk] = {}
+        self.chunk_lookup: dict[int, EmbeddedChunk] = {}
 
     def add(
         self,
@@ -35,7 +41,10 @@ class FAISSVectorStore:
             return
 
         vectors = np.vstack(
-            [chunk.embedding for chunk in embedded_chunks]
+            [
+                embedded_chunk.embedding
+                for embedded_chunk in embedded_chunks
+            ]
         ).astype(np.float32)
 
         if vectors.shape[1] != self.index.d:
@@ -49,8 +58,12 @@ class FAISSVectorStore:
 
         self.index.add(vectors)
 
-        for offset, embedded_chunk in enumerate(embedded_chunks):
-            self.id_to_chunk[start_id + offset] = embedded_chunk
+        for offset, embedded_chunk in enumerate(
+            embedded_chunks
+        ):
+            self.chunk_lookup[
+                start_id + offset
+            ] = embedded_chunk
 
     def search(
         self,
@@ -64,10 +77,10 @@ class FAISSVectorStore:
         if self.index.ntotal == 0:
             return []
 
-        query = np.expand_dims(
+        query = np.asarray(
             query_embedding,
-            axis=0,
-        ).astype(np.float32)
+            dtype=np.float32,
+        ).reshape(1, -1)
 
         if query.shape[1] != self.index.d:
             raise ValueError(
@@ -83,12 +96,15 @@ class FAISSVectorStore:
 
         results: list[SearchResult] = []
 
-        for score, idx in zip(scores[0], indices[0]):
+        for score, idx in zip(
+            scores[0],
+            indices[0],
+        ):
 
             if idx == -1:
                 continue
 
-            embedded_chunk = self.id_to_chunk[idx]
+            embedded_chunk = self.chunk_lookup[idx]
 
             results.append(
                 SearchResult(

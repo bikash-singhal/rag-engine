@@ -1,15 +1,14 @@
 from textwrap import dedent
 
-from src.models import SearchResult
+from src.core.models import SearchResult
 
 
 class PromptBuilder:
     """
     Builds prompts for the LLM using retrieved search results.
     """
-
+    @staticmethod
     def build(
-        self,
         question: str,
         results: list[SearchResult],
     ) -> str:
@@ -51,7 +50,13 @@ class PromptBuilder:
             f"""
             You are a helpful AI assistant.
 
-            Answer the user's question using ONLY the provided context.
+            You MUST answer exclusively from the supplied context.
+
+            Do NOT use your own knowledge.
+
+            If the answer is incomplete, explicitly say that the provided documents do not contain enough information.
+
+            Do not invent or infer facts that are not present in the context.
 
             Rules:
             1. Do not use outside knowledge.
