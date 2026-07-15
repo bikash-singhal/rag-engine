@@ -1,5 +1,4 @@
-from src.core.models import Page
-
+from pathlib import Path
 
 class DocumentIndexer:
     """
@@ -29,6 +28,7 @@ class DocumentIndexer:
         self.embedder = embedder
         self.vector_store = vector_store
 
+
     def index(
         self,
         file_path: str,
@@ -50,3 +50,68 @@ class DocumentIndexer:
 
         self.vector_store.add(embedded_chunks=embedded_chunks,)
 
+
+
+    def index_directory(
+    self,
+    directory: str | Path,
+) -> None:
+        """
+        Indexes all PDF files inside a directory.
+        """
+
+        directory = Path(directory)
+
+        if not directory.exists():
+            raise FileNotFoundError(
+                f"Directory not found: {directory}"
+            )
+
+        pdf_files = sorted(
+            directory.rglob("*.pdf")
+        )
+
+        if not pdf_files:
+            print(
+                f"No PDF files found in {directory}"
+            )
+            return
+
+        indexed = 0
+        failed = 0
+
+        print(
+            f"\nFound {len(pdf_files)} PDF(s).\n"
+        )
+
+        for pdf_file in pdf_files:
+
+            try:
+
+                print(
+                    f"Indexing: {pdf_file.name}"
+                )
+
+                self.index(pdf_file)
+
+                indexed += 1
+
+            except Exception as exc:
+
+                failed += 1
+
+                print(
+                    f"Failed: {pdf_file.name}"
+                )
+
+                print(exc)
+
+        print()
+
+        print(
+            f"Indexed : {indexed}"
+        )
+
+        print(
+            f"Failed  : {failed}"
+        )
