@@ -1,5 +1,8 @@
 import faiss
 import numpy as np
+import pickle
+
+from pathlib import Path
 
 from src.core.models import (
     EmbeddedChunk,
@@ -114,3 +117,66 @@ class FAISSVectorStore:
             )
 
         return results
+    
+
+    def save(
+    self,
+    directory: str | Path,
+    ) -> None:
+        """
+        Saves the FAISS index and metadata to disk.
+        """
+
+        directory = Path(directory)
+
+        directory.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+
+        faiss.write_index(
+            self.index,
+            str(directory / "faiss.index"),
+        )
+
+        with open(
+            directory / "metadata.pkl",
+            "wb",
+        ) as file:
+
+            pickle.dump(
+                self.chunk_lookup,
+                file,
+            )
+
+    @classmethod
+    def load(
+        cls,
+        directory: str | Path,
+    ) -> "FAISSVectorStore":
+            """
+            Loads a previously saved FAISS index.
+            """
+
+            directory = Path(directory)
+
+            index = faiss.read_index(
+                str(directory / "faiss.index")
+            )
+
+            with open(
+                directory / "metadata.pkl",
+                "rb",
+            ) as file:
+
+                chunk_lookup = pickle.load(file)
+
+            vector_store = cls(
+                embedding_dim=index.d,
+            )
+
+            vector_store.index = index
+
+            vector_store.chunk_lookup = chunk_lookup
+
+            return vector_store
