@@ -46,8 +46,6 @@ class DocumentIndexer:
 
         chunks = self.chunker.chunk(document_pages)
 
-        print(f"Chunks created: {len(chunks)}")
-
         embedded_chunks = self.embedder.embed(chunks)
 
         self.vector_store.add(

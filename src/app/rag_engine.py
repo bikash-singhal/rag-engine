@@ -4,6 +4,7 @@ from pathlib import Path
 from src.config.settings import CHUNK_OVERLAP, CHUNK_SIZE, EMBEDDING_MODEL
 from src.core.models import SearchResult
 from src.embeddings.embedder import Embedder
+from src.evaluation.retrieval_evaluator import RetrievalEvaluator
 from src.ingestion.chunker import Chunker
 from src.ingestion.indexer import DocumentIndexer
 from src.ingestion.preprocessor import Preprocessor
@@ -52,6 +53,8 @@ class RAGEngine:
             vector_store=self.vector_store,
             llm=self.llm_provider,
         )
+
+        self.retrieval_evaluator = RetrievalEvaluator()
 
     def ask(
         self,
@@ -136,3 +139,18 @@ class RAGEngine:
         self.save_index(index_directory)
 
         print("\nVector index saved.\n")
+
+    def evaluate(
+        self,
+        question: str,
+    ):
+        """
+        Retrieves relevant chunks and returns a retrieval report.
+        """
+
+        results = self.retrieve(question)
+
+        return self.retrieval_evaluator.evaluate(
+            question,
+            results,
+        )

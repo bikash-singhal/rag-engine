@@ -55,3 +55,28 @@ class Page:
     page_number: int
     text: str
     metadata: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(slots=True)
+class RetrievalStatistics:
+    """
+    Statistics describing a retrieval operation.
+    """
+
+    result_count: int
+    highest_score: float
+    lowest_score: float
+    average_score: float
+    unique_pages: list[int]
+    page_diversity: float
+
+
+@dataclass(slots=True)
+class RetrievalReport:
+    """
+    Complete retrieval report.
+    """
+
+    question: str
+    results: list[SearchResult]
+    statistics: RetrievalStatistics
