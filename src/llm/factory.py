@@ -1,4 +1,3 @@
-
 def get_provider(
     provider_name: str,
     model: str,
@@ -16,9 +15,8 @@ def get_provider(
     elif provider == "bedrock":
         from src.llm.bedrock_provider import BedrockProvider
 
-        return BedrockProvider(model=model,)
-    
-    raise ValueError(
-        f"Unsupported provider: {provider_name}"
-    )
-    
+        return BedrockProvider(
+            model=model,
+        )
+
+    raise ValueError(f"Unsupported provider: {provider_name}")

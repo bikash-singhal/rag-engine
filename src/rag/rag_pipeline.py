@@ -30,9 +30,7 @@ class RAGPipeline:
         Retrieves the most relevant chunks for a user question.
         """
 
-        query_embedding = self.embedder.embed_query(
-            question
-        )
+        query_embedding = self.embedder.embed_query(question)
 
         return self.vector_store.search(
             query_embedding=query_embedding,

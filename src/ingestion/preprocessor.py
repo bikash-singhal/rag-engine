@@ -18,9 +18,7 @@ class Preprocessor:
 
         for page in pages:
 
-            text = self._clean_text(
-                page.text
-            )
+            text = self._clean_text(page.text)
 
             if not text:
                 continue
@@ -39,10 +37,6 @@ class Preprocessor:
         Performs lightweight text normalization.
         """
 
-        lines = [
-            line.strip()
-            for line in text.splitlines()
-            if line.strip()
-        ]
+        lines = [line.strip() for line in text.splitlines() if line.strip()]
 
         return "\n".join(lines).strip()

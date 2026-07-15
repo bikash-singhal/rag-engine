@@ -42,6 +42,9 @@ class RAGEngine:
 
         model_id = os.getenv("BEDROCK_MODEL")
 
+        if model_id is None:
+            raise RuntimeError("BEDROCK_MODEL environment variable is not set.")
+
         self.llm_provider = BedrockProvider(model_id)
 
         self.rag = RAGPipeline(
@@ -81,3 +84,55 @@ class RAGEngine:
             question,
             top_k,
         )
+
+    def save_index(
+        self,
+        index_directory: str | Path,
+    ) -> None:
+
+        self.vector_store.save(index_directory)
+
+    def load_index(
+        self,
+        index_directory: str | Path,
+    ) -> None:
+
+        self.vector_store = FAISSVectorStore.load(index_directory)
+
+        self.rag.vector_store = self.vector_store
+        self.indexer.vector_store = self.vector_store
+
+    def load_or_ingest(
+        self,
+        document_directory: str | Path,
+        index_directory: str | Path,
+    ) -> None:
+        """
+        Loads an existing vector index if available.
+        Otherwise ingests the documents and saves the index.
+        """
+
+        index_directory = Path(index_directory)
+
+        faiss_file = index_directory / "faiss.index"
+        metadata_file = index_directory / "metadata.pkl"
+
+        if faiss_file.exists() and metadata_file.exists():
+
+            print("\nLoading existing vector index...\n")
+
+            self.load_index(index_directory)
+
+            print(f"Loaded {self.vector_store.index.ntotal} vectors.")
+
+            return
+
+        print("\nNo existing index found.\n")
+
+        print("Building vector index...\n")
+
+        self.ingest_directory(document_directory)
+
+        self.save_index(index_directory)
+
+        print("\nVector index saved.\n")

@@ -1,5 +1,5 @@
-from pathlib import Path
 from collections.abc import Iterator
+from pathlib import Path
 
 from pypdf import PdfReader
 
@@ -24,9 +24,7 @@ def reader(
     try:
         reader = PdfReader(pdf_path)
     except Exception as exc:
-        raise RuntimeError(
-            f"Could not read PDF: {pdf_path}"
-        ) from exc
+        raise RuntimeError(f"Could not read PDF: {pdf_path}") from exc
 
     for page_number, page in enumerate(reader.pages, start=1):
 

@@ -22,6 +22,7 @@ class Chunk:
 
     chunk_index: int
     source: str
+    page_number: int
     text: str
 
 

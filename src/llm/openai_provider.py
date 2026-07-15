@@ -9,9 +9,7 @@ class OpenAIProvider(LLMProvider):
 
     def __init__(self, model: str) -> None:
 
-        self.client = OpenAI(
-            api_key=os.getenv("OPENAI_API_KEY")
-        )
+        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
         self.model = model
 
@@ -27,4 +25,9 @@ class OpenAIProvider(LLMProvider):
             ],
         )
 
-        return response.choices[0].message.content
+        val = response.choices[0].message.content
+
+        if val is None:
+            raise RuntimeError("OpenAI did not generate response")
+
+        return val

@@ -7,6 +7,7 @@ class PromptBuilder:
     """
     Builds prompts for the LLM using retrieved search results.
     """
+
     @staticmethod
     def build(
         question: str,
@@ -31,23 +32,16 @@ class PromptBuilder:
 
             for i, result in enumerate(results, start=1):
 
-                contexts.append(
-                    dedent(
-                        f"""
+                contexts.append(dedent(f"""
                         Context {i}
                         Source: {result.chunk.source}
 
                         {result.chunk.text}
-                        """
-                    ).strip()
-                )
+                        """).strip())
 
-            context = "\n\n-----------------------------\n\n".join(
-                contexts
-            )
+            context = "\n\n-----------------------------\n\n".join(contexts)
 
-        prompt = dedent(
-            f"""
+        prompt = dedent(f"""
             You are a helpful AI assistant.
 
             You MUST answer exclusively from the supplied context.
@@ -78,7 +72,6 @@ class PromptBuilder:
             ======================
             ANSWER
             ======================
-            """
-        ).strip()
+            """).strip()
 
         return prompt

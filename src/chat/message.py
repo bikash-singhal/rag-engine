@@ -6,6 +6,4 @@ from datetime import datetime, timezone
 class Message:
     role: str
     content: str
-    timestamp: datetime = field(
-        default_factory=lambda: datetime.now(timezone.utc)
-    )
+    timestamp: datetime = field(default_factory=lambda: datetime.now(timezone.utc))

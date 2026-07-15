@@ -15,19 +15,13 @@ class Chunker:
     ) -> None:
 
         if chunk_size <= 0:
-            raise ValueError(
-                "chunk_size must be greater than zero."
-            )
+            raise ValueError("chunk_size must be greater than zero.")
 
         if overlap < 0:
-            raise ValueError(
-                "overlap cannot be negative."
-            )
+            raise ValueError("overlap cannot be negative.")
 
         if overlap >= chunk_size:
-            raise ValueError(
-                "overlap must be smaller than chunk_size."
-            )
+            raise ValueError("overlap must be smaller than chunk_size.")
 
         self.chunk_size = chunk_size
         self.overlap = overlap
@@ -41,37 +35,42 @@ class Chunker:
         Splits streamed pages into overlapping chunks.
         """
 
-        full_text = "\n".join(
-            page.text
-            for page in pages
-        )
-
-        words = full_text.split()
-
-        if not words:
-            return []
-
         chunks: list[Chunk] = []
 
-        for chunk_index, start in enumerate(
-            range(0, len(words), self.step)
-        ):
+        chunk_index = 0
 
-            end = start + self.chunk_size
+        for page in pages:
 
-            chunk_words = words[start:end]
+            words = page.text.split()
 
-            text = " ".join(chunk_words)
-
-            if not text:
+            if not words:
                 continue
 
-            chunks.append(
-                Chunk(
-                    chunk_index=chunk_index,
-                    source="",
-                    text=text,
+            for start in range(
+                0,
+                len(words),
+                self.step,
+            ):
+
+                end = start + self.chunk_size
+
+                chunk_words = words[start:end]
+
+                if not chunk_words:
+                    continue
+
+                chunks.append(
+                    Chunk(
+                        chunk_index=chunk_index,
+                        source=page.metadata.get(
+                            "source",
+                            "",
+                        ),
+                        page_number=page.page_number,
+                        text=" ".join(chunk_words),
+                    )
                 )
-            )
+
+                chunk_index += 1
 
         return chunks

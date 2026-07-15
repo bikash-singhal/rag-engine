@@ -1,5 +1,6 @@
 from pathlib import Path
 
+
 class DocumentIndexer:
     """
     Orchestrates the complete document indexing pipeline.
@@ -28,10 +29,9 @@ class DocumentIndexer:
         self.embedder = embedder
         self.vector_store = vector_store
 
-
     def index(
         self,
-        file_path: str,
+        file_path: str | Path,
     ) -> None:
         """
         Index a document into the vector store.
@@ -46,16 +46,18 @@ class DocumentIndexer:
 
         chunks = self.chunker.chunk(document_pages)
 
+        print(f"Chunks created: {len(chunks)}")
+
         embedded_chunks = self.embedder.embed(chunks)
 
-        self.vector_store.add(embedded_chunks=embedded_chunks,)
-
-
+        self.vector_store.add(
+            embedded_chunks=embedded_chunks,
+        )
 
     def index_directory(
-    self,
-    directory: str | Path,
-) -> None:
+        self,
+        directory: str | Path,
+    ) -> None:
         """
         Indexes all PDF files inside a directory.
         """
@@ -63,34 +65,24 @@ class DocumentIndexer:
         directory = Path(directory)
 
         if not directory.exists():
-            raise FileNotFoundError(
-                f"Directory not found: {directory}"
-            )
+            raise FileNotFoundError(f"Directory not found: {directory}")
 
-        pdf_files = sorted(
-            directory.rglob("*.pdf")
-        )
+        pdf_files = sorted(directory.rglob("*.pdf"))
 
         if not pdf_files:
-            print(
-                f"No PDF files found in {directory}"
-            )
+            print(f"No PDF files found in {directory}")
             return
 
         indexed = 0
         failed = 0
 
-        print(
-            f"\nFound {len(pdf_files)} PDF(s).\n"
-        )
+        print(f"\nFound {len(pdf_files)} PDF(s).\n")
 
         for pdf_file in pdf_files:
 
             try:
 
-                print(
-                    f"Indexing: {pdf_file.name}"
-                )
+                print(f"Indexing: {pdf_file.name}")
 
                 self.index(pdf_file)
 
@@ -100,18 +92,12 @@ class DocumentIndexer:
 
                 failed += 1
 
-                print(
-                    f"Failed: {pdf_file.name}"
-                )
+                print(f"Failed: {pdf_file.name}")
 
                 print(exc)
 
         print()
 
-        print(
-            f"Indexed : {indexed}"
-        )
+        print(f"Indexed : {indexed}")
 
-        print(
-            f"Failed  : {failed}"
-        )
+        print(f"Failed  : {failed}")

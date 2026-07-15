@@ -5,6 +5,7 @@ __pycache__/
 .env
 
 data/processed/
+data/indexes/
 
 .vscode/
 .idea/

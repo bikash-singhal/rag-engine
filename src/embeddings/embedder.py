@@ -21,9 +21,12 @@ class Embedder:
 
         self.model = SentenceTransformer(model_name)
 
-        self.embedding_dimension = (
-            self.model.get_embedding_dimension()
-        )
+        dimension = self.model.get_embedding_dimension()
+
+        if dimension is None:
+            raise RuntimeError("Embedding model did not return an embedding dimension.")
+
+        self.embedding_dimension: int = dimension
 
     def embed(
         self,
@@ -42,10 +45,7 @@ class Embedder:
         if not chunks:
             return []
 
-        texts = [
-            chunk.text
-            for chunk in chunks
-        ]
+        texts = [chunk.text for chunk in chunks]
 
         embeddings = self.model.encode(
             texts,
@@ -68,13 +68,11 @@ class Embedder:
             )
 
         return embedded_chunks
-    
 
     def embed_query(
-    self,
-    query: str,
+        self,
+        query: str,
     ) -> np.ndarray:
-        
         """
         Generates an embedding for a user query.
         """

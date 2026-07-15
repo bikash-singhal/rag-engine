@@ -1,13 +1,10 @@
-import faiss
-import numpy as np
 import pickle
-
 from pathlib import Path
 
-from src.core.models import (
-    EmbeddedChunk,
-    SearchResult,
-)
+import faiss
+import numpy as np
+
+from src.core.models import EmbeddedChunk, SearchResult
 
 
 class FAISSVectorStore:
@@ -44,10 +41,7 @@ class FAISSVectorStore:
             return
 
         vectors = np.vstack(
-            [
-                embedded_chunk.embedding
-                for embedded_chunk in embedded_chunks
-            ]
+            [embedded_chunk.embedding for embedded_chunk in embedded_chunks]
         ).astype(np.float32)
 
         if vectors.shape[1] != self.index.d:
@@ -61,12 +55,8 @@ class FAISSVectorStore:
 
         self.index.add(vectors)
 
-        for offset, embedded_chunk in enumerate(
-            embedded_chunks
-        ):
-            self.chunk_lookup[
-                start_id + offset
-            ] = embedded_chunk
+        for offset, embedded_chunk in enumerate(embedded_chunks):
+            self.chunk_lookup[start_id + offset] = embedded_chunk
 
     def search(
         self,
@@ -117,11 +107,10 @@ class FAISSVectorStore:
             )
 
         return results
-    
 
     def save(
-    self,
-    directory: str | Path,
+        self,
+        directory: str | Path,
     ) -> None:
         """
         Saves the FAISS index and metadata to disk.
@@ -154,29 +143,27 @@ class FAISSVectorStore:
         cls,
         directory: str | Path,
     ) -> "FAISSVectorStore":
-            """
-            Loads a previously saved FAISS index.
-            """
+        """
+        Loads a previously saved FAISS index.
+        """
 
-            directory = Path(directory)
+        directory = Path(directory)
 
-            index = faiss.read_index(
-                str(directory / "faiss.index")
-            )
+        index = faiss.read_index(str(directory / "faiss.index"))
 
-            with open(
-                directory / "metadata.pkl",
-                "rb",
-            ) as file:
+        with open(
+            directory / "metadata.pkl",
+            "rb",
+        ) as file:
 
-                chunk_lookup = pickle.load(file)
+            chunk_lookup = pickle.load(file)
 
-            vector_store = cls(
-                embedding_dim=index.d,
-            )
+        vector_store = cls(
+            embedding_dim=index.d,
+        )
 
-            vector_store.index = index
+        vector_store.index = index
 
-            vector_store.chunk_lookup = chunk_lookup
+        vector_store.chunk_lookup = chunk_lookup
 
-            return vector_store
+        return vector_store

@@ -18,23 +18,10 @@ class BedrockProvider(LLMProvider):
 
     def generate(self, prompt: str) -> str:
 
-        body = {
-            "messages": [
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "text": prompt
-                        }
-                    ]
-                }
-            ]
-        }
+        body = {"messages": [{"role": "user", "content": [{"text": prompt}]}]}
 
-       
         response = self.client.converse(
-            modelId=self.model_id,
-            messages=body["messages"]
+            modelId=self.model_id, messages=body["messages"]
         )
 
         output = response["output"]["message"]["content"]
