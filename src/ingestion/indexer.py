@@ -18,11 +18,13 @@ class DocumentIndexer:
     def __init__(
         self,
         reader,
+        preprocessor,
         chunker,
         embedder,
         vector_store,
     ) -> None:
         self.reader = reader
+        self.preprocessor = preprocessor
         self.chunker = chunker
         self.embedder = embedder
         self.vector_store = vector_store
@@ -40,11 +42,11 @@ class DocumentIndexer:
 
         document_pages = self.reader(file_path)
 
+        document_pages = self.preprocessor.preprocess(document_pages)
+
         chunks = self.chunker.chunk(document_pages)
 
         embedded_chunks = self.embedder.embed(chunks)
 
-        self.vector_store.add(
-            embedded_chunks=embedded_chunks,
-        )
+        self.vector_store.add(embedded_chunks=embedded_chunks,)
 
