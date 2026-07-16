@@ -1,7 +1,13 @@
 import os
 from pathlib import Path
 
-from src.config.settings import CHUNK_OVERLAP, CHUNK_SIZE, EMBEDDING_MODEL
+from src.config.settings import (
+    BM25_WEIGHT,
+    CHUNK_OVERLAP,
+    CHUNK_SIZE,
+    DENSE_WEIGHT,
+    EMBEDDING_MODEL,
+)
 from src.core.models import SearchResult
 from src.embeddings.embedder import Embedder
 from src.evaluation.retrieval_evaluator import RetrievalEvaluator
@@ -11,6 +17,9 @@ from src.ingestion.preprocessor import Preprocessor
 from src.ingestion.reader import reader
 from src.llm.bedrock_provider import BedrockProvider
 from src.rag.rag_pipeline import RAGPipeline
+from src.retrieval.bm25_retriever import BM25Retriever
+from src.retrieval.dense_retriever import DenseRetriever
+from src.retrieval.hybrid_retriever import HybridRetriever
 from src.vectorstores.faiss_store import FAISSVectorStore
 
 
@@ -48,13 +57,29 @@ class RAGEngine:
 
         self.llm_provider = BedrockProvider(model_id)
 
-        self.rag = RAGPipeline(
+        self.retrieval_evaluator = RetrievalEvaluator()
+
+    def _build_retriever(self) -> None:
+        chunks = self.vector_store.get_chunks()
+
+        dense_retriever = DenseRetriever(
             embedder=self.embedder,
             vector_store=self.vector_store,
-            llm=self.llm_provider,
         )
 
-        self.retrieval_evaluator = RetrievalEvaluator()
+        bm25_retriever = BM25Retriever(chunks)
+
+        self.retriever = HybridRetriever(
+            dense_retriever=dense_retriever,
+            bm25_retriever=bm25_retriever,
+            dense_weight=DENSE_WEIGHT,
+            bm25_weight=BM25_WEIGHT,
+        )
+
+        self.rag = RAGPipeline(
+            retriever=self.retriever,
+            llm=self.llm_provider,
+        )
 
     def ask(
         self,
@@ -83,7 +108,7 @@ class RAGEngine:
         top_k: int = 5,
     ) -> list[SearchResult]:
 
-        return self.rag.retrieve(
+        return self.retriever.retrieve(
             question,
             top_k,
         )
@@ -102,8 +127,8 @@ class RAGEngine:
 
         self.vector_store = FAISSVectorStore.load(index_directory)
 
-        self.rag.vector_store = self.vector_store
         self.indexer.vector_store = self.vector_store
+        self._build_retriever()
 
     def load_or_ingest(
         self,
@@ -135,7 +160,7 @@ class RAGEngine:
         print("Building vector index...\n")
 
         self.ingest_directory(document_directory)
-
+        self._build_retriever()
         self.save_index(index_directory)
 
         print("\nVector index saved.\n")

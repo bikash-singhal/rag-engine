@@ -1,8 +1,6 @@
-from src.core.models import SearchResult
-from src.embeddings.embedder import Embedder
 from src.llm.base import LLMProvider
 from src.rag.prompt_builder import PromptBuilder
-from src.vectorstores.faiss_store import FAISSVectorStore
+from src.retrieval.retriever import Retriever
 
 
 class RAGPipeline:
@@ -12,30 +10,12 @@ class RAGPipeline:
 
     def __init__(
         self,
-        embedder: Embedder,
-        vector_store: FAISSVectorStore,
+        retriever: Retriever,
         llm: LLMProvider,
     ) -> None:
 
-        self.embedder = embedder
-        self.vector_store = vector_store
+        self.retriever = retriever
         self.llm = llm
-
-    def retrieve(
-        self,
-        question: str,
-        top_k: int = 5,
-    ) -> list[SearchResult]:
-        """
-        Retrieves the most relevant chunks for a user question.
-        """
-
-        query_embedding = self.embedder.embed_query(question)
-
-        return self.vector_store.search(
-            query_embedding=query_embedding,
-            top_k=top_k,
-        )
 
     def ask(
         self,
@@ -46,9 +26,9 @@ class RAGPipeline:
         Executes the complete Retrieval-Augmented Generation workflow.
         """
 
-        results = self.retrieve(
-            question=question,
-            top_k=top_k,
+        results = self.retriever.retrieve(
+            question,
+            top_k,
         )
 
         prompt = PromptBuilder.build(

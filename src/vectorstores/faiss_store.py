@@ -4,7 +4,7 @@ from pathlib import Path
 import faiss
 import numpy as np
 
-from src.core.models import EmbeddedChunk, SearchResult
+from src.core.models import Chunk, EmbeddedChunk, SearchResult
 
 
 class FAISSVectorStore:
@@ -167,3 +167,12 @@ class FAISSVectorStore:
         vector_store.chunk_lookup = chunk_lookup
 
         return vector_store
+
+    def get_chunks(
+        self,
+    ) -> list[Chunk]:
+        """
+        Returns all indexed chunks.
+        """
+
+        return [self.chunk_lookup[idx].chunk for idx in sorted(self.chunk_lookup)]
