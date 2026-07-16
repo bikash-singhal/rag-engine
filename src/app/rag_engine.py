@@ -10,7 +10,7 @@ from src.config.settings import (
 )
 from src.core.models import SearchResult
 from src.embeddings.embedder import Embedder
-from src.evaluation.retrieval_evaluator import RetrievalEvaluator
+from src.evaluation.retrieval_analyzer import RetrievalAnalyzer
 from src.ingestion.chunker import Chunker
 from src.ingestion.indexer import DocumentIndexer
 from src.ingestion.preprocessor import Preprocessor
@@ -57,7 +57,7 @@ class RAGEngine:
 
         self.llm_provider = BedrockProvider(model_id)
 
-        self.retrieval_evaluator = RetrievalEvaluator()
+        self.retrieval_analyzer = RetrievalAnalyzer()
 
     def _build_retriever(self) -> None:
         chunks = self.vector_store.get_chunks()
@@ -175,7 +175,7 @@ class RAGEngine:
 
         results = self.retrieve(question)
 
-        return self.retrieval_evaluator.evaluate(
+        return self.retrieval_analyzer.analyze(
             question,
             results,
         )

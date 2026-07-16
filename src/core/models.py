@@ -80,3 +80,32 @@ class RetrievalReport:
     question: str
     results: list[SearchResult]
     statistics: RetrievalStatistics
+
+
+@dataclass
+class RetrievalEvaluation:
+    hit_rate: float
+    precision: float
+    recall: float
+    f1_score: float
+    mrr: float
+
+
+@dataclass(slots=True)
+class BenchmarkEvaluation:
+    average_hit_rate: float
+    average_precision: float
+    average_recall: float
+    average_f1_score: float
+    average_mrr: float
+
+
+@dataclass(slots=True)
+class ExperimentResult:
+    name: str
+    benchmark: BenchmarkEvaluation
+
+
+@dataclass(slots=True)
+class ExperimentReport:
+    experiments: list[ExperimentResult]

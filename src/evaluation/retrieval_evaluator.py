@@ -1,51 +1,93 @@
-from src.core.models import RetrievalReport, RetrievalStatistics, SearchResult
+from src.core.models import RetrievalEvaluation, SearchResult
 
 
 class RetrievalEvaluator:
-    """
-    Computes retrieval statistics and generates a retrieval report.
-    """
 
     def evaluate(
         self,
-        question: str,
         results: list[SearchResult],
-    ) -> RetrievalReport:
+        expected_chunk_ids: set[int],
+    ) -> RetrievalEvaluation:
 
-        if not results:
+        if not expected_chunk_ids:
+            raise ValueError("The provided Benchmark Dataset cannot be empty.")
 
-            statistics = RetrievalStatistics(
-                result_count=0,
-                highest_score=0.0,
-                lowest_score=0.0,
-                average_score=0.0,
-                unique_pages=[],
-                page_diversity=0.0,
-            )
+        retrieved_chunk_ids = {result.chunk.chunk_index for result in results}
 
-            return RetrievalReport(
-                question=question,
-                results=[],
-                statistics=statistics,
-            )
+        hits = retrieved_chunk_ids & expected_chunk_ids
 
-        scores = [result.score for result in results]
-
-        pages = [result.chunk.page_number for result in results]
-
-        unique_pages = sorted(set(pages))
-
-        statistics = RetrievalStatistics(
-            result_count=len(results),
-            highest_score=max(scores),
-            lowest_score=min(scores),
-            average_score=sum(scores) / len(scores),
-            unique_pages=unique_pages,
-            page_diversity=len(unique_pages) / len(results),
+        precision = self._precision(
+            hits,
+            retrieved_chunk_ids,
         )
 
-        return RetrievalReport(
-            question=question,
-            results=results,
-            statistics=statistics,
+        recall = self._recall(
+            hits,
+            expected_chunk_ids,
         )
+
+        f1_score = self._f1_score(
+            precision,
+            recall,
+        )
+
+        mrr = self._mrr(results, expected_chunk_ids)
+
+        return RetrievalEvaluation(
+            hit_rate=self._hit_rate(hits),
+            precision=precision,
+            recall=recall,
+            f1_score=f1_score,
+            mrr=mrr,
+        )
+
+    def _hit_rate(
+        self,
+        hits: set[int],
+    ) -> float:
+
+        return 1.0 if hits else 0.0
+
+    def _precision(
+        self,
+        hits: set[int],
+        retrieved_chunk_ids: set[int],
+    ) -> float:
+
+        if not retrieved_chunk_ids:
+            return 0.0
+
+        return len(hits) / len(retrieved_chunk_ids)
+
+    def _recall(
+        self,
+        hits: set[int],
+        expected_chunk_ids: set[int],
+    ) -> float:
+
+        return len(hits) / len(expected_chunk_ids)
+
+    def _f1_score(
+        self,
+        precision: float,
+        recall: float,
+    ) -> float:
+
+        if precision + recall == 0:
+            return 0.0
+
+        return 2 * precision * recall / (precision + recall)
+
+    def _mrr(
+        self,
+        results: list[SearchResult],
+        expected_chunk_ids: set[int],
+    ) -> float:
+
+        for position, result in enumerate(results, start=1):
+
+            if result.chunk.chunk_index in expected_chunk_ids:
+
+                return 1 / position
+
+        return 0
