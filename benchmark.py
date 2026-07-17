@@ -1,10 +1,16 @@
 from dotenv import load_dotenv
 
 from src.app.rag_engine import RAGEngine
+from src.config.settings import BM25_WEIGHT, DENSE_WEIGHT
 from src.evaluation.benchmark_runner import BenchmarkRunner
 from src.evaluation.experiment_runner import ExperimentRunner
 from src.evaluation.report_formatter import ReportFormatter
 from src.evaluation.retrieval_evaluator import RetrievalEvaluator
+from src.reranking.cross_encoder_reranker import CrossEncoderReranker
+from src.retrieval.bm25_retriever import BM25Retriever
+from src.retrieval.dense_retriever import DenseRetriever
+from src.retrieval.hybrid_retriever import HybridRetriever
+from src.retrieval.reranking_retriever import RerankingRetriever
 
 
 def main():
@@ -20,7 +26,7 @@ def main():
 
     # TODO: Expand benchmark dataset to 30–50 questions after retrieval pipeline is finalized.
 
-    benchmark = benchmark = [
+    benchmark = [
         (
             "What is Amazon SageMaker?",
             {6},
@@ -84,7 +90,8 @@ def main():
         evaluator=evaluator,
     ).run(
         retrievers={
-            "Hybrid": engine.retriever,
+            "Hybrid": engine.hybrid_retriever,
+            "Hybrid + CrossEncoder": engine.reranking_retriever,
         },
         benchmark=benchmark,
     )

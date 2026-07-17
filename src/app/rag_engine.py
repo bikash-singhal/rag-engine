@@ -21,6 +21,7 @@ from src.reranking.cross_encoder_reranker import CrossEncoderReranker
 from src.retrieval.bm25_retriever import BM25Retriever
 from src.retrieval.dense_retriever import DenseRetriever
 from src.retrieval.hybrid_retriever import HybridRetriever
+from src.retrieval.reranking_retriever import RerankingRetriever
 from src.vectorstores.faiss_store import FAISSVectorStore
 
 
@@ -61,6 +62,7 @@ class RAGEngine:
         self.retrieval_analyzer = RetrievalAnalyzer()
 
     def _build_pipeline(self) -> None:
+
         chunks = self.vector_store.get_chunks()
 
         dense_retriever = DenseRetriever(
@@ -70,12 +72,20 @@ class RAGEngine:
 
         bm25_retriever = BM25Retriever(chunks)
 
-        self.retriever = HybridRetriever(
+        self.hybrid_retriever = HybridRetriever(
             dense_retriever=dense_retriever,
             bm25_retriever=bm25_retriever,
             dense_weight=DENSE_WEIGHT,
             bm25_weight=BM25_WEIGHT,
         )
+
+        self.reranking_retriever = RerankingRetriever(
+            retriever=self.hybrid_retriever,
+            reranker=CrossEncoderReranker(),
+        )
+
+        # Default retriever used by the application
+        self.retriever = self.hybrid_retriever
 
         self.rag = RAGPipeline(
             retriever=self.retriever,
@@ -107,7 +117,7 @@ class RAGEngine:
     def retrieve(
         self,
         question: str,
-        top_k: int = 10,
+        top_k: int = 5,
     ) -> list[SearchResult]:
 
         return self.retriever.retrieve(

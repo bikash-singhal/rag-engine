@@ -30,19 +30,17 @@ class ReportFormatter:
         report: ExperimentReport,
     ) -> None:
 
-        print()
+        NAME_WIDTH = 28
 
         print("=" * 80)
-
         print(
-            f"{'Retriever':<15}"
+            f"{'Retriever':<{NAME_WIDTH}}"
             f"{'Hit':>8}"
-            f"{'Prec':>10}"
+            f"{'Prec':>8}"
             f"{'Recall':>10}"
-            f"{'F1':>10}"
-            f"{'MRR':>10}"
+            f"{'F1':>8}"
+            f"{'MRR':>8}"
         )
-
         print("=" * 80)
 
         for experiment in report.experiments:
@@ -50,12 +48,12 @@ class ReportFormatter:
             benchmark = experiment.benchmark
 
             print(
-                f"{experiment.name:<15}"
+                f"{experiment.name:<{NAME_WIDTH}}"
                 f"{benchmark.average_hit_rate:>8.2f}"
-                f"{benchmark.average_precision:>10.2f}"
+                f"{benchmark.average_precision:>8.2f}"
                 f"{benchmark.average_recall:>10.2f}"
-                f"{benchmark.average_f1_score:>10.2f}"
-                f"{benchmark.average_mrr:>10.2f}"
+                f"{benchmark.average_f1_score:>8.2f}"
+                f"{benchmark.average_mrr:>8.2f}"
             )
 
         print("=" * 80)
