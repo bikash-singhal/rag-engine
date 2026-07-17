@@ -1,5 +1,6 @@
 from src.llm.base import LLMProvider
 from src.rag.prompt_builder import PromptBuilder
+from src.reranking.reranker import Reranker
 from src.retrieval.retriever import Retriever
 
 
@@ -11,10 +12,12 @@ class RAGPipeline:
     def __init__(
         self,
         retriever: Retriever,
+        reranker: Reranker,
         llm: LLMProvider,
     ) -> None:
 
         self.retriever = retriever
+        self.reranker = reranker
         self.llm = llm
 
     def ask(
@@ -28,7 +31,13 @@ class RAGPipeline:
 
         results = self.retriever.retrieve(
             question,
-            top_k,
+            top_k=20,
+        )
+
+        results = self.reranker.rerank(
+            query=question,
+            results=results,
+            top_k=5,
         )
 
         prompt = PromptBuilder.build(

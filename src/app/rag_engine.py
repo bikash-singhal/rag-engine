@@ -17,6 +17,7 @@ from src.ingestion.preprocessor import Preprocessor
 from src.ingestion.reader import reader
 from src.llm.bedrock_provider import BedrockProvider
 from src.rag.rag_pipeline import RAGPipeline
+from src.reranking.cross_encoder_reranker import CrossEncoderReranker
 from src.retrieval.bm25_retriever import BM25Retriever
 from src.retrieval.dense_retriever import DenseRetriever
 from src.retrieval.hybrid_retriever import HybridRetriever
@@ -59,7 +60,7 @@ class RAGEngine:
 
         self.retrieval_analyzer = RetrievalAnalyzer()
 
-    def _build_retriever(self) -> None:
+    def _build_pipeline(self) -> None:
         chunks = self.vector_store.get_chunks()
 
         dense_retriever = DenseRetriever(
@@ -78,6 +79,7 @@ class RAGEngine:
 
         self.rag = RAGPipeline(
             retriever=self.retriever,
+            reranker=CrossEncoderReranker(),
             llm=self.llm_provider,
         )
 
@@ -128,7 +130,7 @@ class RAGEngine:
         self.vector_store = FAISSVectorStore.load(index_directory)
 
         self.indexer.vector_store = self.vector_store
-        self._build_retriever()
+        self._build_pipeline()
 
     def load_or_ingest(
         self,
@@ -160,7 +162,7 @@ class RAGEngine:
         print("Building vector index...\n")
 
         self.ingest_directory(document_directory)
-        self._build_retriever()
+        self._build_pipeline()
         self.save_index(index_directory)
 
         print("\nVector index saved.\n")
