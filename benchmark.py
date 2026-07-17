@@ -18,14 +18,48 @@ def main():
         index_directory="data/indexes/default",
     )
 
-    benchmark = [
+    # TODO: Expand benchmark dataset to 30–50 questions after retrieval pipeline is finalized.
+
+    benchmark = benchmark = [
         (
-            "What is SageMaker?",
-            {2},
+            "What is Amazon SageMaker?",
+            {6},
         ),
         (
-            "What is Bedrock?",
-            {56},
+            "What are the two primary components of Amazon SageMaker?",
+            {6},
+        ),
+        (
+            "What is SageMaker Unified Studio?",
+            {6},
+        ),
+        (
+            "What is SageMaker AI?",
+            {6},
+        ),
+        (
+            "What is Data Processing?",
+            {11},
+        ),
+        (
+            "What is Data and AI Governance?",
+            {6},
+        ),
+        (
+            "What is the Lakehouse architecture?",
+            {9},
+        ),
+        (
+            "What frameworks are supported for data processing?",
+            {10},
+        ),
+        (
+            "What data sources can SageMaker connect to?",
+            {11},
+        ),
+        (
+            "What are the prerequisites for Amazon SageMaker?",
+            {15},
         ),
     ]
 

@@ -12,8 +12,8 @@ class RAGPipeline:
     def __init__(
         self,
         retriever: Retriever,
-        reranker: Reranker,
         llm: LLMProvider,
+        reranker: Reranker | None = None,
     ) -> None:
 
         self.retriever = retriever
@@ -34,11 +34,11 @@ class RAGPipeline:
             top_k=20,
         )
 
-        results = self.reranker.rerank(
-            query=question,
-            results=results,
-            top_k=5,
-        )
+        if self.reranker is not None:
+            results = self.reranker.rerank(
+                query=question,
+                results=results,
+            )
 
         prompt = PromptBuilder.build(
             question=question,

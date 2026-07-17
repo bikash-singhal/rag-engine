@@ -107,7 +107,7 @@ class RAGEngine:
     def retrieve(
         self,
         question: str,
-        top_k: int = 5,
+        top_k: int = 10,
     ) -> list[SearchResult]:
 
         return self.retriever.retrieve(

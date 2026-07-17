@@ -32,6 +32,7 @@ def main():
             print(f"Result {i}")
             print(f"Score : {result.score:.4f}")
             print(f"Page  : {result.chunk.page_number}")
+            print(f"Chunk Index : {result.chunk.chunk_index}")
             print(result.chunk.text[:300])
             print("-" * 80)
 
