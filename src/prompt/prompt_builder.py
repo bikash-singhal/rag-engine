@@ -32,20 +32,26 @@ class PromptBuilder:
 
         return "".join(formatted_history)
 
-    def _format_context(self, context: list[SearchResult]) -> str:
+    def _format_context(
+        self,
+        context: list[SearchResult],
+    ) -> str:
 
         if not context:
             return ""
 
         formatted_context = []
-        _SEPARATOR = "-" * 10
 
-        for index, result in enumerate(context):
-            formatted_context.append(f"Context {index + 1}\n")
-            formatted_context.append(_SEPARATOR + "\n")
+        separator = "-" * 20
+
+        for index, result in enumerate(context, start=1):
+
+            formatted_context.append(f"[Source {index}]\n")
+            formatted_context.append(f"Document: {result.chunk.source}\n")
             formatted_context.append(f"Page: {result.chunk.page_number}\n")
-            formatted_context.append(f"Chunk: {result.chunk.chunk_index}\n")
-            formatted_context.append(result.chunk.text + "\n\n")
+            formatted_context.append(f"Chunk: {result.chunk.chunk_index}\n\n")
+            formatted_context.append(result.chunk.text.strip())
+            formatted_context.append(f"\n\n{separator}\n\n")
 
         return "".join(formatted_context)
 
@@ -54,11 +60,48 @@ class PromptBuilder:
         prompt = dedent(f"""
             You are a helpful AI assistant.
 
-            Answer the user's question using the retrieved context.
+            Treat the retrieved context as the single source of truth.
 
-            If the answer cannot be found in the retrieved context, clearly say that you don't know.
+            If the answer cannot be found in the retrieved context, say:
 
-            Do not invent information.
+            "I don't know based on the provided documents."
+
+            Do not invent facts.
+            Do not use outside knowledge.
+
+            Whenever you use information from a retrieved context,
+            cite ONLY the source(s) that directly contain that information.
+
+            Do not cite every retrieved source.
+
+            Do not guess citations.
+
+            If only one source supports a sentence,
+            cite exactly one source.
+
+            Use citations in the format:
+
+            [Source X]
+
+            where X is the source number shown in the retrieved context. 
+            If multiple sources support the same sentence, cite all of them.
+            Never cite a source that was not provided.
+
+            Examples:
+
+            [Source 1]
+            [Source 3]
+            [Source 2][Source 5]
+
+            Only cite the source(s) that directly support the statement.
+
+            Do not cite every retrieved source.
+
+            Do not invent source numbers.
+                        
+            Example:
+
+            Amazon SageMaker is a fully managed machine learning service. [Source 1]
 
             ========================
             Previous Conversation
