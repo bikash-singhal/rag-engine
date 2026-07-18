@@ -6,11 +6,6 @@ from src.evaluation.benchmark_runner import BenchmarkRunner
 from src.evaluation.experiment_runner import ExperimentRunner
 from src.evaluation.report_formatter import ReportFormatter
 from src.evaluation.retrieval_evaluator import RetrievalEvaluator
-from src.reranking.cross_encoder_reranker import CrossEncoderReranker
-from src.retrieval.bm25_retriever import BM25Retriever
-from src.retrieval.dense_retriever import DenseRetriever
-from src.retrieval.hybrid_retriever import HybridRetriever
-from src.retrieval.reranking_retriever import RerankingRetriever
 
 
 def main():

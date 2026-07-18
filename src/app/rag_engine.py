@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+from src.chat.chat_engine import ChatEngine
+from src.chat.in_memory import InMemoryMemory
 from src.config.settings import (
     BM25_WEIGHT,
     CHUNK_OVERLAP,
@@ -16,7 +18,7 @@ from src.ingestion.indexer import DocumentIndexer
 from src.ingestion.preprocessor import Preprocessor
 from src.ingestion.reader import reader
 from src.llm.bedrock_provider import BedrockProvider
-from src.rag.rag_pipeline import RAGPipeline
+from src.prompt.prompt_builder import PromptBuilder
 from src.reranking.cross_encoder_reranker import CrossEncoderReranker
 from src.retrieval.bm25_retriever import BM25Retriever
 from src.retrieval.dense_retriever import DenseRetriever
@@ -61,7 +63,7 @@ class RAGEngine:
 
         self.retrieval_analyzer = RetrievalAnalyzer()
 
-    def _build_pipeline(self) -> None:
+    def _build_chat_engine(self) -> None:
 
         chunks = self.vector_store.get_chunks()
 
@@ -87,9 +89,15 @@ class RAGEngine:
         # Default retriever used by the application
         self.retriever = self.hybrid_retriever
 
-        self.rag = RAGPipeline(
+        memory = InMemoryMemory()
+
+        prompt_builder = PromptBuilder()
+
+        self.chat_engine = ChatEngine(
+            memory=memory,
             retriever=self.retriever,
             reranker=CrossEncoderReranker(),
+            prompt_builder=prompt_builder,
             llm=self.llm_provider,
         )
 
@@ -98,7 +106,7 @@ class RAGEngine:
         question: str,
     ) -> str:
 
-        return self.rag.ask(question)
+        return self.chat_engine.ask(question)
 
     def ingest(
         self,
@@ -140,7 +148,7 @@ class RAGEngine:
         self.vector_store = FAISSVectorStore.load(index_directory)
 
         self.indexer.vector_store = self.vector_store
-        self._build_pipeline()
+        self._build_chat_engine()
 
     def load_or_ingest(
         self,
@@ -172,7 +180,7 @@ class RAGEngine:
         print("Building vector index...\n")
 
         self.ingest_directory(document_directory)
-        self._build_pipeline()
+        self._build_chat_engine()
         self.save_index(index_directory)
 
         print("\nVector index saved.\n")

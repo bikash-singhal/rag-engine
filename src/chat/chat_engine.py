@@ -1,6 +1,10 @@
 from src.chat.memory import Memory
 from src.chat.message import Message
 from src.llm.base import LLMProvider
+from src.prompt.prompt_builder import PromptBuilder
+from src.reranking.reranker import Reranker
+from src.retrieval.retrieval_printer import RetrievalPrinter
+from src.retrieval.retriever import Retriever
 
 
 class ChatEngine:
@@ -8,12 +12,22 @@ class ChatEngine:
     def __init__(
         self,
         memory: Memory,
+        retriever: Retriever,
+        reranker: Reranker,
+        prompt_builder: PromptBuilder,
         llm: LLMProvider,
     ):
         self.memory = memory
+        self.retriever = retriever
+        self.reranker = reranker
+        self.prompt_builder = prompt_builder
         self.llm = llm
 
-    def ask(self, question: str) -> str:
+    def ask(
+        self,
+        question: str,
+        top_k: int = 5,
+    ) -> str:
 
         user_message = Message(
             role="user",
@@ -22,7 +36,43 @@ class ChatEngine:
 
         self.memory.add_message(user_message)
 
-        response = self.llm.generate(question)
+        retrieval_top_k = 20
+
+        hybrid_results = self.retriever.retrieve(
+            question,
+            top_k=retrieval_top_k,
+        )
+
+        RetrievalPrinter.print_results(
+            "Hybrid Retrieval",
+            hybrid_results,
+        )
+
+        final_results = hybrid_results
+
+        if self.reranker is not None:
+
+            final_results = self.reranker.rerank(
+                query=question,
+                results=hybrid_results,
+                top_k=top_k,
+            )
+
+            RetrievalPrinter.print_results(
+                "After CrossEncoder Reranking",
+                final_results,
+            )
+
+        prompt = self.prompt_builder.build(
+            question=question,
+            history=self.memory.get_messages(),
+            context=final_results,
+        )
+
+        print()
+        print("Generating answer...\n")
+
+        response = self.llm.generate(prompt)
 
         assistant_message = Message(
             role="assistant",
