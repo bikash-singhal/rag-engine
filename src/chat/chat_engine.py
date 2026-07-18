@@ -1,3 +1,5 @@
+from collections.abc import Iterator
+
 from src.chat.memory import Memory
 from src.chat.message import Message
 from src.llm.base import LLMProvider
@@ -27,7 +29,7 @@ class ChatEngine:
         self,
         question: str,
         top_k: int = 5,
-    ) -> str:
+    ) -> Iterator[str]:
 
         user_message = Message(
             role="user",
@@ -69,10 +71,11 @@ class ChatEngine:
             context=final_results,
         )
 
-        print()
-        print("Generating answer...\n")
+        response = ""
 
-        response = self.llm.generate(prompt)
+        for token in self.llm.stream(prompt):
+            response += token
+            yield token
 
         assistant_message = Message(
             role="assistant",
@@ -80,5 +83,3 @@ class ChatEngine:
         )
 
         self.memory.add_message(assistant_message)
-
-        return response

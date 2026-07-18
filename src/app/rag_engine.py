@@ -1,4 +1,5 @@
 import os
+from collections.abc import Iterator
 from pathlib import Path
 
 from src.chat.chat_engine import ChatEngine
@@ -104,7 +105,7 @@ class RAGEngine:
     def ask(
         self,
         question: str,
-    ) -> str:
+    ) -> Iterator[str]:
 
         return self.chat_engine.ask(question)
 

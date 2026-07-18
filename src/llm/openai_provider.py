@@ -1,4 +1,5 @@
 import os
+from collections.abc import Iterator
 
 from openai import OpenAI
 
@@ -31,3 +32,9 @@ class OpenAIProvider(LLMProvider):
             raise RuntimeError("OpenAI did not generate response")
 
         return val
+
+    def stream(
+        self,
+        prompt: str,
+    ) -> Iterator[str]:
+        raise NotImplementedError()

@@ -38,7 +38,10 @@ def main():
 
         print("\nGenerating answer...\n")
 
-        print(engine.ask(question))
+        for token in engine.ask(question):
+            print(token, end="", flush=True)
+
+        print()
 
 
 if __name__ == "__main__":
