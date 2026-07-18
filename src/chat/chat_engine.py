@@ -4,6 +4,7 @@ from src.chat.memory import Memory
 from src.chat.message import Message
 from src.llm.base import LLMProvider
 from src.prompt.prompt_builder import PromptBuilder
+from src.query.base import QueryRewriter
 from src.reranking.reranker import Reranker
 from src.retrieval.retrieval_printer import RetrievalPrinter
 from src.retrieval.retriever import Retriever
@@ -14,12 +15,14 @@ class ChatEngine:
     def __init__(
         self,
         memory: Memory,
+        query_rewriter: QueryRewriter,
         retriever: Retriever,
         reranker: Reranker,
         prompt_builder: PromptBuilder,
         llm: LLMProvider,
     ):
         self.memory = memory
+        self.query_rewriter = query_rewriter
         self.retriever = retriever
         self.reranker = reranker
         self.prompt_builder = prompt_builder
@@ -40,8 +43,13 @@ class ChatEngine:
 
         retrieval_top_k = 20
 
+        rewritten_question = self.query_rewriter.rewrite(
+            question=question,
+            history=self.memory.get_messages(),
+        )
+
         hybrid_results = self.retriever.retrieve(
-            question,
+            rewritten_question,
             top_k=retrieval_top_k,
         )
 
@@ -55,7 +63,7 @@ class ChatEngine:
         if self.reranker is not None:
 
             final_results = self.reranker.rerank(
-                query=question,
+                query=rewritten_question,
                 results=hybrid_results,
                 top_k=top_k,
             )

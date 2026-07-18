@@ -20,6 +20,8 @@ from src.ingestion.preprocessor import Preprocessor
 from src.ingestion.reader import reader
 from src.llm.bedrock_provider import BedrockProvider
 from src.prompt.prompt_builder import PromptBuilder
+from src.query.llm_query_rewriter import LLMQueryRewriter
+from src.query.rewrite_prompt import RewritePromptBuilder
 from src.reranking.cross_encoder_reranker import CrossEncoderReranker
 from src.retrieval.bm25_retriever import BM25Retriever
 from src.retrieval.dense_retriever import DenseRetriever
@@ -94,8 +96,16 @@ class RAGEngine:
 
         prompt_builder = PromptBuilder()
 
+        rewrite_prompt_builder = RewritePromptBuilder()
+
+        query_rewriter = LLMQueryRewriter(
+            llm=self.llm_provider,
+            prompt_builder=rewrite_prompt_builder,
+        )
+
         self.chat_engine = ChatEngine(
             memory=memory,
+            query_rewriter=query_rewriter,
             retriever=self.retriever,
             reranker=CrossEncoderReranker(),
             prompt_builder=prompt_builder,
