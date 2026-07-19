@@ -1,18 +1,25 @@
 from sentence_transformers import CrossEncoder
 
-from src.config.settings import RERANKER_MODEL
+from src.config.settings import MAX_RERANK_CANDIDATES, RERANKER_MODEL
 from src.core.models import SearchResult
 from src.reranking.reranker import Reranker
+from src.utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 class CrossEncoderReranker(Reranker):
 
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        max_candidates: int = MAX_RERANK_CANDIDATES,
+    ) -> None:
 
         if not RERANKER_MODEL:
             raise RuntimeError("RERANKER_MODEL is not configured.")
 
         self.model = CrossEncoder(RERANKER_MODEL)
+        self.max_candidates = max_candidates
 
     def rerank(
         self,
@@ -24,7 +31,24 @@ class CrossEncoderReranker(Reranker):
         if not results:
             return []
 
-        pairs = [(query, result.chunk.text) for result in results]
+        logger.debug(
+            "Received %d candidates: ",
+            len(results),
+        )
+
+        unique_results = self._deduplicate_results(results)
+
+        logger.debug(
+            "Deduplicated to  %d unique candidates: ",
+            len(unique_results),
+        )
+
+        pruned_results = self._prune(
+            max_canidates=self.max_candidates,
+            results=unique_results,
+        )
+
+        pairs = [(query, result.chunk.text) for result in pruned_results]
 
         scores = self.model.predict(pairs)
 
@@ -44,3 +68,31 @@ class CrossEncoderReranker(Reranker):
         )
 
         return reranked_results[:top_k]
+
+    def _deduplicate_results(
+        self,
+        results: list[SearchResult],
+    ) -> list[SearchResult]:
+
+        seen = set()
+
+        unique_results = []
+
+        for result in results:
+
+            if result.chunk.id in seen:
+                continue
+
+            seen.add(result.chunk.id)
+
+            unique_results.append(result)
+
+        return unique_results
+
+    def _prune(
+        self,
+        max_canidates: int,
+        results: list[SearchResult],
+    ) -> list[SearchResult]:
+
+        return results[:max_canidates]

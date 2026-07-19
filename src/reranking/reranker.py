@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+from src.config.settings import MAX_RERANK_CANDIDATES
 from src.core.models import SearchResult
 
 
@@ -13,7 +14,7 @@ class Reranker(ABC):
         self,
         query: str,
         results: list[SearchResult],
-        top_k: int = 5,
+        top_k: int = MAX_RERANK_CANDIDATES,
     ) -> list[SearchResult]:
         """
         Reorders retrieved results according to relevance.

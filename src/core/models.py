@@ -25,6 +25,13 @@ class Chunk:
     page_number: int
     text: str
 
+    @property
+    def id(self) -> tuple[str, int]:
+        return (
+            self.source,
+            self.chunk_index,
+        )
+
 
 @dataclass(slots=True)
 class EmbeddedChunk:

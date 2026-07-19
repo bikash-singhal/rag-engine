@@ -1,0 +1,398 @@
+21:53:51 | INFO | src.app.rag_engine | Initializing RAG Engine...
+21:54:00 | INFO | src.llm.bedrock_provider | Initialized Bedrock provider with model: amazon.nova-lite-v1:0
+21:54:00 | INFO | src.app.rag_engine | Using LLM model: amazon.nova-lite-v1:0
+21:54:00 | INFO | src.app.rag_engine | RAG Engine initialized.
+21:54:00 | INFO | src.app.rag_engine | Loading existing vector index...
+21:54:00 | INFO | src.app.rag_engine | Loading vector index from data\indexes\default
+21:54:00 | INFO | src.app.rag_engine | Building chat engine...
+21:54:00 | INFO | src.app.rag_engine | Loaded 94 chunks from vector store.
+21:54:08 | INFO | src.app.rag_engine | Chat engine rebuilt.
+21:54:08 | INFO | src.app.rag_engine | Loaded vector count: 94
+21:54:14 | INFO | __main__ | User question received.
+21:54:14 | INFO | __main__ | Searching...
+21:54:14 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+21:54:14 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 20 results.
+21:54:14 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.085 sec (20 results)
+21:54:14 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+21:54:14 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 20 results.
+21:54:14 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.000 sec (20 results)
+21:54:14 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (35 results)
+21:54:14 | INFO | __main__ | Retrieved 20 search results
+21:54:14 | DEBUG | __main__ | Result 1
+21:54:14 | DEBUG | __main__ | Score: 1.0000
+21:54:14 | DEBUG | __main__ | Page: 3
+21:54:14 | DEBUG | __main__ | Chunk Index: 2
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide Table of Contents What is Amazon SageMaker? .......................................................................................................... 1 Guide to SageMaker ....................................................................................................
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 2
+21:54:14 | DEBUG | __main__ | Score: 0.5564
+21:54:14 | DEBUG | __main__ | Page: 6
+21:54:14 | DEBUG | __main__ | Chunk Index: 6
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide What is Amazon SageMaker? Bringing together widely adopted artiﬁcial intelligence (AI) and analytics capabilities, the next generation of Amazon SageMaker delivers an integrated experience for analytics and AI with uniﬁed access to all your data. Collaborate and build in 
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 3
+21:54:14 | DEBUG | __main__ | Score: 0.5437
+21:54:14 | DEBUG | __main__ | Page: 1
+21:54:14 | DEBUG | __main__ | Chunk Index: 0
+21:54:14 | DEBUG | __main__ | User Guide Amazon SageMaker Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved.
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 4
+21:54:14 | DEBUG | __main__ | Score: 0.3991
+21:54:14 | DEBUG | __main__ | Page: 6
+21:54:14 | DEBUG | __main__ | Chunk Index: 7
+21:54:14 | DEBUG | __main__ | entire data and AI lifecycle Guide to SageMaker 1
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 5
+21:54:14 | DEBUG | __main__ | Score: 0.3725
+21:54:14 | DEBUG | __main__ | Page: 12
+21:54:14 | DEBUG | __main__ | Chunk Index: 15
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide Prerequisites for Amazon SageMaker Complete the following prerequisite tasks before you can set up Amazon SageMaker and proceed with the use cases in this guide. Topics • Sign up for an AWS account Sign up for an AWS account To get started with AWS, you need an AWS accoun
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 6
+21:54:14 | DEBUG | __main__ | Score: 0.2960
+21:54:14 | DEBUG | __main__ | Page: 67
+21:54:14 | DEBUG | __main__ | Chunk Index: 92
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide API Documentation for Amazon SageMaker You can use the following guides to work with Amazon SageMaker programmatically: • SQL analytics • Amazon Redshift API reference • Data processing • Amazon EMR API reference • AWS Glue API reference • Amazon Athena API reference • Mo
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 7
+21:54:14 | DEBUG | __main__ | Score: 0.2818
+21:54:14 | DEBUG | __main__ | Page: 7
+21:54:14 | DEBUG | __main__ | Chunk Index: 8
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide Additionally, SageMaker is built upon an open lakehouse architecture that uniﬁes access to all your data across Amazon Simple Storage Service (Amazon S3) data lakes, Amazon Redshift data warehouses, and other external sources Uniﬁed Studio Amazon SageMaker Uniﬁed Studio i
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 8
+21:54:14 | DEBUG | __main__ | Score: 0.2773
+21:54:14 | DEBUG | __main__ | Page: 11
+21:54:14 | DEBUG | __main__ | Chunk Index: 14
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide Get started with Amazon SageMaker You can view demos of Amazon SageMaker and get started by setting up a domain and project. View demos of Amazon SageMaker To see Amazon SageMaker before using it yourself, you can review the following clickthrough demos: • For an end-to-e
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 9
+21:54:14 | DEBUG | __main__ | Score: 0.2677
+21:54:14 | DEBUG | __main__ | Page: 9
+21:54:14 | DEBUG | __main__ | Chunk Index: 11
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide Data processing Prepare, orchestrate, and process your data with capabilities in SageMaker, allowing you to run Apache Spark, Trino, and other open-source analytics frameworks in a uniﬁed data and AI development environment. Process your data, wherever it lives, with conn
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 10
+21:54:14 | DEBUG | __main__ | Score: 0.2558
+21:54:14 | DEBUG | __main__ | Page: 2
+21:54:14 | DEBUG | __main__ | Chunk Index: 1
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide Amazon SageMaker: User Guide Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved. Amazon's trademarks and trade dress may not be used in connection with any product or service that is not Amazon's, in any manner that is likely to cause conf
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 11
+21:54:14 | DEBUG | __main__ | Score: 0.2367
+21:54:14 | DEBUG | __main__ | Page: 10
+21:54:14 | DEBUG | __main__ | Chunk Index: 12
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide Currently, SageMaker Uniﬁed Studio should be used when you are looking to unify and share your data as a single integrated experience across analytics, ML, and gen AI workloads. You are able to eliminate data silos with an open lakehouse architecture to unify access to da
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 12
+21:54:14 | DEBUG | __main__ | Score: 0.1856
+21:54:14 | DEBUG | __main__ | Page: 43
+21:54:14 | DEBUG | __main__ | Chunk Index: 57
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide • You can customize and inﬂuence model behavior using inference parameters and system prompts. For more information, see What is a prompt?. • You can enhance your chat agent app by adding data sources and guardrails. For more information, see Build a chat agent app. • You
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 13
+21:54:14 | DEBUG | __main__ | Score: 0.1620
+21:54:14 | DEBUG | __main__ | Page: 13
+21:54:14 | DEBUG | __main__ | Chunk Index: 16
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide Setting up Amazon SageMaker Complete the following tasks to set up Amazon SageMaker. Topics • Step 1 - Create an Amazon SageMaker uniﬁed domain • Step 2 - Create a new project Step 1 - Create an Amazon SageMaker uniﬁed domain Complete the following procedure to create an 
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 14
+21:54:14 | DEBUG | __main__ | Score: 0.1569
+21:54:14 | DEBUG | __main__ | Page: 51
+21:54:14 | DEBUG | __main__ | Chunk Index: 66
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide SageMaker Lakehouse interface. Federated queries use these connections to run SQL statements across multiple data sources simultaneously, breaking down data silos for comprehensive analysis. What you'll learn This guide shows you how to use SageMaker Lakehouse with integr
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 15
+21:54:14 | DEBUG | __main__ | Score: 0.1240
+21:54:14 | DEBUG | __main__ | Page: 17
+21:54:14 | DEBUG | __main__ | Chunk Index: 22
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide Get started with uploading and querying data in Amazon SageMaker Uniﬁed Studio You can use the query editor to perform analysis using SQL. The query editor tool provides a place to write and run queries, view results, and share your work with your team. Prerequisites Befo
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 16
+21:54:14 | DEBUG | __main__ | Score: 0.1166
+21:54:14 | DEBUG | __main__ | Page: 52
+21:54:14 | DEBUG | __main__ | Chunk Index: 68
+21:54:14 | DEBUG | __main__ | creating connections. This project has a SQL analytics project proﬁle. • A Data Analyst project for analyzing data, which includes both administrator and analysts as members. This project has a SQL analytics project proﬁle. For more information about how to create a project in SageMaker Uniﬁed Studi
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 17
+21:54:14 | DEBUG | __main__ | Score: 0.1164
+21:54:14 | DEBUG | __main__ | Page: 40
+21:54:14 | DEBUG | __main__ | Chunk Index: 51
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide 4. Under Data and model catalog, choose Amazon Bedrock models. This opens the model catalog in the Amazon Bedrock in SageMaker Uniﬁed Studio playground. 5. (Optional) Choose Group by: Modality and select Provider to sort the list by model provider. 6. Choose a model from 
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 18
+21:54:14 | DEBUG | __main__ | Score: 0.0825
+21:54:14 | DEBUG | __main__ | Page: 4
+21:54:14 | DEBUG | __main__ | Chunk Index: 3
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide Create a new Lakehouse catalog ....................................................................................................... 20 Add data and create an AWS Glue table ......................................................................................... 21 Ver
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 19
+21:54:14 | DEBUG | __main__ | Score: 0.0793
+21:54:14 | DEBUG | __main__ | Page: 15
+21:54:14 | DEBUG | __main__ | Chunk Index: 19
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide Step 2 - Create a new project In Amazon SageMaker, projects enable a group of users to collaborate on various business use cases. Within projects, you can manage data assets in the Amazon SageMaker catalog, perform data analysis, organize workﬂows, develop machine learnin
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | DEBUG | __main__ | Result 20
+21:54:14 | DEBUG | __main__ | Score: 0.0541
+21:54:14 | DEBUG | __main__ | Page: 16
+21:54:14 | DEBUG | __main__ | Chunk Index: 21
+21:54:14 | DEBUG | __main__ | Amazon SageMaker User Guide Review parameters On the next page of project creation, you can review and optionally edit the names and values for diﬀerent resources that are created when the project is created. You can leave all the defaults and then choose Continue. Review Use the last page of projec
+21:54:14 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:14 | INFO | __main__ | Generating answer...
+21:54:14 | INFO | src.chat.chat_engine | Processing user question.
+21:54:14 | DEBUG | src.chat.chat_engine | Original Question: What is Sagemaker?
+21:54:14 | DEBUG | src.chat.chat_engine | Conversation history size: 1 messages
+21:54:14 | DEBUG | src.llm.bedrock_provider | Sending synchronous request to Bedrock.
+21:54:15 | DEBUG | src.llm.bedrock_provider | Bedrock response received in 1.249 sec.
+21:54:15 | INFO | src.chat.chat_engine | Query rewriting completed.
+21:54:15 | DEBUG | src.chat.chat_engine | Rewritten Question: What is Amazon SageMaker?
+21:54:15 | DEBUG | src.llm.bedrock_provider | Sending synchronous request to Bedrock.
+21:54:16 | DEBUG | src.llm.bedrock_provider | Bedrock response received in 0.577 sec.
+21:54:16 | DEBUG | src.query.llm_multi_query_generator | Multi-query generation produced 4 unique queries.
+21:54:16 | INFO | src.chat.chat_engine | Generated 4 retrieval queries.
+21:54:16 | DEBUG | src.chat.chat_engine | Query 1: What is Amazon SageMaker?
+21:54:16 | DEBUG | src.chat.chat_engine | Query 2: Amazon SageMaker explained
+21:54:16 | DEBUG | src.chat.chat_engine | Query 3: Overview of Amazon SageMaker
+21:54:16 | DEBUG | src.chat.chat_engine | Query 4: Amazon SageMaker information
+21:54:16 | INFO | src.chat.chat_engine | Starting retrieval.
+21:54:16 | DEBUG | src.chat.chat_engine | Retrieving with query: What is Amazon SageMaker?
+21:54:16 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+21:54:16 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 20 results.
+21:54:16 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.172 sec (20 results)
+21:54:16 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+21:54:16 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 20 results.
+21:54:16 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.000 sec (20 results)
+21:54:16 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (32 results)
+21:54:16 | DEBUG | src.chat.chat_engine | Retrieving with query: Amazon SageMaker explained
+21:54:16 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+21:54:16 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 20 results.
+21:54:16 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.027 sec (20 results)
+21:54:16 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+21:54:16 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 20 results.
+21:54:16 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.000 sec (20 results)
+21:54:16 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (29 results)
+21:54:16 | DEBUG | src.chat.chat_engine | Retrieving with query: Overview of Amazon SageMaker
+21:54:16 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+21:54:16 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 20 results.
+21:54:16 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.040 sec (20 results)
+21:54:16 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+21:54:16 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 20 results.
+21:54:16 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (20 results)
+21:54:16 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (31 results)
+21:54:16 | DEBUG | src.chat.chat_engine | Retrieving with query: Amazon SageMaker information
+21:54:16 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+21:54:16 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 20 results.
+21:54:16 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.017 sec (20 results)
+21:54:16 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+21:54:16 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 20 results.
+21:54:16 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.000 sec (20 results)
+21:54:16 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (31 results)
+21:54:16 | DEBUG | src.chat.chat_engine | Retrieved 20 candidates.
+21:54:16 | INFO | src.chat.chat_engine | Starting CrossEncoder reranking.
+21:54:16 | DEBUG | src.reranking.cross_encoder_reranker | Received 80 candidates: 
+21:54:16 | DEBUG | src.reranking.cross_encoder_reranker | Deduplicated to  37 unique candidates: 
+21:54:25 | INFO | src.chat.chat_engine | Top 5 candidates selected after reranking.
+21:54:25 | INFO | src.chat.chat_engine | Building final prompt.
+21:54:25 | DEBUG | src.prompt.prompt_builder | History messages: 1 | Context chunks: 5
+21:54:25 | DEBUG | src.prompt.prompt_builder | Prompt length: 10983 characters
+21:54:25 | DEBUG | src.chat.chat_engine | Prompt length: 10983 characters
+21:54:25 | INFO | src.chat.chat_engine | Generating answer...
+21:54:25 | DEBUG | src.llm.bedrock_provider | Starting Bedrock streaming request.
+21:54:26 | DEBUG | src.llm.bedrock_provider | Streaming completed in 1.343 sec (26 chunks).
+21:54:26 | INFO | src.chat.chat_engine | Answer generation completed.
+21:54:26 | DEBUG | src.chat.chat_engine | Conversation history size: 2 messages
+21:54:34 | INFO | __main__ | User question received.
+21:54:34 | INFO | __main__ | Searching...
+21:54:34 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+21:54:34 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 20 results.
+21:54:34 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.023 sec (20 results)
+21:54:34 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+21:54:34 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 20 results.
+21:54:34 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (20 results)
+21:54:34 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (36 results)
+21:54:34 | INFO | __main__ | Retrieved 20 search results
+21:54:34 | DEBUG | __main__ | Result 1
+21:54:34 | DEBUG | __main__ | Score: 0.9407
+21:54:34 | DEBUG | __main__ | Page: 6
+21:54:34 | DEBUG | __main__ | Chunk Index: 6
+21:54:34 | DEBUG | __main__ | Amazon SageMaker User Guide What is Amazon SageMaker? Bringing together widely adopted artiﬁcial intelligence (AI) and analytics capabilities, the next generation of Amazon SageMaker delivers an integrated experience for analytics and AI with uniﬁed access to all your data. Collaborate and build in 
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 2
+21:54:34 | DEBUG | __main__ | Score: 0.7000
+21:54:34 | DEBUG | __main__ | Page: 24
+21:54:34 | DEBUG | __main__ | Chunk Index: 31
+21:54:34 | DEBUG | __main__ | and it was created in IAM upon project creation. To grant permission on the tables to the project role, complete the following steps. Grant permission on the databases to the project role 19
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 3
+21:54:34 | DEBUG | __main__ | Score: 0.5024
+21:54:34 | DEBUG | __main__ | Page: 52
+21:54:34 | DEBUG | __main__ | Chunk Index: 68
+21:54:34 | DEBUG | __main__ | creating connections. This project has a SQL analytics project proﬁle. • A Data Analyst project for analyzing data, which includes both administrator and analysts as members. This project has a SQL analytics project proﬁle. For more information about how to create a project in SageMaker Uniﬁed Studi
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 4
+21:54:34 | DEBUG | __main__ | Score: 0.4792
+21:54:34 | DEBUG | __main__ | Page: 10
+21:54:34 | DEBUG | __main__ | Chunk Index: 12
+21:54:34 | DEBUG | __main__ | Amazon SageMaker User Guide Currently, SageMaker Uniﬁed Studio should be used when you are looking to unify and share your data as a single integrated experience across analytics, ML, and gen AI workloads. You are able to eliminate data silos with an open lakehouse architecture to unify access to da
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 5
+21:54:34 | DEBUG | __main__ | Score: 0.4612
+21:54:34 | DEBUG | __main__ | Page: 3
+21:54:34 | DEBUG | __main__ | Chunk Index: 2
+21:54:34 | DEBUG | __main__ | Amazon SageMaker User Guide Table of Contents What is Amazon SageMaker? .......................................................................................................... 1 Guide to SageMaker ....................................................................................................
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 6
+21:54:34 | DEBUG | __main__ | Score: 0.4013
+21:54:34 | DEBUG | __main__ | Page: 6
+21:54:34 | DEBUG | __main__ | Chunk Index: 7
+21:54:34 | DEBUG | __main__ | entire data and AI lifecycle Guide to SageMaker 1
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 7
+21:54:34 | DEBUG | __main__ | Score: 0.3734
+21:54:34 | DEBUG | __main__ | Page: 7
+21:54:34 | DEBUG | __main__ | Chunk Index: 8
+21:54:34 | DEBUG | __main__ | Amazon SageMaker User Guide Additionally, SageMaker is built upon an open lakehouse architecture that uniﬁes access to all your data across Amazon Simple Storage Service (Amazon S3) data lakes, Amazon Redshift data warehouses, and other external sources Uniﬁed Studio Amazon SageMaker Uniﬁed Studio i
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 8
+21:54:34 | DEBUG | __main__ | Score: 0.3666
+21:54:34 | DEBUG | __main__ | Page: 10
+21:54:34 | DEBUG | __main__ | Chunk Index: 13
+21:54:34 | DEBUG | __main__ | AI application development 5
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 9
+21:54:34 | DEBUG | __main__ | Score: 0.3000
+21:54:34 | DEBUG | __main__ | Page: 2
+21:54:34 | DEBUG | __main__ | Chunk Index: 1
+21:54:34 | DEBUG | __main__ | Amazon SageMaker User Guide Amazon SageMaker: User Guide Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved. Amazon's trademarks and trade dress may not be used in connection with any product or service that is not Amazon's, in any manner that is likely to cause conf
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 10
+21:54:34 | DEBUG | __main__ | Score: 0.2887
+21:54:34 | DEBUG | __main__ | Page: 15
+21:54:34 | DEBUG | __main__ | Chunk Index: 20
+21:54:34 | DEBUG | __main__ | the use cases in this getting started guide, choose the All capabilities project proﬁle. Choose Continue to review parameters. Step 2 - Create a new project 10
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 11
+21:54:34 | DEBUG | __main__ | Score: 0.2881
+21:54:34 | DEBUG | __main__ | Page: 42
+21:54:34 | DEBUG | __main__ | Chunk Index: 56
+21:54:34 | DEBUG | __main__ | agent app. Additional capabilities Amazon Bedrock in SageMaker Uniﬁed Studio oﬀers many additional capabilities to the ones covered in this walkthrough, including the following. Additional capabilities 37
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 12
+21:54:34 | DEBUG | __main__ | Score: 0.2496
+21:54:34 | DEBUG | __main__ | Page: 68
+21:54:34 | DEBUG | __main__ | Chunk Index: 93
+21:54:34 | DEBUG | __main__ | Amazon SageMaker User Guide Document history for the Amazon SageMaker User Guide The following table describes the documentation releases for Amazon SageMaker. Change Description Date Initial release Initial release of the Amazon SageMaker User Guide June 13, 2025 63
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 13
+21:54:34 | DEBUG | __main__ | Score: 0.2236
+21:54:34 | DEBUG | __main__ | Page: 20
+21:54:34 | DEBUG | __main__ | Chunk Index: 25
+21:54:34 | DEBUG | __main__ | Amazon SageMaker User Guide Prerequisites The following prerequisities are required for this getting started procedure. • Create a project with an All capabilities project proﬁle. This project proﬁle sets up your project with access to S3 and Athena resources. There is more information about how to 
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 14
+21:54:34 | DEBUG | __main__ | Score: 0.1178
+21:54:34 | DEBUG | __main__ | Page: 61
+21:54:34 | DEBUG | __main__ | Chunk Index: 83
+21:54:34 | DEBUG | __main__ | stored in diﬀerent systems while maintaining compliance with privacy regulations. For more information about federated queries in Athena and the data sources that support ﬁne- grained access controls, see Register your connection as a Glue Data Catalog in the Athena User Next steps 56
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 15
+21:54:34 | DEBUG | __main__ | Score: 0.1094
+21:54:34 | DEBUG | __main__ | Page: 23
+21:54:34 | DEBUG | __main__ | Chunk Index: 29
+21:54:34 | DEBUG | __main__ | Amazon SageMaker User Guide Register the S3 location for AWS Glue Data Catalog tables in Amazon SageMaker Uniﬁed Studio To access existing AWS Glue Data Catalog tables in Amazon SageMaker Uniﬁed Studio, complete the following steps to conﬁgure permissions. To register the S3 location and conﬁgure ac
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 16
+21:54:34 | DEBUG | __main__ | Score: 0.0565
+21:54:34 | DEBUG | __main__ | Page: 11
+21:54:34 | DEBUG | __main__ | Chunk Index: 14
+21:54:34 | DEBUG | __main__ | Amazon SageMaker User Guide Get started with Amazon SageMaker You can view demos of Amazon SageMaker and get started by setting up a domain and project. View demos of Amazon SageMaker To see Amazon SageMaker before using it yourself, you can review the following clickthrough demos: • For an end-to-e
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 17
+21:54:34 | DEBUG | __main__ | Score: 0.0444
+21:54:34 | DEBUG | __main__ | Page: 39
+21:54:34 | DEBUG | __main__ | Chunk Index: 49
+21:54:34 | DEBUG | __main__ | Amazon SageMaker User Guide Get started using Amazon Bedrock in SageMaker Uniﬁed Studio Amazon Bedrock in SageMaker Uniﬁed Studio oﬀers multiple playgrounds that allow you to easily access and experiment with Amazon Bedrock models. With the chat playground, you can chat with a model through text and
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 18
+21:54:34 | DEBUG | __main__ | Score: 0.0270
+21:54:34 | DEBUG | __main__ | Page: 8
+21:54:34 | DEBUG | __main__ | Chunk Index: 10
+21:54:34 | DEBUG | __main__ | Amazon SageMaker's lakehouse architecture. Users have the ﬂexibility to use Athena or Redshift query engines to support their analytical workloads. Query your data in open formats stored on Amazon S3 with high performance through Amazon Athena, eliminating the need to move or duplicate data between 
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 19
+21:54:34 | DEBUG | __main__ | Score: 0.0222
+21:54:34 | DEBUG | __main__ | Page: 61
+21:54:34 | DEBUG | __main__ | Chunk Index: 82
+21:54:34 | DEBUG | __main__ | Amazon SageMaker User Guide • The SageMaker Uniﬁed Studio admin and data analyst projects that you created in the prerequisites. For more information about deleting projects, see Delete a project in the Amazon SageMaker Uniﬁed Studio User Guide. • The SageMaker Uniﬁed Studio domain that you created 
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | DEBUG | __main__ | Result 20
+21:54:34 | DEBUG | __main__ | Score: 0.0003
+21:54:34 | DEBUG | __main__ | Page: 20
+21:54:34 | DEBUG | __main__ | Chunk Index: 26
+21:54:34 | DEBUG | __main__ | Data lake administrators. Use the following steps to add the Data lake administrator on the console. 1. Open the AWS Lake Formation console. 2. Under Administration, choose Administrative roles and tasks. 3. Under Data lake administrators, choose Add. Prerequisites 15
+21:54:34 | DEBUG | __main__ | --------------------------------------------------------------------------------
+21:54:34 | INFO | __main__ | Generating answer...
+21:54:34 | INFO | src.chat.chat_engine | Processing user question.
+21:54:34 | DEBUG | src.chat.chat_engine | Original Question: Who developed it?
+21:54:34 | DEBUG | src.chat.chat_engine | Conversation history size: 3 messages
+21:54:34 | DEBUG | src.llm.bedrock_provider | Sending synchronous request to Bedrock.
+21:54:34 | DEBUG | src.llm.bedrock_provider | Bedrock response received in 0.497 sec.
+21:54:34 | INFO | src.chat.chat_engine | Query rewriting completed.
+21:54:34 | DEBUG | src.chat.chat_engine | Rewritten Question: Who developed Amazon SageMaker?
+21:54:34 | DEBUG | src.llm.bedrock_provider | Sending synchronous request to Bedrock.
+21:54:35 | DEBUG | src.llm.bedrock_provider | Bedrock response received in 0.605 sec.
+21:54:35 | DEBUG | src.query.llm_multi_query_generator | Multi-query generation produced 4 unique queries.
+21:54:35 | INFO | src.chat.chat_engine | Generated 4 retrieval queries.
+21:54:35 | DEBUG | src.chat.chat_engine | Query 1: Who developed Amazon SageMaker?
+21:54:35 | DEBUG | src.chat.chat_engine | Query 2: Who created Amazon SageMaker?
+21:54:35 | DEBUG | src.chat.chat_engine | Query 3: Who is the developer of Amazon SageMaker?
+21:54:35 | DEBUG | src.chat.chat_engine | Query 4: Who built Amazon SageMaker?
+21:54:35 | INFO | src.chat.chat_engine | Starting retrieval.
+21:54:35 | DEBUG | src.chat.chat_engine | Retrieving with query: Who developed Amazon SageMaker?
+21:54:35 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+21:54:35 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 20 results.
+21:54:35 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.106 sec (20 results)
+21:54:35 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+21:54:35 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 20 results.
+21:54:35 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.000 sec (20 results)
+21:54:35 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (28 results)
+21:54:35 | DEBUG | src.chat.chat_engine | Retrieving with query: Who created Amazon SageMaker?
+21:54:35 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+21:54:35 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 20 results.
+21:54:35 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.055 sec (20 results)
+21:54:35 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+21:54:35 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 20 results.
+21:54:35 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (20 results)
+21:54:35 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (34 results)
+21:54:35 | DEBUG | src.chat.chat_engine | Retrieving with query: Who is the developer of Amazon SageMaker?
+21:54:35 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+21:54:35 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 20 results.
+21:54:35 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.037 sec (20 results)
+21:54:35 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+21:54:35 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 20 results.
+21:54:35 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (20 results)
+21:54:35 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (33 results)
+21:54:35 | DEBUG | src.chat.chat_engine | Retrieving with query: Who built Amazon SageMaker?
+21:54:35 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+21:54:35 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 20 results.
+21:54:35 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.027 sec (20 results)
+21:54:35 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+21:54:35 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 20 results.
+21:54:35 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (20 results)
+21:54:35 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (28 results)
+21:54:35 | DEBUG | src.chat.chat_engine | Retrieved 20 candidates.
+21:54:35 | INFO | src.chat.chat_engine | Starting CrossEncoder reranking.
+21:54:35 | DEBUG | src.reranking.cross_encoder_reranker | Received 80 candidates: 
+21:54:35 | DEBUG | src.reranking.cross_encoder_reranker | Deduplicated to  28 unique candidates: 
+21:54:46 | INFO | src.chat.chat_engine | Top 5 candidates selected after reranking.
+21:54:46 | INFO | src.chat.chat_engine | Building final prompt.
+21:54:46 | DEBUG | src.prompt.prompt_builder | History messages: 3 | Context chunks: 5
+21:54:46 | DEBUG | src.prompt.prompt_builder | Prompt length: 6962 characters
+21:54:46 | DEBUG | src.chat.chat_engine | Prompt length: 6962 characters
+21:54:46 | INFO | src.chat.chat_engine | Generating answer...
+21:54:46 | DEBUG | src.llm.bedrock_provider | Starting Bedrock streaming request.
+21:54:46 | DEBUG | src.llm.bedrock_provider | Streaming completed in 0.637 sec (10 chunks).
+21:54:46 | INFO | src.chat.chat_engine | Answer generation completed.
+21:54:46 | DEBUG | src.chat.chat_engine | Conversation history size: 4 messages
+22:09:33 | INFO | __main__ | User question received.
+22:09:33 | INFO | __main__ | Exiting application.

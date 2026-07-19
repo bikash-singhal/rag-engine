@@ -3,6 +3,9 @@ from rank_bm25 import BM25Okapi
 
 from src.core.models import Chunk, SearchResult
 from src.retrieval.retriever import Retriever
+from src.utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 class BM25Retriever(Retriever):
@@ -26,6 +29,8 @@ class BM25Retriever(Retriever):
         query: str,
         top_k: int = 5,
     ) -> list[SearchResult]:
+
+        logger.debug("BM25 retrieval started.")
 
         query_tokens = self._tokenize(query)
 
@@ -53,6 +58,11 @@ class BM25Retriever(Retriever):
                     score=float(scores[index]),
                 )
             )
+
+        logger.debug(
+            "Dense retrieval returned %d results.",
+            len(results),
+        )
 
         return results
 

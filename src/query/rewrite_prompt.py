@@ -5,19 +5,11 @@ from src.chat.message import Message
 
 class RewritePromptBuilder:
 
-    def __init__(
-        self,
-        history_limit: int = 4,
-    ):
-        self.history_limit = history_limit
-
     def build(
         self,
         question: str,
-        history: list[Message],
+        history: str,
     ) -> str:
-
-        formatted_history = self._format_history(history)
 
         return dedent(f"""
         You are an AI assistant that rewrites follow-up questions
@@ -46,7 +38,7 @@ class RewritePromptBuilder:
         Conversation History
         ========================
 
-        {formatted_history}
+        {history}
 
         ========================
         Current Question
@@ -58,17 +50,3 @@ class RewritePromptBuilder:
         Rewritten Query
         ========================
         """).strip()
-
-    def _format_history(self, history: list[Message]) -> str:
-
-        if not history:
-            return ""
-
-        formatted_history = []
-
-        for message in history[-self.history_limit :]:
-            formatted_history.append(
-                f"{message.role.title()}:\n" f"{message.content}\n\n"
-            )
-
-        return "".join(formatted_history)

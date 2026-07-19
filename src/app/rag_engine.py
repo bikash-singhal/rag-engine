@@ -10,6 +10,7 @@ from src.config.settings import (
     CHUNK_SIZE,
     DENSE_WEIGHT,
     EMBEDDING_MODEL,
+    RETRIEVAL_TOP_K,
 )
 from src.core.models import SearchResult
 from src.embeddings.embedder import Embedder
@@ -20,6 +21,7 @@ from src.ingestion.preprocessor import Preprocessor
 from src.ingestion.reader import reader
 from src.llm.bedrock_provider import BedrockProvider
 from src.prompt.prompt_builder import PromptBuilder
+from src.query.llm_multi_query_generator import LLMMultiQueryGenerator
 from src.query.llm_query_rewriter import LLMQueryRewriter
 from src.query.rewrite_prompt import RewritePromptBuilder
 from src.reranking.cross_encoder_reranker import CrossEncoderReranker
@@ -27,7 +29,10 @@ from src.retrieval.bm25_retriever import BM25Retriever
 from src.retrieval.dense_retriever import DenseRetriever
 from src.retrieval.hybrid_retriever import HybridRetriever
 from src.retrieval.reranking_retriever import RerankingRetriever
+from src.utils.logger import get_logger
 from src.vectorstores.faiss_store import FAISSVectorStore
+
+logger = get_logger(__name__)
 
 
 class RAGEngine:
@@ -38,6 +43,8 @@ class RAGEngine:
     def __init__(
         self,
     ) -> None:
+        logger.info("Initializing RAG Engine...")
+
         self.embedder = Embedder(
             model_name=EMBEDDING_MODEL,
         )
@@ -64,11 +71,24 @@ class RAGEngine:
 
         self.llm_provider = BedrockProvider(model_id)
 
+        logger.info(
+            "Using LLM model: %s",
+            model_id,
+        )
+
         self.retrieval_analyzer = RetrievalAnalyzer()
 
+        logger.info("RAG Engine initialized.")
+
     def _build_chat_engine(self) -> None:
+        logger.info("Building chat engine...")
 
         chunks = self.vector_store.get_chunks()
+
+        logger.info(
+            "Loaded %d chunks from vector store.",
+            len(chunks),
+        )
 
         dense_retriever = DenseRetriever(
             embedder=self.embedder,
@@ -84,9 +104,11 @@ class RAGEngine:
             bm25_weight=BM25_WEIGHT,
         )
 
+        reranker = CrossEncoderReranker()
+
         self.reranking_retriever = RerankingRetriever(
             retriever=self.hybrid_retriever,
-            reranker=CrossEncoderReranker(),
+            reranker=reranker,
         )
 
         # Default retriever used by the application
@@ -103,11 +125,14 @@ class RAGEngine:
             prompt_builder=rewrite_prompt_builder,
         )
 
+        multi_query_generator = LLMMultiQueryGenerator(self.llm_provider)
+
         self.chat_engine = ChatEngine(
             memory=memory,
             query_rewriter=query_rewriter,
             retriever=self.retriever,
-            reranker=CrossEncoderReranker(),
+            reranker=reranker,
+            multi_query_generator=multi_query_generator,
             prompt_builder=prompt_builder,
             llm=self.llm_provider,
         )
@@ -131,12 +156,19 @@ class RAGEngine:
         directory: str | Path,
     ) -> None:
 
+        logger.info(
+            "Indexing directory: %s",
+            directory,
+        )
+
         self.indexer.index_directory(directory)
+
+        logger.info("Directory indexed.")
 
     def retrieve(
         self,
         question: str,
-        top_k: int = 5,
+        top_k: int = RETRIEVAL_TOP_K,
     ) -> list[SearchResult]:
 
         return self.retriever.retrieve(
@@ -148,6 +180,10 @@ class RAGEngine:
         self,
         index_directory: str | Path,
     ) -> None:
+        logger.info(
+            "Saving vector index to %s",
+            index_directory,
+        )
 
         self.vector_store.save(index_directory)
 
@@ -156,10 +192,16 @@ class RAGEngine:
         index_directory: str | Path,
     ) -> None:
 
+        logger.info(
+            "Loading vector index from %s",
+            index_directory,
+        )
+
         self.vector_store = FAISSVectorStore.load(index_directory)
 
         self.indexer.vector_store = self.vector_store
         self._build_chat_engine()
+        logger.info("Chat engine rebuilt.")
 
     def load_or_ingest(
         self,
@@ -178,23 +220,23 @@ class RAGEngine:
 
         if faiss_file.exists() and metadata_file.exists():
 
-            print("\nLoading existing vector index...\n")
+            logger.info("Loading existing vector index...")
 
             self.load_index(index_directory)
 
-            print(f"Loaded {self.vector_store.index.ntotal} vectors.")
+            logger.info("Loaded vector count: %d", self.vector_store.index.ntotal)
 
             return
 
-        print("\nNo existing index found.\n")
+        logger.info("No existing index found.")
 
-        print("Building vector index...\n")
+        logger.info("Building vector index...")
 
         self.ingest_directory(document_directory)
         self._build_chat_engine()
         self.save_index(index_directory)
 
-        print("\nVector index saved.\n")
+        logger.info("Vector index saved.")
 
     def evaluate(
         self,
@@ -203,7 +245,7 @@ class RAGEngine:
         """
         Retrieves relevant chunks and returns a retrieval report.
         """
-
+        logger.info("Running retrieval evaluation...")
         results = self.retrieve(question)
 
         return self.retrieval_analyzer.analyze(

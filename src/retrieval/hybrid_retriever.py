@@ -1,5 +1,11 @@
+import time
+
+from src.config.settings import BM25_WEIGHT, DENSE_WEIGHT, RETRIEVAL_TOP_K
 from src.core.models import SearchResult
 from src.retrieval.retriever import Retriever
+from src.utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 class HybridRetriever(Retriever):
@@ -8,8 +14,8 @@ class HybridRetriever(Retriever):
         self,
         dense_retriever: Retriever,
         bm25_retriever: Retriever,
-        dense_weight: float = 0.7,
-        bm25_weight: float = 0.3,
+        dense_weight: float = DENSE_WEIGHT,
+        bm25_weight: float = BM25_WEIGHT,
     ) -> None:
 
         if dense_weight < 0 or bm25_weight < 0:
@@ -26,7 +32,7 @@ class HybridRetriever(Retriever):
     def _retrieve_dense(
         self,
         query: str,
-        top_k: int = 5,
+        top_k: int = RETRIEVAL_TOP_K,
     ) -> list[SearchResult]:
 
         return self.dense_retriever.retrieve(
@@ -37,7 +43,7 @@ class HybridRetriever(Retriever):
     def _retrieve_bm25(
         self,
         query: str,
-        top_k: int = 5,
+        top_k: int = RETRIEVAL_TOP_K,
     ) -> list[SearchResult]:
 
         return self.bm25_retriever.retrieve(
@@ -127,13 +133,43 @@ class HybridRetriever(Retriever):
         top_k: int = 5,
     ) -> list[SearchResult]:
 
+        start = time.perf_counter()
+
         dense_results = self._retrieve_dense(query, top_k)
 
+        dense_time = time.perf_counter() - start
+
+        logger.debug(
+            "Dense retrieval: %.3f sec (%d results)",
+            dense_time,
+            len(dense_results),
+        )
+
+        start = time.perf_counter()
+
         bm25_results = self._retrieve_bm25(query, top_k)
+
+        bm25_time = time.perf_counter() - start
+
+        logger.debug(
+            "BM25 retrieval: %.3f sec (%d results)",
+            bm25_time,
+            len(bm25_results),
+        )
+
+        start = time.perf_counter()
 
         merged_results = self._merge_results(
             dense_results,
             bm25_results,
+        )
+
+        merge_time = time.perf_counter() - start
+
+        logger.debug(
+            "Hybrid merge: %.3f sec (%d results)",
+            merge_time,
+            len(merged_results),
         )
 
         return merged_results[:top_k]
