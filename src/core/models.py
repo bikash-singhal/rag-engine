@@ -55,6 +55,25 @@ class SearchResult:
 
 
 @dataclass(slots=True)
+class ChatResult:
+    """
+    Final response produced by the RAG pipeline.
+    """
+
+    question: str
+    rewritten_question: str
+    answer: str
+    retrieved_chunks: list[SearchResult]
+
+
+@dataclass(slots=True)
+class PreparedPrompt:
+    prompt: str
+    rewritten_question: str
+    retrieved_chunks: list[SearchResult]
+
+
+@dataclass(slots=True)
 class Page:
     """
     Represents one page of a document.

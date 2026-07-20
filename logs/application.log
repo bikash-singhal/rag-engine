@@ -837,3 +837,14 @@
 18:57:45 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.0128
 18:57:45 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=93 | 0.0055
 18:57:45 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=55 | 0.0000
+22:22:38 | INFO | src.app.rag_engine | Initializing RAG Engine...
+22:22:49 | INFO | src.llm.bedrock_provider | Initialized Bedrock provider with model: amazon.nova-lite-v1:0
+22:22:49 | INFO | src.app.rag_engine | Using LLM model: amazon.nova-lite-v1:0
+22:22:49 | INFO | src.app.rag_engine | RAG Engine initialized.
+22:22:49 | INFO | src.app.rag_engine | Loading vector index from data\indexes\default
+22:22:49 | INFO | src.app.rag_engine | Loaded 94 vectors.
+22:22:49 | INFO | src.app.rag_engine | Building retrieval pipeline...
+22:22:49 | INFO | src.app.rag_engine | Loaded 94 chunks from vector store.
+22:22:59 | INFO | src.app.rag_engine | Building chat engine...
+22:22:59 | INFO | src.app.rag_engine | Chat engine built.
+22:22:59 | INFO | src.app.rag_engine | Retriever and chat engine rebuilt.
