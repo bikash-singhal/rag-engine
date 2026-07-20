@@ -1,3 +1,4 @@
+from src.config.settings import MAX_RERANK_CANDIDATES
 from src.core.models import SearchResult
 from src.reranking.cross_encoder_reranker import CrossEncoderReranker
 from src.retrieval.retriever import Retriever
@@ -20,7 +21,7 @@ class RerankingRetriever(Retriever):
     def retrieve(
         self,
         query: str,
-        top_k: int = 5,
+        top_k: int = MAX_RERANK_CANDIDATES,
     ) -> list[SearchResult]:
 
         results = self.retriever.retrieve(

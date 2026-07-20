@@ -12,7 +12,7 @@ from src.config.settings import (
     EMBEDDING_MODEL,
     RETRIEVAL_TOP_K,
 )
-from src.core.models import SearchResult
+from src.core.models import RetrievalReport, SearchResult
 from src.embeddings.embedder import Embedder
 from src.evaluation.retrieval_analyzer import RetrievalAnalyzer
 from src.ingestion.chunker import Chunker
@@ -40,10 +40,13 @@ class RAGEngine:
     High-level interface for the RAG system.
     """
 
-    def __init__(
-        self,
-    ) -> None:
+    def __init__(self) -> None:
+
         logger.info("Initializing RAG Engine...")
+
+        # ------------------------------------------------------------------
+        # Infrastructure
+        # ------------------------------------------------------------------
 
         self.embedder = Embedder(
             model_name=EMBEDDING_MODEL,
@@ -64,6 +67,10 @@ class RAGEngine:
             vector_store=self.vector_store,
         )
 
+        # ------------------------------------------------------------------
+        # LLM
+        # ------------------------------------------------------------------
+
         model_id = os.getenv("BEDROCK_MODEL")
 
         if model_id is None:
@@ -76,12 +83,48 @@ class RAGEngine:
             model_id,
         )
 
+        # ------------------------------------------------------------------
+        # Evaluation
+        # ------------------------------------------------------------------
+
         self.retrieval_analyzer = RetrievalAnalyzer()
 
         logger.info("RAG Engine initialized.")
 
     def _build_chat_engine(self) -> None:
+
         logger.info("Building chat engine...")
+
+        memory = InMemoryMemory()
+
+        prompt_builder = PromptBuilder()
+
+        rewrite_prompt_builder = RewritePromptBuilder()
+
+        query_rewriter = LLMQueryRewriter(
+            llm=self.llm_provider,
+            prompt_builder=rewrite_prompt_builder,
+        )
+
+        multi_query_generator = LLMMultiQueryGenerator(
+            self.llm_provider,
+        )
+
+        self.chat_engine = ChatEngine(
+            memory=memory,
+            query_rewriter=query_rewriter,
+            retriever=self.retriever,
+            reranker=self.reranker,
+            multi_query_generator=multi_query_generator,
+            prompt_builder=prompt_builder,
+            llm=self.llm_provider,
+        )
+
+        logger.info("Chat engine built.")
+
+    def _build_retriever(self) -> None:
+
+        logger.info("Building retrieval pipeline...")
 
         chunks = self.vector_store.get_chunks()
 
@@ -104,38 +147,15 @@ class RAGEngine:
             bm25_weight=BM25_WEIGHT,
         )
 
-        reranker = CrossEncoderReranker()
+        self.reranker = CrossEncoderReranker()
 
         self.reranking_retriever = RerankingRetriever(
             retriever=self.hybrid_retriever,
-            reranker=reranker,
+            reranker=self.reranker,
         )
 
-        # Default retriever used by the application
+        # Default retriever
         self.retriever = self.hybrid_retriever
-
-        memory = InMemoryMemory()
-
-        prompt_builder = PromptBuilder()
-
-        rewrite_prompt_builder = RewritePromptBuilder()
-
-        query_rewriter = LLMQueryRewriter(
-            llm=self.llm_provider,
-            prompt_builder=rewrite_prompt_builder,
-        )
-
-        multi_query_generator = LLMMultiQueryGenerator(self.llm_provider)
-
-        self.chat_engine = ChatEngine(
-            memory=memory,
-            query_rewriter=query_rewriter,
-            retriever=self.retriever,
-            reranker=reranker,
-            multi_query_generator=multi_query_generator,
-            prompt_builder=prompt_builder,
-            llm=self.llm_provider,
-        )
 
     def ask(
         self,
@@ -149,7 +169,14 @@ class RAGEngine:
         pdf_file: str | Path,
     ) -> None:
 
+        logger.info(
+            "Indexing document: %s",
+            pdf_file,
+        )
+
         self.indexer.index(pdf_file)
+
+        logger.info("Document indexed.")
 
     def ingest_directory(
         self,
@@ -163,7 +190,7 @@ class RAGEngine:
 
         self.indexer.index_directory(directory)
 
-        logger.info("Directory indexed.")
+        logger.info("Finished indexing directory.")
 
     def retrieve(
         self,
@@ -187,6 +214,8 @@ class RAGEngine:
 
         self.vector_store.save(index_directory)
 
+        logger.info("Vector index saved.")
+
     def load_index(
         self,
         index_directory: str | Path,
@@ -200,8 +229,28 @@ class RAGEngine:
         self.vector_store = FAISSVectorStore.load(index_directory)
 
         self.indexer.vector_store = self.vector_store
+
+        logger.info(
+            "Loaded %d vectors.",
+            self.vector_store.index.ntotal,
+        )
+
+        self._build_retriever()
         self._build_chat_engine()
-        logger.info("Chat engine rebuilt.")
+        logger.info("Retriever and chat engine rebuilt.")
+
+    def _create_index(
+        self,
+        document_directory,
+        index_directory,
+    ) -> None:
+
+        logger.info("Building new vector index...")
+
+        self.ingest_directory(document_directory)
+        self._build_retriever()
+        self._build_chat_engine()
+        self.save_index(index_directory)
 
     def load_or_ingest(
         self,
@@ -220,32 +269,30 @@ class RAGEngine:
 
         if faiss_file.exists() and metadata_file.exists():
 
-            logger.info("Loading existing vector index...")
-
             self.load_index(index_directory)
-
-            logger.info("Loaded vector count: %d", self.vector_store.index.ntotal)
 
             return
 
         logger.info("No existing index found.")
 
-        logger.info("Building vector index...")
-
-        self.ingest_directory(document_directory)
-        self._build_chat_engine()
-        self.save_index(index_directory)
-
-        logger.info("Vector index saved.")
+        self._create_index(
+            document_directory=document_directory,
+            index_directory=index_directory,
+        )
 
     def evaluate(
         self,
         question: str,
-    ):
+    ) -> RetrievalReport:
         """
-        Retrieves relevant chunks and returns a retrieval report.
+        Runs retrieval evaluation for a question.
         """
-        logger.info("Running retrieval evaluation...")
+
+        logger.info(
+            "Running retrieval evaluation for question: %s",
+            question,
+        )
+
         results = self.retrieve(question)
 
         return self.retrieval_analyzer.analyze(

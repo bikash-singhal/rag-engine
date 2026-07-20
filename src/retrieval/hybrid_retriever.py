@@ -172,4 +172,14 @@ class HybridRetriever(Retriever):
             len(merged_results),
         )
 
+        logger.debug("After Hybrdiretriever:")
+
+        for result in merged_results:
+            logger.debug(
+                "%s | chunk=%d | %.4f",
+                result.chunk.source,
+                result.chunk.chunk_index,
+                result.score,
+            )
+
         return merged_results[:top_k]

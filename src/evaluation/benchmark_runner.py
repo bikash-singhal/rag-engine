@@ -1,16 +1,13 @@
-from src.core.models import BenchmarkEvaluation, RetrievalEvaluation
+from src.config.settings import RETRIEVAL_TOP_K
+from src.core.models import BenchmarkDataset, BenchmarkSummary
 from src.evaluation.retrieval_evaluator import RetrievalEvaluator
-from src.retrieval.retriever import Retriever
 
 
 class BenchmarkRunner:
-    """
-    Runs a retrieval benchmark over a collection of questions.
-    """
 
     def __init__(
         self,
-        retriever: Retriever,
+        retriever,
         evaluator: RetrievalEvaluator,
     ) -> None:
 
@@ -19,60 +16,46 @@ class BenchmarkRunner:
 
     def run(
         self,
-        benchmark: list[tuple[str, set[int]]],
-        top_k: int = 5,
-    ) -> BenchmarkEvaluation:
-        """
-        Executes the benchmark and returns aggregated metrics.
-        """
+        dataset: BenchmarkDataset,
+        experiment_name: str,
+        top_k: int = RETRIEVAL_TOP_K,
+    ) -> BenchmarkSummary:
 
-        if not benchmark:
-            raise ValueError("Benchmark cannot be empty.")
+        results = []
 
-        evaluations: list[RetrievalEvaluation] = []
+        for case in dataset.cases:
 
-        for question, expected_chunk_ids in benchmark:
-
-            results = self.retriever.retrieve(
-                query=question,
+            retrieved = self.retriever.retrieve(
+                query=case.question,
                 top_k=top_k,
             )
 
-            evaluation = self.evaluator.evaluate(
-                results=results,
-                expected_chunk_ids=expected_chunk_ids,
+            result = self.evaluator.evaluate(
+                case,
+                retrieved,
             )
 
-            evaluations.append(evaluation)
+            results.append(result)
 
-        average_hit_rate = self._average(
-            [evaluation.hit_rate for evaluation in evaluations]
-        )
-        average_precision = self._average(
-            [evaluation.precision for evaluation in evaluations]
-        )
-        average_recall = self._average(
-            [evaluation.recall for evaluation in evaluations]
-        )
-        average_f1_score = self._average(
-            [evaluation.f1_score for evaluation in evaluations]
-        )
-        average_mrr = self._average([evaluation.mrr for evaluation in evaluations])
+        if not results:
+            raise ValueError("Benchmark dataset contains no test cases.")
 
-        return BenchmarkEvaluation(
-            average_hit_rate=average_hit_rate,
-            average_precision=average_precision,
-            average_recall=average_recall,
-            average_f1_score=average_f1_score,
-            average_mrr=average_mrr,
+        passed = sum(r.passed for r in results)
+
+        metric_scores = {}
+
+        for metric in self.evaluator.metrics:
+
+            metric_scores[metric.name] = sum(
+                result.metric_scores[metric.name] for result in results
+            ) / len(results)
+
+        return BenchmarkSummary(
+            experiment_name=experiment_name,
+            benchmark_name=dataset.name,
+            total_cases=len(results),
+            metric_scores=metric_scores,
+            passed_cases=passed,
+            failed_cases=len(results) - passed,
+            results=results,
         )
-
-    def _average(
-        self,
-        values: list[float],
-    ) -> float:
-
-        if not values:
-            return 0.0
-
-        return sum(values) / len(values)

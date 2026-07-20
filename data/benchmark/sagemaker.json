@@ -1,0 +1,153 @@
+{
+    "name": "Amazon SageMaker Benchmark",
+    "version": "1.0",
+    "description": "Retrieval benchmark for Amazon SageMaker documentation.",
+    "created_at": "2026-07-20T18:39:49.323531",
+    "cases": [
+        {
+            "id": "case_1",
+            "question": "What is Amazon SageMaker?",
+            "expected_chunks": [
+                {
+                    "document": "Amazon SageMaker User Guide.pdf",
+                    "page": 6,
+                    "chunk_index": 6
+                }
+            ],
+            "expected_answer": null,
+            "tags": [],
+            "difficulty": "easy"
+        },
+        {
+            "id": "case_2",
+            "question": "What are the two primary components of Amazon SageMaker?",
+            "expected_chunks": [
+                {
+                    "document": "Amazon SageMaker User Guide.pdf",
+                    "page": 6,
+                    "chunk_index": 6
+                }
+            ],
+            "expected_answer": null,
+            "tags": [],
+            "difficulty": "easy"
+        },
+        {
+            "id": "case_3",
+            "question": "What is SageMaker Unified Studio?",
+            "expected_chunks": [
+                {
+                    "document": "Amazon SageMaker User Guide.pdf",
+                    "page": 6,
+                    "chunk_index": 6
+                }
+            ],
+            "expected_answer": null,
+            "tags": [],
+            "difficulty": "easy"
+        },
+        {
+            "id": "case_4",
+            "question": "What is SageMaker AI?",
+            "expected_chunks": [
+                {
+                    "document": "Amazon SageMaker User Guide.pdf",
+                    "page": 9,
+                    "chunk_index": 11
+                }
+            ],
+            "expected_answer": null,
+            "tags": [],
+            "difficulty": "easy"
+        },
+        {
+            "id": "case_5",
+            "question": "What is Data Processing?",
+            "expected_chunks": [
+                {
+                    "document": "Amazon SageMaker User Guide.pdf",
+                    "page": 9,
+                    "chunk_index": 11
+                }
+            ],
+            "expected_answer": null,
+            "tags": [],
+            "difficulty": "easy"
+        },
+        {
+            "id": "case_6",
+            "question": "What is Data and AI Governance?",
+            "expected_chunks": [
+                {
+                    "document": "Amazon SageMaker User Guide.pdf",
+                    "page": 6,
+                    "chunk_index": 6
+                }
+            ],
+            "expected_answer": null,
+            "tags": [],
+            "difficulty": "easy"
+        },
+        {
+            "id": "case_7",
+            "question": "What is the Lakehouse architecture?",
+            "expected_chunks": [
+                {
+                    "document": "Amazon SageMaker User Guide.pdf",
+                    "page": 7,
+                    "chunk_index": -1
+                },
+                {
+                    "document": "Amazon SageMaker User Guide.pdf",
+                    "page": 8,
+                    "chunk_index": 10
+                }
+            ],
+            "expected_answer": null,
+            "tags": [],
+            "difficulty": "easy"
+        },
+        {
+            "id": "case_8",
+            "question": "What frameworks are supported for data processing?",
+            "expected_chunks": [
+                {
+                    "document": "Amazon SageMaker User Guide.pdf",
+                    "page": 9,
+                    "chunk_index": 11
+                }
+            ],
+            "expected_answer": null,
+            "tags": [],
+            "difficulty": "easy"
+        },
+        {
+            "id": "case_9",
+            "question": "What data sources can SageMaker connect to?",
+            "expected_chunks": [
+                {
+                    "document": "Amazon SageMaker User Guide.pdf",
+                    "page": 9,
+                    "chunk_index": 11
+                }
+            ],
+            "expected_answer": null,
+            "tags": [],
+            "difficulty": "easy"
+        },
+        {
+            "id": "case_10",
+            "question": "What are the prerequisites for Amazon SageMaker?",
+            "expected_chunks": [
+                {
+                    "document": "Amazon SageMaker User Guide.pdf",
+                    "page": 12,
+                    "chunk_index": 15
+                }
+            ],
+            "expected_answer": null,
+            "tags": [],
+            "difficulty": "easy"
+        }
+    ]
+}

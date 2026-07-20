@@ -1,59 +1,31 @@
-from src.core.models import BenchmarkEvaluation, ExperimentReport
+from src.core.models import BenchmarkSummary
 
 
 class ReportFormatter:
-    """
-    Formats evaluation reports for console output.
-    """
 
     @staticmethod
-    def print_benchmark_report(
-        report: BenchmarkEvaluation,
-    ) -> None:
+    def format(
+        summary: BenchmarkSummary,
+    ) -> str:
 
-        print()
+        lines = []
 
-        print("=" * 80)
-        print("Retrieval Benchmark")
-        print("=" * 80)
+        lines.append("=" * 50)
+        lines.append("Benchmark Summary")
+        lines.append("=" * 50)
+        lines.append("")
 
-        print(f"Hit Rate : {report.average_hit_rate:.2f}")
-        print(f"Precision: {report.average_precision:.2f}")
-        print(f"Recall   : {report.average_recall:.2f}")
-        print(f"F1 Score : {report.average_f1_score:.2f}")
-        print(f"MRR      : {report.average_mrr:.2f}")
+        lines.append(f"Benchmark : {summary.benchmark_name}")
+        lines.append(f"Cases     : {summary.total_cases}")
+        lines.append(f"Passed    : {summary.passed_cases}")
+        lines.append(f"Failed    : {summary.failed_cases}")
+        lines.append("")
 
-        print("=" * 80)
+        lines.append("Metrics")
+        lines.append("")
 
-    @staticmethod
-    def print_experiment_report(
-        report: ExperimentReport,
-    ) -> None:
+        for metric, score in summary.metric_scores.items():
 
-        NAME_WIDTH = 28
+            lines.append(f"  {metric:<10}: {score:.3f}")
 
-        print("=" * 80)
-        print(
-            f"{'Retriever':<{NAME_WIDTH}}"
-            f"{'Hit':>8}"
-            f"{'Prec':>8}"
-            f"{'Recall':>10}"
-            f"{'F1':>8}"
-            f"{'MRR':>8}"
-        )
-        print("=" * 80)
-
-        for experiment in report.experiments:
-
-            benchmark = experiment.benchmark
-
-            print(
-                f"{experiment.name:<{NAME_WIDTH}}"
-                f"{benchmark.average_hit_rate:>8.2f}"
-                f"{benchmark.average_precision:>8.2f}"
-                f"{benchmark.average_recall:>10.2f}"
-                f"{benchmark.average_f1_score:>8.2f}"
-                f"{benchmark.average_mrr:>8.2f}"
-            )
-
-        print("=" * 80)
+        return "\n".join(lines)

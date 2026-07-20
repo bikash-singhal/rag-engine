@@ -1,55 +1,45 @@
-from src.core.models import ExperimentReport, ExperimentResult
+from __future__ import annotations
+
+from src.core.models import BenchmarkDataset, BenchmarkSummary, Experiment
 from src.evaluation.benchmark_runner import BenchmarkRunner
 from src.evaluation.retrieval_evaluator import RetrievalEvaluator
-from src.retrieval.retriever import Retriever
 
 
 class ExperimentRunner:
     """
-    Runs benchmark experiments across multiple retrievers.
+    Runs multiple retrieval experiments against the same benchmark dataset.
     """
 
     def __init__(
         self,
         evaluator: RetrievalEvaluator,
+        top_k: int,
     ) -> None:
 
         self.evaluator = evaluator
+        self.top_k = top_k
 
     def run(
         self,
-        retrievers: dict[str, Retriever],
-        benchmark: list[tuple[str, set[int]]],
-        top_k: int = 5,
-    ) -> ExperimentReport:
+        dataset: BenchmarkDataset,
+        experiments: list[Experiment],
+    ) -> list[BenchmarkSummary]:
 
-        if not retrievers:
-            raise ValueError("Retrievers cannot be empty.")
+        summaries: list[BenchmarkSummary] = []
 
-        if not benchmark:
-            raise ValueError("Benchmark cannot be empty.")
+        for experiment in experiments:
 
-        experiments: list[ExperimentResult] = []
-
-        for name, retriever in retrievers.items():
-
-            benchmark_runner = BenchmarkRunner(
-                retriever=retriever,
+            runner = BenchmarkRunner(
+                retriever=experiment.retriever,
                 evaluator=self.evaluator,
             )
 
-            benchmark_result = benchmark_runner.run(
-                benchmark=benchmark,
-                top_k=top_k,
+            summary = runner.run(
+                dataset=dataset,
+                experiment_name=experiment.name,
+                top_k=self.top_k,
             )
 
-            experiments.append(
-                ExperimentResult(
-                    name=name,
-                    benchmark=benchmark_result,
-                )
-            )
+            summaries.append(summary)
 
-        return ExperimentReport(
-            experiments=experiments,
-        )
+        return summaries

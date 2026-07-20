@@ -25,7 +25,7 @@ class CrossEncoderReranker(Reranker):
         self,
         query: str,
         results: list[SearchResult],
-        top_k: int = 5,
+        top_k: int = MAX_RERANK_CANDIDATES,
     ) -> list[SearchResult]:
 
         if not results:
@@ -43,10 +43,30 @@ class CrossEncoderReranker(Reranker):
             len(unique_results),
         )
 
+        logger.debug("Unique candidates:")
+
+        for result in unique_results:
+            logger.debug(
+                "%s | chunk=%d | %.4f",
+                result.chunk.source,
+                result.chunk.chunk_index,
+                result.score,
+            )
+
         pruned_results = self._prune(
             max_canidates=self.max_candidates,
             results=unique_results,
         )
+
+        logger.debug("Candidates after pruning:")
+
+        for result in pruned_results:
+            logger.debug(
+                "%s | chunk=%d | %.4f",
+                result.chunk.source,
+                result.chunk.chunk_index,
+                result.score,
+            )
 
         pairs = [(query, result.chunk.text) for result in pruned_results]
 
@@ -66,6 +86,16 @@ class CrossEncoderReranker(Reranker):
             key=lambda result: result.score,
             reverse=True,
         )
+
+        logger.debug("Top after CrossEncoder:")
+
+        for result in reranked_results:
+            logger.debug(
+                "%s | chunk=%d | %.4f",
+                result.chunk.source,
+                result.chunk.chunk_index,
+                result.score,
+            )
 
         return reranked_results[:top_k]
 

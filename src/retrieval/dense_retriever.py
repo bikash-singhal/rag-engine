@@ -1,3 +1,4 @@
+from src.config.settings import RETRIEVAL_TOP_K
 from src.core.models import SearchResult
 from src.embeddings.embedder import Embedder
 from src.retrieval.retriever import Retriever
@@ -24,7 +25,7 @@ class DenseRetriever(Retriever):
     def retrieve(
         self,
         query: str,
-        top_k: int = 5,
+        top_k: int = RETRIEVAL_TOP_K,
     ) -> list[SearchResult]:
 
         logger.debug("Dense retrieval started.")

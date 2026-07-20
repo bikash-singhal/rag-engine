@@ -21,8 +21,10 @@ class RewritePromptBuilder:
         return it unchanged.
 
         Preserve the user's original intent.
+                      
+        Never invent entities that are not supported by the conversation history.
 
-        Resolve references such as:
+        Replace pronouns such as it, they, this, that, these, those with the correct entity from the conversation history.
 
         - it
         - they

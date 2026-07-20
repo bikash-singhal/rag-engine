@@ -35,4 +35,7 @@ def reader(
             yield Page(
                 page_number=page_number,
                 text=text,
+                metadata={
+                    "source": pdf_path.name,
+                },
             )

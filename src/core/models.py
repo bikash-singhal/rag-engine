@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import Any
 
 import numpy as np
@@ -116,3 +117,63 @@ class ExperimentResult:
 @dataclass(slots=True)
 class ExperimentReport:
     experiments: list[ExperimentResult]
+
+
+@dataclass(slots=True, frozen=True)
+class BenchmarkChunk:
+    document: str
+    page: int
+    chunk_index: int
+
+
+class Difficulty(str, Enum):
+    EASY = "easy"
+    MEDIUM = "medium"
+    HARD = "hard"
+
+
+@dataclass(slots=True, frozen=True)
+class BenchmarkCase:
+    id: str
+    question: str
+    expected_chunks: list[BenchmarkChunk]
+    expected_answer: str | None = None
+    tags: list[str] | None = None
+    difficulty: Difficulty = Difficulty.EASY
+
+
+@dataclass(slots=True, frozen=True)
+class BenchmarkDataset:
+    name: str
+    version: str
+    description: str
+    created_at: str
+
+    cases: list[BenchmarkCase]
+
+
+@dataclass(slots=True, frozen=True)
+class BenchmarkResult:
+
+    case_id: str
+    question: str
+    retrieved_chunks: list[SearchResult]
+    metric_scores: dict[str, float]
+    passed: bool
+
+
+@dataclass(slots=True, frozen=True)
+class BenchmarkSummary:
+    experiment_name: str
+    benchmark_name: str
+    total_cases: int
+    metric_scores: dict[str, float]
+    passed_cases: int
+    failed_cases: int
+    results: list[BenchmarkResult]
+
+
+@dataclass(slots=True, frozen=True)
+class Experiment:
+    name: str
+    retriever: Any

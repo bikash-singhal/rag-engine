@@ -26,6 +26,10 @@ class PromptBuilder:
             len(context),
         )
 
+        logger.debug("=" * 80)
+        logger.debug(formatted_context)
+        logger.debug("=" * 80)
+
         return self._final_prompt(formatted_history, formatted_context, question)
 
     def _format_history(self, history: list[Message]) -> str:
@@ -138,5 +142,11 @@ class PromptBuilder:
             "Prompt length: %d characters",
             len(prompt),
         )
+
+        logger.debug("=" * 100)
+        logger.debug("FINAL PROMPT SENT TO LLM")
+        logger.debug("=" * 100)
+        logger.debug(prompt)
+        logger.debug("=" * 100)
 
         return prompt

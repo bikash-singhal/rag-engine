@@ -1,7 +1,9 @@
+from pathlib import Path
+
 from dotenv import load_dotenv
 
 from src.app.rag_engine import RAGEngine
-from utilities.benchmark_generator import BenchmarkGenerator
+from utilities.benchmark_builder import BenchmarkBuilder
 
 QUESTIONS = [
     "What is Amazon SageMaker?",
@@ -17,7 +19,7 @@ QUESTIONS = [
 ]
 
 
-def main():
+def main() -> None:
 
     load_dotenv()
 
@@ -28,32 +30,28 @@ def main():
         index_directory="data/indexes/default",
     )
 
-    builder = BenchmarkGenerator(
+    builder = BenchmarkBuilder(
         retriever=engine.retriever,
     )
 
-    for chunk in engine.vector_store.get_chunks():
-        if "The original Amazon SageMaker has been renamed SageMaker AI" in chunk.text:
-            print(chunk.chunk_index)
-            print(chunk.page_number)
-            print(chunk.text)
+    dataset = builder.build(
+        questions=QUESTIONS,
+        benchmark_name="Amazon SageMaker Benchmark",
+        description="Retrieval benchmark for Amazon SageMaker documentation.",
+        version="1.0",
+        top_k=10,
+    )
 
-    benchmark = builder.build(QUESTIONS)
+    output_path = Path(
+        "data/benchmark/sagemaker.json",
+    )
 
-    print("\n" + "=" * 80)
-    print("Copy this into benchmark.py")
-    print("=" * 80 + "\n")
+    builder.save(
+        dataset=dataset,
+        output_file=output_path,
+    )
 
-    print("benchmark = [")
-
-    for question, chunk_ids in benchmark:
-
-        print("    (")
-        print(f'        "{question}",')
-        print(f"        {chunk_ids},")
-        print("    ),")
-
-    print("]")
+    print(f"\nBenchmark saved to:\n{output_path.resolve()}")
 
 
 if __name__ == "__main__":
