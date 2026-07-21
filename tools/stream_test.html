@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RAG Streaming Test</title>
+</head>
+
+<body>
+
+    <h2>RAG Streaming Demo</h2>
+
+    <input id="question" size="70" value="What is Amazon SageMaker?">
+
+    <button onclick="ask()">
+        Ask
+    </button>
+
+    <hr>
+
+    <div id="answer" style="
+        width:900px;
+        height:400px;
+        overflow-y:auto;
+        white-space:pre-wrap;
+        border:1px solid #ccc;
+        padding:10px;
+        font-family:Consolas;
+    ">
+    </div>
+
+    <script>
+
+        async function ask() {
+
+            const question =
+                document.getElementById("question").value;
+
+            document.getElementById("answer").textContent = "";
+
+            const response = await fetch(
+                "http://127.0.0.1:8000/chat/stream",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        question
+                    })
+                }
+            );
+
+            const reader =
+                response.body.getReader();
+
+            const decoder =
+                new TextDecoder();
+
+            while (true) {
+
+                const { done, value } =
+                    await reader.read();
+
+                if (done)
+                    break;
+
+                document.getElementById("answer").textContent +=
+                    decoder.decode(value);
+
+                const output = document.getElementById("answer");
+
+                output.scrollTop = output.scrollHeight;
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,17 +1,58 @@
 from fastapi import APIRouter, Depends
+from fastapi.responses import StreamingResponse
 
-from src.api.dependencies import get_rag_engine
-from src.app.rag_engine import RAGEngine
+from src.api.dependencies import get_chat_engine
+from src.api.schemas.chat import ChatRequest, ChatResponse, SourceResponse
+from src.chat.chat_engine import ChatEngine
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/chat",
+    tags=["Chat"],
+)
 
 
-@router.post("/")
+@router.post(
+    "",
+    response_model=ChatResponse,
+)
 def chat(
-    engine: RAGEngine = Depends(get_rag_engine),
-):
+    request: ChatRequest,
+    engine: ChatEngine = Depends(get_chat_engine),
+) -> ChatResponse:
+    """
+    Answers a user question using the RAG pipeline.
+    """
 
-    return {
-        "message": "RAG Engine injected successfully!",
-        "engine_id": id(engine),
-    }
+    result = engine.chat(
+        request.question,
+    )
+
+    return ChatResponse(
+        answer=result.answer,
+        rewritten_question=result.rewritten_question,
+        sources=[
+            SourceResponse(
+                document=source.chunk.source,
+                page=source.chunk.page_number,
+                score=source.score,
+            )
+            for source in result.retrieved_chunks
+        ],
+    )
+
+
+@router.post(
+    "/stream",
+)
+def chat_stream(
+    request: ChatRequest,
+    engine: ChatEngine = Depends(get_chat_engine),
+):
+    """
+    Streams the LLM response token-by-token.
+    """
+
+    return StreamingResponse(
+        engine.ask(request.question),
+        media_type="text/event-stream",
+    )

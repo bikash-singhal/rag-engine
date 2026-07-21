@@ -1,16 +1,11 @@
 from functools import lru_cache
 
 from src.app.rag_engine import RAGEngine
+from src.chat.chat_engine import ChatEngine
 
 
-@lru_cache(maxsize=1)
+@lru_cache
 def get_rag_engine() -> RAGEngine:
-    """
-    Returns a singleton RAG Engine.
-
-    The engine is created only once and reused
-    for every request.
-    """
 
     engine = RAGEngine()
 
@@ -20,3 +15,7 @@ def get_rag_engine() -> RAGEngine:
     )
 
     return engine
+
+
+def get_chat_engine() -> ChatEngine:
+    return get_rag_engine().chat_engine

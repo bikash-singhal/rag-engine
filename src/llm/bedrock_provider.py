@@ -74,6 +74,8 @@ class BedrockProvider(LLMProvider):
 
         start = perf_counter()
 
+        logger.info("Streaming started.")
+
         try:
             response = self.client.converse_stream(
                 modelId=self.model_id,
@@ -91,7 +93,7 @@ class BedrockProvider(LLMProvider):
 
                 text = delta.get("text")
 
-                if text is not None:
+                if text:
                     chunk_count += 1
                     yield text
 
