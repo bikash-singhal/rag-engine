@@ -1,6 +1,8 @@
 from dataclasses import dataclass, field
+from datetime import UTC, datetime
 from enum import Enum
 from typing import Any
+from uuid import uuid4
 
 import numpy as np
 
@@ -196,3 +198,35 @@ class BenchmarkSummary:
 class Experiment:
     name: str
     retriever: Any
+
+
+class JobStatus(str, Enum):
+    """
+    Lifecycle of an ingestion job.
+    """
+
+    QUEUED = "queued"
+    RUNNING = "running"
+    COMPLETED = "completed"
+    FAILED = "failed"
+
+
+class IngestJob:
+    """
+    Tracks one ingestion task.
+    """
+
+    def __init__(
+        self,
+        filename: str,
+    ) -> None:
+
+        self.id = str(uuid4())
+
+        self.filename = filename
+
+        self.status = JobStatus.QUEUED
+
+        self.created_at = datetime.now(UTC)
+
+        self.error: str | None = None

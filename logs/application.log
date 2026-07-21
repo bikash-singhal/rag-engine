@@ -4874,3 +4874,1088 @@ Amazon SageMaker User Guide Amazon SageMaker: User Guide Copyright © 2026 Amazo
 14:03:53 | INFO | src.llm.bedrock_provider | Streaming started.
 14:03:57 | DEBUG | src.llm.bedrock_provider | Streaming completed in 4.031 sec (284 chunks).
 14:03:57 | INFO | src.chat.chat_engine | Answer generation completed.
+14:27:44 | INFO | src.app.rag_engine | Initializing RAG Engine...
+14:27:53 | INFO | src.llm.bedrock_provider | Initialized Bedrock provider with model: amazon.nova-lite-v1:0
+14:27:53 | INFO | src.app.rag_engine | Using LLM model: amazon.nova-lite-v1:0
+14:27:53 | INFO | src.app.rag_engine | RAG Engine initialized.
+14:27:53 | INFO | src.app.rag_engine | Loading vector index from data\indexes\default
+14:27:53 | INFO | src.app.rag_engine | Loaded 94 vectors.
+14:27:53 | INFO | src.app.rag_engine | Building retrieval pipeline...
+14:27:53 | INFO | src.app.rag_engine | Loaded 94 chunks from vector store.
+14:28:06 | INFO | src.app.rag_engine | Building chat engine...
+14:28:06 | INFO | src.app.rag_engine | Chat engine built.
+14:28:06 | INFO | src.app.rag_engine | Retriever and chat engine rebuilt.
+14:28:06 | INFO | src.chat.chat_engine | Processing user question.
+14:28:06 | DEBUG | src.chat.chat_engine | Original Question: What is Amazon SageMaker?
+14:28:06 | DEBUG | src.chat.chat_engine | Conversation history size: 1 messages
+14:28:06 | INFO | src.chat.chat_engine | Query rewriting started.
+14:28:06 | DEBUG | src.llm.bedrock_provider | Sending synchronous request to Bedrock.
+14:28:07 | DEBUG | src.llm.bedrock_provider | Bedrock response received in 1.218 sec.
+14:28:07 | INFO | src.chat.chat_engine | Query rewriting completed.
+14:28:07 | DEBUG | src.chat.chat_engine | Rewritten Question: What is Amazon SageMaker?
+14:28:07 | DEBUG | src.llm.bedrock_provider | Sending synchronous request to Bedrock.
+14:28:08 | DEBUG | src.llm.bedrock_provider | Bedrock response received in 0.772 sec.
+14:28:08 | DEBUG | src.query.llm_multi_query_generator | Multi-query generation produced 4 unique queries.
+14:28:08 | INFO | src.chat.chat_engine | Generated 4 retrieval queries.
+14:28:08 | DEBUG | src.chat.chat_engine | Query 1: What is Amazon SageMaker?
+14:28:08 | DEBUG | src.chat.chat_engine | Query 2: Amazon SageMaker explained
+14:28:08 | DEBUG | src.chat.chat_engine | Query 3: Amazon SageMaker details
+14:28:08 | DEBUG | src.chat.chat_engine | Query 4: Amazon SageMaker information
+14:28:08 | INFO | src.chat.chat_engine | Starting retrieval.
+14:28:08 | DEBUG | src.chat.chat_engine | Retrieving with query: What is Amazon SageMaker?
+14:28:08 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+14:28:08 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.133 sec (30 results)
+14:28:08 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+14:28:08 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (30 results)
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (45 results)
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.8635
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.6052
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=1 | 0.5049
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.4327
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.3873
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.3229
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.2987
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=16 | 0.2695
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.2657
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=22 | 0.2098
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=19 | 0.1999
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=56 | 0.1981
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=23 | 0.1760
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=39 | 0.1678
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1673
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=9 | 0.1641
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=91 | 0.1608
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=21 | 0.1418
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=12 | 0.1417
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=43 | 0.1401
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=84 | 0.1396
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=49 | 0.1362
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=93 | 0.1303
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.1123
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=66 | 0.1054
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.0985
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=72 | 0.0928
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=34 | 0.0812
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=17 | 0.0380
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=18 | 0.0325
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=53 | 0.0322
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=61 | 0.0298
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=85 | 0.0278
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=30 | 0.0246
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=58 | 0.0223
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=60 | 0.0203
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=7 | 0.0196
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=28 | 0.0189
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=87 | 0.0100
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=89 | 0.0069
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=35 | 0.0060
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=71 | 0.0027
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=38 | 0.0000
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=50 | 0.0000
+14:28:08 | DEBUG | src.chat.chat_engine | Retrieving with query: Amazon SageMaker explained
+14:28:08 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+14:28:08 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.084 sec (30 results)
+14:28:08 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+14:28:08 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (30 results)
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (42 results)
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.7853
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.6094
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.5875
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.5240
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.4767
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=16 | 0.4216
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.4028
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=93 | 0.3870
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=1 | 0.3677
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=84 | 0.3525
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=23 | 0.3362
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=22 | 0.3011
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=49 | 0.2679
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=34 | 0.2482
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=7 | 0.2221
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=19 | 0.1836
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=67 | 0.1815
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=43 | 0.1733
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=91 | 0.1580
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=21 | 0.1556
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=58 | 0.1537
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=39 | 0.1523
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=12 | 0.1327
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=56 | 0.1297
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=29 | 0.1061
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=9 | 0.1040
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.1021
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.0919
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=17 | 0.0911
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=72 | 0.0877
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=80 | 0.0824
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=24 | 0.0724
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=60 | 0.0720
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.0711
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=28 | 0.0707
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=53 | 0.0619
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=50 | 0.0542
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=5 | 0.0431
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=68 | 0.0182
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=69 | 0.0000
+14:28:08 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=82 | 0.0000
+14:28:08 | DEBUG | src.chat.chat_engine | Retrieving with query: Amazon SageMaker details
+14:28:08 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+14:28:09 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.164 sec (30 results)
+14:28:09 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+14:28:09 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (30 results)
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (45 results)
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.5644
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.4851
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.3853
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=91 | 0.3819
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.3544
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=1 | 0.3170
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.3092
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=93 | 0.3069
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=86 | 0.3000
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=22 | 0.2829
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=23 | 0.2665
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=16 | 0.2563
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.2508
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=28 | 0.2380
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=84 | 0.2285
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=69 | 0.2067
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=21 | 0.2047
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=43 | 0.1904
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=39 | 0.1850
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=87 | 0.1769
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=19 | 0.1746
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=34 | 0.1722
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=72 | 0.1333
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=85 | 0.1322
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=89 | 0.1263
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=65 | 0.1248
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=49 | 0.0742
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=7 | 0.0695
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=74 | 0.0650
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.0515
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=56 | 0.0488
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=67 | 0.0357
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=9 | 0.0274
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=58 | 0.0257
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=50 | 0.0242
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=53 | 0.0181
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=75 | 0.0143
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=12 | 0.0112
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=29 | 0.0085
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.0071
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=61 | 0.0032
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=17 | 0.0031
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=24 | 0.0000
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=80 | 0.0000
+14:28:09 | DEBUG | src.chat.chat_engine | Retrieving with query: Amazon SageMaker information
+14:28:09 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+14:28:09 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.039 sec (30 results)
+14:28:09 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+14:28:09 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (30 results)
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (46 results)
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.5644
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.5562
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.5417
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=84 | 0.5102
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.3790
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=93 | 0.3427
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.3338
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=23 | 0.3306
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=22 | 0.3235
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=1 | 0.3140
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=67 | 0.3000
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=19 | 0.2745
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=16 | 0.2650
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=43 | 0.2575
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.2489
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=80 | 0.2154
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=72 | 0.2149
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=39 | 0.2094
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=21 | 0.1959
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=34 | 0.1940
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=91 | 0.1799
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=68 | 0.1728
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=49 | 0.1330
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=82 | 0.1187
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=89 | 0.0991
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=69 | 0.0980
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=44 | 0.0769
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=74 | 0.0702
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=7 | 0.0684
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=85 | 0.0465
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=50 | 0.0403
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.0381
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=61 | 0.0308
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=65 | 0.0306
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=71 | 0.0293
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=9 | 0.0265
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=58 | 0.0243
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=24 | 0.0206
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=70 | 0.0061
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=29 | 0.0058
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=53 | 0.0048
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.0043
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=12 | 0.0009
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=17 | 0.0000
+14:28:09 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=56 | 0.0000
+14:28:09 | DEBUG | src.chat.chat_engine | Retrieved 120 candidates.
+14:28:10 | INFO | src.chat.chat_engine | Starting CrossEncoder reranking.
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Received 120 candidates: 
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Deduplicated to  46 unique candidates: 
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Unique candidates:
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=2 | 0.8635
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=6 | 0.6052
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=1 | 0.5049
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=8 | 0.4327
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=92 | 0.3873
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=15 | 0.3229
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=14 | 0.2987
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=16 | 0.2695
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=11 | 0.2657
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=22 | 0.2098
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=19 | 0.1999
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=56 | 0.1981
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=23 | 0.1760
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=39 | 0.1678
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1673
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=9 | 0.1641
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=91 | 0.1608
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=21 | 0.1418
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=12 | 0.1417
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=43 | 0.1401
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=84 | 0.1396
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=49 | 0.1362
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=93 | 0.1303
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=51 | 0.1123
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=66 | 0.1054
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=3 | 0.0985
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=72 | 0.0928
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=34 | 0.0812
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=17 | 0.0380
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=7 | 0.2221
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=67 | 0.1815
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=58 | 0.1537
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=29 | 0.1061
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=86 | 0.3000
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=28 | 0.2380
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=69 | 0.2067
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=87 | 0.1769
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=85 | 0.1322
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=89 | 0.1263
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=65 | 0.1248
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=74 | 0.0650
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=80 | 0.2154
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=68 | 0.1728
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=82 | 0.1187
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=44 | 0.0769
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Candidates after pruning:
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=2 | 0.8635
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=6 | 0.6052
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=1 | 0.5049
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=8 | 0.4327
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=92 | 0.3873
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=15 | 0.3229
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=14 | 0.2987
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=16 | 0.2695
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=11 | 0.2657
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=22 | 0.2098
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=19 | 0.1999
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=56 | 0.1981
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=23 | 0.1760
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=39 | 0.1678
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1673
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=9 | 0.1641
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=91 | 0.1608
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=21 | 0.1418
+14:28:10 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=12 | 0.1417
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Top after CrossEncoder:
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=6 | 0.9948
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=8 | 0.9873
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=0 | 0.9702
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=1 | 0.9599
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=9 | 0.9453
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=2 | 0.7657
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=11 | 0.7464
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=12 | 0.7361
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=14 | 0.5869
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=39 | 0.3732
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=16 | 0.3450
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=22 | 0.3151
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=15 | 0.2791
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=56 | 0.1999
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=19 | 0.1903
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=91 | 0.1885
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1051
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=92 | 0.0370
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=21 | 0.0308
+14:28:23 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=23 | 0.0025
+14:28:23 | INFO | src.chat.chat_engine | Top 5 candidates selected after reranking.
+14:28:23 | INFO | src.chat.chat_engine | Building final prompt.
+14:28:23 | DEBUG | src.prompt.prompt_builder | History messages: 1 | Context chunks: 5
+14:28:23 | DEBUG | src.prompt.prompt_builder | ================================================================================
+14:28:23 | DEBUG | src.prompt.prompt_builder | [Source 1]
+Document: Amazon SageMaker User Guide.pdf
+Page: 6
+Chunk: 6
+
+Amazon SageMaker User Guide What is Amazon SageMaker? Bringing together widely adopted artiﬁcial intelligence (AI) and analytics capabilities, the next generation of Amazon SageMaker delivers an integrated experience for analytics and AI with uniﬁed access to all your data. Collaborate and build in Amazon SageMaker Uniﬁed Studio using familiar AWS tools for SQL analytics, data processing, model development, and generative AI, accelerated by Amazon Q Developer. Access all your data whether it's stored in data lakes, data warehouses, or third-party or federated data sources, with governance built in to meet enterprise security needs. The next generation of Amazon SageMaker overview Guide to SageMaker The next generation of Amazon SageMaker was announced at re:Invent 2024 serves as the center for all data, analytics, and AI. Analytics and AI workﬂows are converging, with organizations now using the same data sources for traditional analytics, machine learning, and generative AI. In response, AWS has created the next generation of SageMaker to serve as a uniﬁed platform for these workﬂows. The next generation of SageMaker brings together the purpose-built components needed for data exploration, preparation and integration, big data processing, SQL analytics, machine learning (ML) model development and training, and generative AI application development. Note The original Amazon SageMaker has been renamed SageMaker AI. It is available in the next generation Amazon SageMaker for those who wish to use it alongside additional capabilities, or as a standalone service for those who wish to focus speciﬁcally on building, training, and deploying AI and ML models at scale. The next generation of Amazon SageMaker consists of two primary components: 1. Amazon SageMaker Uniﬁed Studio, which provides an integrated experience to use all your data and tools for analytics and AI 2. Data and AI governance, which applies enterprise-level security and data management with built-in governance throughout the entire data and AI lifecycle Guide to SageMaker 1
+
+--------------------
+
+[Source 2]
+Document: Amazon SageMaker User Guide.pdf
+Page: 7
+Chunk: 8
+
+Amazon SageMaker User Guide Additionally, SageMaker is built upon an open lakehouse architecture that uniﬁes access to all your data across Amazon Simple Storage Service (Amazon S3) data lakes, Amazon Redshift data warehouses, and other external sources Uniﬁed Studio Amazon SageMaker Uniﬁed Studio is a single data and AI development environment that brings together functionality and tools that AWS oﬀers in Amazon EMR, AWS Glue, Amazon Athena, Amazon Redshift, Amazon MWAA, Amazon Bedrock, and Amazon SageMaker AI. From within the uniﬁed studio, you can discover, access, and query data and AI assets, then collaborate to build and share analytics and AI artifacts, including data, models, and generative AI applications. Data & AI governance The next generation of Amazon SageMaker simpliﬁes the discovery, governance, and collaboration for data and AI. With Amazon SageMaker Catalog, users can securely discover and access approved data and assets using semantic search with generative AI–created metadata, or you could just ask Amazon Q Developer with natural language to ﬁnd your data. Seamlessly share and collaborate on data and AI assets through publishing and subscribing workﬂows. With SageMaker, you can apply Uniﬁed Studio 2
+
+--------------------
+
+[Source 3]
+Document: Amazon SageMaker User Guide.pdf
+Page: 1
+Chunk: 0
+
+User Guide Amazon SageMaker Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved.
+
+--------------------
+
+[Source 4]
+Document: Amazon SageMaker User Guide.pdf
+Page: 2
+Chunk: 1
+
+Amazon SageMaker User Guide Amazon SageMaker: User Guide Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved. Amazon's trademarks and trade dress may not be used in connection with any product or service that is not Amazon's, in any manner that is likely to cause confusion among customers, or in any manner that disparages or discredits Amazon. All other trademarks not owned by Amazon are the property of their respective owners, who may or may not be aﬃliated with, connected to, or sponsored by Amazon.
+
+--------------------
+
+[Source 5]
+Document: Amazon SageMaker User Guide.pdf
+Page: 8
+Chunk: 9
+
+Amazon SageMaker User Guide Amazon Bedrock Guardrails to protect and ﬁlter your model outputs, helping ensure responsible gen AI application development. Build trust throughout your organization with data quality monitoring, sensitive data detection, and data and machine learning (ML) lineage. Lakehouse architecture The next generation of Amazon SageMaker is built on an open lakehouse architecture, fully compatible with Apache Iceberg. Unify all your data across Amazon S3 data lakes and Amazon Redshift data warehouses to build analytics and AI/ML applications on a single copy of data. The lakehouse gives you the ﬂexibility to access and query your data with Apache Iceberg–compatible tools and engines. You can also connect to federated data sources such as Amazon DynamoDB, Google BigQuery, and Snowﬂake and query your data in-place. With zero-ETL integrations, you can bring data from operational databases and 3rd party applications into your lakehouse in near real- time. Integrated ﬁne-grained access controls help you secure your data to ensure only the right people have access to the right data. Capabilities of Amazon SageMaker Uniﬁed Studio The next generation of Amazon SageMaker and its uniﬁed studio provide an integrated experience to use all your data and tools for analytics and AI. Discover your data and put it to work using familiar AWS tools for model development, generative AI, data processing, and SQL analytics. Work across compute resources using uniﬁed notebooks, discover and query diverse data sources with a built-in SQL editor, train and deploy AI models at scale, and rapidly build custom generative AI applications. Create and securely share analytics and AI artifacts such as data, models, and generative AI applications to bring data products to market faster. Some common capabilities of Amazon SageMaker Uniﬁed Studio include the following: SQL analytics Leverage SageMaker's SQL analytic capabilities across all of your uniﬁed data through Amazon SageMaker's lakehouse architecture. Users have the ﬂexibility to use Athena or Redshift query engines to support their analytical workloads. Query your data in open formats stored on Amazon S3 with high performance through Amazon Athena, eliminating the need to move or duplicate data between your data lakes and data warehouse. Include your Redshift data as part of the lakehouse architecture, leveraging the Redshift query engine for SQL workloads on structured data. Lakehouse architecture 3
+
+--------------------
+
+
+14:28:23 | DEBUG | src.prompt.prompt_builder | ================================================================================
+14:28:23 | DEBUG | src.prompt.prompt_builder | Prompt length: 8887 characters
+14:28:23 | DEBUG | src.prompt.prompt_builder | ====================================================================================================
+14:28:23 | DEBUG | src.prompt.prompt_builder | FINAL PROMPT SENT TO LLM
+14:28:23 | DEBUG | src.prompt.prompt_builder | ====================================================================================================
+14:28:23 | DEBUG | src.prompt.prompt_builder | You are a helpful AI assistant.
+
+            Treat the retrieved context as the ONLY source of truth.
+
+            If the answer cannot be found in the retrieved context, respond with exactly:
+
+            "I don't know based on the provided documents."
+
+            Do not invent facts.
+            Do not use outside knowledge.
+            Do not make assumptions.
+
+            ======================
+            Citation Rules
+            ======================
+
+            - Cite only the source(s) that directly support a statement.
+            - Prefer the highest-ranked source whenever possible.
+            - Prefer the smallest number of sources needed.
+            - Do NOT cite sources that merely repeat the same information.
+            - Never invent source numbers.
+            - Never cite a source that was not provided.
+
+            Use citations in the format:
+
+            [Source X]
+
+            Examples:
+
+            Good:
+
+            Amazon SageMaker is a fully managed machine learning service. [Source 1]
+
+            Amazon SageMaker supports SQL analytics and generative AI capabilities. [Source 2][Source 4]
+
+            Bad:
+
+            Amazon SageMaker is a fully managed machine learning service. [Source 1][Source 2][Source 3][Source 4][Source 5]
+
+            Amazon SageMaker is a fully managed machine learning service. [Source 8]
+
+            Amazon SageMaker is a fully managed machine learning service.
+            (no citation)
+
+            ========================
+            Previous Conversation
+            ========================
+
+            User:
+What is Amazon SageMaker?
+
+
+
+            ======================
+            RETRIEVED CONTEXT
+            ======================
+
+            [Source 1]
+Document: Amazon SageMaker User Guide.pdf
+Page: 6
+Chunk: 6
+
+Amazon SageMaker User Guide What is Amazon SageMaker? Bringing together widely adopted artiﬁcial intelligence (AI) and analytics capabilities, the next generation of Amazon SageMaker delivers an integrated experience for analytics and AI with uniﬁed access to all your data. Collaborate and build in Amazon SageMaker Uniﬁed Studio using familiar AWS tools for SQL analytics, data processing, model development, and generative AI, accelerated by Amazon Q Developer. Access all your data whether it's stored in data lakes, data warehouses, or third-party or federated data sources, with governance built in to meet enterprise security needs. The next generation of Amazon SageMaker overview Guide to SageMaker The next generation of Amazon SageMaker was announced at re:Invent 2024 serves as the center for all data, analytics, and AI. Analytics and AI workﬂows are converging, with organizations now using the same data sources for traditional analytics, machine learning, and generative AI. In response, AWS has created the next generation of SageMaker to serve as a uniﬁed platform for these workﬂows. The next generation of SageMaker brings together the purpose-built components needed for data exploration, preparation and integration, big data processing, SQL analytics, machine learning (ML) model development and training, and generative AI application development. Note The original Amazon SageMaker has been renamed SageMaker AI. It is available in the next generation Amazon SageMaker for those who wish to use it alongside additional capabilities, or as a standalone service for those who wish to focus speciﬁcally on building, training, and deploying AI and ML models at scale. The next generation of Amazon SageMaker consists of two primary components: 1. Amazon SageMaker Uniﬁed Studio, which provides an integrated experience to use all your data and tools for analytics and AI 2. Data and AI governance, which applies enterprise-level security and data management with built-in governance throughout the entire data and AI lifecycle Guide to SageMaker 1
+
+--------------------
+
+[Source 2]
+Document: Amazon SageMaker User Guide.pdf
+Page: 7
+Chunk: 8
+
+Amazon SageMaker User Guide Additionally, SageMaker is built upon an open lakehouse architecture that uniﬁes access to all your data across Amazon Simple Storage Service (Amazon S3) data lakes, Amazon Redshift data warehouses, and other external sources Uniﬁed Studio Amazon SageMaker Uniﬁed Studio is a single data and AI development environment that brings together functionality and tools that AWS oﬀers in Amazon EMR, AWS Glue, Amazon Athena, Amazon Redshift, Amazon MWAA, Amazon Bedrock, and Amazon SageMaker AI. From within the uniﬁed studio, you can discover, access, and query data and AI assets, then collaborate to build and share analytics and AI artifacts, including data, models, and generative AI applications. Data & AI governance The next generation of Amazon SageMaker simpliﬁes the discovery, governance, and collaboration for data and AI. With Amazon SageMaker Catalog, users can securely discover and access approved data and assets using semantic search with generative AI–created metadata, or you could just ask Amazon Q Developer with natural language to ﬁnd your data. Seamlessly share and collaborate on data and AI assets through publishing and subscribing workﬂows. With SageMaker, you can apply Uniﬁed Studio 2
+
+--------------------
+
+[Source 3]
+Document: Amazon SageMaker User Guide.pdf
+Page: 1
+Chunk: 0
+
+User Guide Amazon SageMaker Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved.
+
+--------------------
+
+[Source 4]
+Document: Amazon SageMaker User Guide.pdf
+Page: 2
+Chunk: 1
+
+Amazon SageMaker User Guide Amazon SageMaker: User Guide Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved. Amazon's trademarks and trade dress may not be used in connection with any product or service that is not Amazon's, in any manner that is likely to cause confusion among customers, or in any manner that disparages or discredits Amazon. All other trademarks not owned by Amazon are the property of their respective owners, who may or may not be aﬃliated with, connected to, or sponsored by Amazon.
+
+--------------------
+
+[Source 5]
+Document: Amazon SageMaker User Guide.pdf
+Page: 8
+Chunk: 9
+
+Amazon SageMaker User Guide Amazon Bedrock Guardrails to protect and ﬁlter your model outputs, helping ensure responsible gen AI application development. Build trust throughout your organization with data quality monitoring, sensitive data detection, and data and machine learning (ML) lineage. Lakehouse architecture The next generation of Amazon SageMaker is built on an open lakehouse architecture, fully compatible with Apache Iceberg. Unify all your data across Amazon S3 data lakes and Amazon Redshift data warehouses to build analytics and AI/ML applications on a single copy of data. The lakehouse gives you the ﬂexibility to access and query your data with Apache Iceberg–compatible tools and engines. You can also connect to federated data sources such as Amazon DynamoDB, Google BigQuery, and Snowﬂake and query your data in-place. With zero-ETL integrations, you can bring data from operational databases and 3rd party applications into your lakehouse in near real- time. Integrated ﬁne-grained access controls help you secure your data to ensure only the right people have access to the right data. Capabilities of Amazon SageMaker Uniﬁed Studio The next generation of Amazon SageMaker and its uniﬁed studio provide an integrated experience to use all your data and tools for analytics and AI. Discover your data and put it to work using familiar AWS tools for model development, generative AI, data processing, and SQL analytics. Work across compute resources using uniﬁed notebooks, discover and query diverse data sources with a built-in SQL editor, train and deploy AI models at scale, and rapidly build custom generative AI applications. Create and securely share analytics and AI artifacts such as data, models, and generative AI applications to bring data products to market faster. Some common capabilities of Amazon SageMaker Uniﬁed Studio include the following: SQL analytics Leverage SageMaker's SQL analytic capabilities across all of your uniﬁed data through Amazon SageMaker's lakehouse architecture. Users have the ﬂexibility to use Athena or Redshift query engines to support their analytical workloads. Query your data in open formats stored on Amazon S3 with high performance through Amazon Athena, eliminating the need to move or duplicate data between your data lakes and data warehouse. Include your Redshift data as part of the lakehouse architecture, leveraging the Redshift query engine for SQL workloads on structured data. Lakehouse architecture 3
+
+--------------------
+
+
+
+            ======================
+            CURRENT QUESTION
+            ======================
+
+            What is Amazon SageMaker?
+
+            ======================
+            ANSWER
+            ======================
+14:28:23 | DEBUG | src.prompt.prompt_builder | ====================================================================================================
+14:28:23 | DEBUG | src.chat.chat_engine | Prompt length: 8887 characters
+14:28:23 | INFO | src.chat.chat_engine | Generating answer...
+14:28:23 | DEBUG | src.llm.bedrock_provider | Sending synchronous request to Bedrock.
+14:28:24 | DEBUG | src.llm.bedrock_provider | Bedrock response received in 0.834 sec.
+14:28:24 | INFO | src.chat.chat_engine | Answer generation completed.
+15:55:25 | INFO | src.app.rag_engine | Initializing RAG Engine...
+15:55:36 | INFO | src.llm.bedrock_provider | Initialized Bedrock provider with model: amazon.nova-lite-v1:0
+15:55:36 | INFO | src.app.rag_engine | Using LLM model: amazon.nova-lite-v1:0
+15:55:36 | INFO | src.app.rag_engine | RAG Engine initialized.
+15:55:36 | INFO | src.app.rag_engine | Loading vector index from data\indexes\default
+15:55:36 | INFO | src.app.rag_engine | Loaded 94 vectors.
+15:55:36 | INFO | src.app.rag_engine | Building retrieval pipeline...
+15:55:36 | INFO | src.app.rag_engine | Loaded 94 chunks from vector store.
+15:55:44 | INFO | src.app.rag_engine | Building chat engine...
+15:55:44 | INFO | src.app.rag_engine | Chat engine built.
+15:55:44 | INFO | src.app.rag_engine | Indexing document: C:\Users\bikas\AppData\Local\Temp\tmp75187dp5.pdf
+16:02:17 | INFO | src.app.rag_engine | Building retrieval pipeline...
+16:02:17 | INFO | src.app.rag_engine | Loaded 4735 chunks from vector store.
+16:02:27 | INFO | src.app.rag_engine | Building chat engine...
+16:02:27 | INFO | src.app.rag_engine | Chat engine built.
+16:02:27 | INFO | src.app.rag_engine | Document indexed and retriever refreshed.
+16:09:40 | INFO | src.chat.chat_engine | Processing user question.
+16:09:40 | DEBUG | src.chat.chat_engine | Original Question: In Amazon S3, which format path-style URLs use?
+16:09:40 | DEBUG | src.chat.chat_engine | Conversation history size: 1 messages
+16:09:40 | INFO | src.chat.chat_engine | Query rewriting started.
+16:09:40 | DEBUG | src.llm.bedrock_provider | Sending synchronous request to Bedrock.
+16:09:41 | DEBUG | src.llm.bedrock_provider | Bedrock response received in 1.219 sec.
+16:09:41 | INFO | src.chat.chat_engine | Query rewriting completed.
+16:09:41 | DEBUG | src.chat.chat_engine | Rewritten Question: In Amazon S3, which format do path-style URLs use?
+16:09:41 | DEBUG | src.llm.bedrock_provider | Sending synchronous request to Bedrock.
+16:09:42 | DEBUG | src.llm.bedrock_provider | Bedrock response received in 0.892 sec.
+16:09:42 | DEBUG | src.query.llm_multi_query_generator | Multi-query generation produced 4 unique queries.
+16:09:42 | INFO | src.chat.chat_engine | Generated 4 retrieval queries.
+16:09:42 | DEBUG | src.chat.chat_engine | Query 1: In Amazon S3, which format do path-style URLs use?
+16:09:42 | DEBUG | src.chat.chat_engine | Query 2: In Amazon S3, what is the format for path-style URLs?
+16:09:42 | DEBUG | src.chat.chat_engine | Query 3: Which format do Amazon S3 path-style URLs follow?
+16:09:42 | DEBUG | src.chat.chat_engine | Query 4: What type of format do path-style URLs in Amazon S3 use?
+16:09:42 | INFO | src.chat.chat_engine | Starting retrieval.
+16:09:42 | DEBUG | src.chat.chat_engine | Retrieving with query: In Amazon S3, which format do path-style URLs use?
+16:09:42 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:09:42 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.180 sec (30 results)
+16:09:42 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:09:42 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.067 sec (30 results)
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (53 results)
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=148 | 1.0000
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=149 | 0.6033
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4386 | 0.5032
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=690 | 0.4739
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=147 | 0.2919
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=680 | 0.2708
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=150 | 0.2557
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=673 | 0.2476
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=681 | 0.2369
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=154 | 0.2331
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2128 | 0.2171
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4383 | 0.1922
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4413 | 0.1815
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=693 | 0.1759
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4499 | 0.1695
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4398 | 0.1475
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=631 | 0.1136
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1220 | 0.0998
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=260 | 0.0902
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=701 | 0.0865
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3717 | 0.0808
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=152 | 0.0791
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=142 | 0.0767
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=156 | 0.0761
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4514 | 0.0589
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=687 | 0.0504
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=702 | 0.0494
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2266 | 0.0432
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3768 | 0.0428
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=686 | 0.0414
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1413 | 0.0375
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1783 | 0.0369
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4639 | 0.0355
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2171 | 0.0331
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2191 | 0.0259
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2975 | 0.0221
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3782 | 0.0199
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=679 | 0.0189
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3731 | 0.0170
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3354 | 0.0164
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3770 | 0.0124
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4337 | 0.0119
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=664 | 0.0101
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3268 | 0.0088
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=320 | 0.0046
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2827 | 0.0028
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1263 | 0.0020
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=86 | 0.0018
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3459 | 0.0013
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=454 | 0.0009
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=420 | 0.0006
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=40 | 0.0000
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1784 | 0.0000
+16:09:42 | DEBUG | src.chat.chat_engine | Retrieving with query: In Amazon S3, what is the format for path-style URLs?
+16:09:42 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:09:42 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.137 sec (30 results)
+16:09:42 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:09:42 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.073 sec (30 results)
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (56 results)
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=148 | 1.0000
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=690 | 0.6663
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4386 | 0.5398
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=149 | 0.5293
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=693 | 0.3162
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=147 | 0.2703
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=631 | 0.2683
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4413 | 0.2678
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=154 | 0.2448
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=680 | 0.2310
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=150 | 0.2268
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2128 | 0.2061
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4383 | 0.1934
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4499 | 0.1825
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=673 | 0.1800
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=156 | 0.1600
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=701 | 0.1593
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=142 | 0.1432
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4514 | 0.1376
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=152 | 0.1285
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=57 | 0.1274
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=681 | 0.1179
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4639 | 0.1048
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=260 | 0.0992
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4398 | 0.0930
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=84 | 0.0923
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3717 | 0.0688
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=98 | 0.0662
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3354 | 0.0474
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1464 | 0.0469
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1785 | 0.0451
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3004 | 0.0379
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1413 | 0.0285
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2334 | 0.0282
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2166 | 0.0267
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2320 | 0.0249
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3473 | 0.0246
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=86 | 0.0212
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3731 | 0.0209
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3457 | 0.0199
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3922 | 0.0153
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4511 | 0.0142
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1081 | 0.0128
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3419 | 0.0127
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3825 | 0.0122
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=40 | 0.0115
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3641 | 0.0109
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=702 | 0.0107
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3770 | 0.0087
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3768 | 0.0065
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=811 | 0.0043
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4450 | 0.0037
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1082 | 0.0013
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3550 | 0.0007
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=686 | 0.0000
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=58 | 0.0000
+16:09:42 | DEBUG | src.chat.chat_engine | Retrieving with query: Which format do Amazon S3 path-style URLs follow?
+16:09:42 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:09:42 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.059 sec (30 results)
+16:09:42 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:09:42 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.057 sec (30 results)
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (53 results)
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=148 | 1.0000
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=149 | 0.6533
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=690 | 0.5317
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4386 | 0.4735
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=154 | 0.3602
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=147 | 0.3372
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=150 | 0.3135
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4499 | 0.2521
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4383 | 0.2403
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=631 | 0.2368
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4398 | 0.2320
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4413 | 0.2230
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=680 | 0.2177
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=673 | 0.1904
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2128 | 0.1749
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=681 | 0.1738
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4514 | 0.1707
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=693 | 0.1541
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=152 | 0.1378
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=701 | 0.1184
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2266 | 0.1163
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=702 | 0.1161
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1220 | 0.1066
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=156 | 0.0861
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=142 | 0.0828
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=687 | 0.0778
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3768 | 0.0682
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2171 | 0.0609
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4639 | 0.0487
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2334 | 0.0417
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=679 | 0.0360
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3770 | 0.0359
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=686 | 0.0357
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=155 | 0.0349
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3782 | 0.0349
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=454 | 0.0316
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=420 | 0.0260
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1783 | 0.0252
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1598 | 0.0246
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=56 | 0.0210
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1936 | 0.0208
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3825 | 0.0206
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=7 | 0.0201
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3764 | 0.0150
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3731 | 0.0104
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3354 | 0.0082
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3765 | 0.0067
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3840 | 0.0045
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3935 | 0.0040
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3728 | 0.0016
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1349 | 0.0006
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4620 | 0.0000
+16:09:42 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4511 | 0.0000
+16:09:42 | DEBUG | src.chat.chat_engine | Retrieving with query: What type of format do path-style URLs in Amazon S3 use?
+16:09:42 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:09:43 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.080 sec (30 results)
+16:09:43 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:09:43 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.061 sec (30 results)
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (52 results)
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=148 | 1.0000
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=149 | 0.5875
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=690 | 0.5371
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4386 | 0.4830
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=673 | 0.2905
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=680 | 0.2880
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2128 | 0.2817
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=147 | 0.2767
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=150 | 0.2414
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=681 | 0.2356
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=154 | 0.1925
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4383 | 0.1621
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4413 | 0.1559
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3717 | 0.1498
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4398 | 0.1477
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=693 | 0.1462
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4499 | 0.1370
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=142 | 0.1151
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=702 | 0.0872
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=260 | 0.0817
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1220 | 0.0782
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=631 | 0.0730
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=701 | 0.0711
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2171 | 0.0693
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4639 | 0.0640
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1413 | 0.0600
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=687 | 0.0540
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=152 | 0.0502
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3922 | 0.0459
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3354 | 0.0349
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3768 | 0.0346
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3017 | 0.0287
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3364 | 0.0242
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=811 | 0.0239
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4359 | 0.0225
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2334 | 0.0184
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3825 | 0.0182
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=700 | 0.0177
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=679 | 0.0177
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3419 | 0.0166
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=156 | 0.0139
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3840 | 0.0134
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3550 | 0.0128
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=664 | 0.0120
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3383 | 0.0083
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2167 | 0.0039
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=686 | 0.0019
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=1059 | 0.0010
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3496 | 0.0010
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=4514 | 0.0007
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=2847 | 0.0003
+16:09:43 | DEBUG | src.retrieval.hybrid_retriever | tmp75187dp5.pdf | chunk=3641 | 0.0000
+16:09:43 | DEBUG | src.chat.chat_engine | Retrieved 120 candidates.
+16:09:44 | INFO | src.chat.chat_engine | Starting CrossEncoder reranking.
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | Received 120 candidates: 
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | Deduplicated to  40 unique candidates: 
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | Unique candidates:
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=148 | 1.0000
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=149 | 0.6033
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4386 | 0.5032
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=690 | 0.4739
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=147 | 0.2919
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=680 | 0.2708
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=150 | 0.2557
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=673 | 0.2476
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=681 | 0.2369
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=154 | 0.2331
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=2128 | 0.2171
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4383 | 0.1922
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4413 | 0.1815
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=693 | 0.1759
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4499 | 0.1695
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4398 | 0.1475
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=631 | 0.1136
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=1220 | 0.0998
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=260 | 0.0902
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=701 | 0.0865
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=3717 | 0.0808
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=152 | 0.0791
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=142 | 0.0767
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=156 | 0.0761
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4514 | 0.0589
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=687 | 0.0504
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=702 | 0.0494
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=2266 | 0.0432
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=3768 | 0.0428
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=686 | 0.0414
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=57 | 0.1274
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4639 | 0.1048
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=84 | 0.0923
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=98 | 0.0662
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=3354 | 0.0474
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=1464 | 0.0469
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=2171 | 0.0609
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=2334 | 0.0417
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=1413 | 0.0600
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=3922 | 0.0459
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | Candidates after pruning:
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=148 | 1.0000
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=149 | 0.6033
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4386 | 0.5032
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=690 | 0.4739
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=147 | 0.2919
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=680 | 0.2708
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=150 | 0.2557
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=673 | 0.2476
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=681 | 0.2369
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=154 | 0.2331
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=2128 | 0.2171
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4383 | 0.1922
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4413 | 0.1815
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=693 | 0.1759
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4499 | 0.1695
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4398 | 0.1475
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=631 | 0.1136
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=1220 | 0.0998
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=260 | 0.0902
+16:09:44 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=701 | 0.0865
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | Top after CrossEncoder:
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=148 | 0.9997
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=154 | 0.9995
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=149 | 0.9980
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=150 | 0.9651
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=680 | 0.5437
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4383 | 0.5277
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4386 | 0.3129
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=1220 | 0.2591
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=681 | 0.2485
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=693 | 0.2254
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=701 | 0.1636
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=147 | 0.1476
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=260 | 0.1272
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=690 | 0.1201
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=2128 | 0.0445
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=631 | 0.0303
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4413 | 0.0195
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4398 | 0.0171
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=4499 | 0.0063
+16:10:06 | DEBUG | src.reranking.cross_encoder_reranker | tmp75187dp5.pdf | chunk=673 | 0.0052
+16:10:06 | INFO | src.chat.chat_engine | Top 5 candidates selected after reranking.
+16:10:06 | INFO | src.chat.chat_engine | Building final prompt.
+16:10:06 | DEBUG | src.prompt.prompt_builder | History messages: 1 | Context chunks: 5
+16:10:06 | DEBUG | src.prompt.prompt_builder | ================================================================================
+16:10:06 | DEBUG | src.prompt.prompt_builder | [Source 1]
+Document: tmp75187dp5.pdf
+Page: 109
+Chunk: 148
+
+Amazon Simple Storage Service User Guide Important When you're using virtual-hosted–style general purpose buckets with SSL, the SSL wildcard certiﬁcate matches only buckets that do not contain dots (.). To work around this limitation, use HTTP or write your own certiﬁcate-veriﬁcation logic. For more information, see Amazon S3 Path Deprecation Plan on the AWS News Blog. Topics • Path-style requests • Virtual-hosted–style requests • HTTP Host header bucket speciﬁcation • Examples • Customizing Amazon S3 URLs with CNAME records • How to associate a hostname with an Amazon S3 bucket • Limitations • Backward compatibility Path-style requests Currently, Amazon S3 supports both virtual-hosted–style and path-style URL access in all AWS Regions. However, path-style URLs will be discontinued in the future. For more information, see the following Important note. In Amazon S3, path-style URLs use the following format: https://s3.region-code.amazonaws.com/bucket-name/key-name For example, if you create a bucket named amzn-s3-demo-bucket1 in the US West (Oregon) Region, and you want to access the puppy.jpg object in that bucket, you can use the following path-style URL: https://s3.us-west-2.amazonaws.com/amzn-s3-demo-bucket1/puppy.jpg Virtual hosting of general purpose buckets API Version 2006-03-01 84
+
+--------------------
+
+[Source 2]
+Document: tmp75187dp5.pdf
+Page: 115
+Chunk: 154
+
+Amazon Simple Storage Service User Guide images.example.com CNAME images.example.com.s3.us-west-2.amazonaws.com Important For request-routing reasons, the CNAME DNS record must be deﬁned exactly as shown in the preceding example. Otherwise, it might appear to operate correctly, but it will eventually result in unpredictable behavior. The procedure for conﬁguring CNAME DNS records depends on your DNS server or DNS provider. For speciﬁc information, see your server documentation or contact your provider. Limitations SOAP APIs for Amazon S3 are not available for new customers, and are approaching End of Life (EOL) on August 31, 2025. We recommend that you use either the REST API or the AWS SDKs. Backward compatibility The following sections cover various aspects of Amazon S3 backward compatibility that relate to path-style and virtual-hosted–style URL requests. Legacy endpoints Some Regions support legacy endpoints. You might see these endpoints in your server access logs or AWS CloudTrail logs. For more information, review the following information. For a complete list of Amazon S3 Regions and endpoints, see Amazon S3 endpoints and quotas in the Amazon Web Services General Reference. Important Although you might see legacy endpoints in your logs, we recommend that you always use the standard endpoint syntax to access your buckets. Amazon S3 virtual-hosted–style URLs use the following format: https://bucket-name.s3.region-code.amazonaws.com/key-name In Amazon S3, path-style URLs use the following format: Virtual hosting of general purpose buckets API Version 2006-03-01 90
+
+--------------------
+
+[Source 3]
+Document: tmp75187dp5.pdf
+Page: 110
+Chunk: 149
+
+Amazon Simple Storage Service User Guide Important Update (September 23, 2020) – To make sure that customers have the time that they need to transition to virtual-hosted–style URLs, we have decided to delay the deprecation of path-style URLs. For more information, see Amazon S3 Path Deprecation Plan – The Rest of the Story in the AWS News Blog. Warning When hosting website content that will be accessed from a web browser, avoid using path- style URLs, which might interfere with the browser same origin security model. To host website content, we recommend that you use either S3 website endpoints or a CloudFront distribution. For more information, see Website endpoints and Deploy a React-based single-page application to Amazon S3 and CloudFront in the AWS Perspective Guidance Patterns. Virtual-hosted–style requests In a virtual-hosted–style URI, the bucket name is part of the domain name in the URL. Amazon S3 virtual-hosted–style URLs use the following format: https://bucket-name.s3.region-code.amazonaws.com/key-name In this example, amzn-s3-demo-bucket1 is the bucket name, US West (Oregon) is the Region, and puppy.png is the key name: https://amzn-s3-demo-bucket1.s3.us-west-2.amazonaws.com/puppy.png HTTP Host header bucket speciﬁcation As long as your GET request does not use the SSL endpoint, you can specify the bucket for the request by using the HTTP Host header. The Host header in a REST request is interpreted as follows: • If the Host header is omitted or its value is s3.region-code.amazonaws.com, the bucket for the request will be the ﬁrst slash-delimited component of the Request-URI, and the key for Virtual hosting of general purpose buckets API Version 2006-03-01 85
+
+--------------------
+
+[Source 4]
+Document: tmp75187dp5.pdf
+Page: 111
+Chunk: 150
+
+Amazon Simple Storage Service User Guide the request will be the rest of the Request-URI. This is the ordinary method, as illustrated by the ﬁrst and second examples in this section. Omitting the Host header is valid only for HTTP 1.0 requests. • Otherwise, if the value of the Host header ends in .s3.region-code.amazonaws.com, the bucket name is the leading component of the Host header's value up to .s3.region- code.amazonaws.com. The key for the request is the Request-URI. This interpretation exposes buckets as subdomains of .s3.region-code.amazonaws.com, as illustrated by the third and fourth examples in this section. • Otherwise, the bucket for the request is the lowercase value of the Host header, and the key for the request is the Request-URI. This interpretation is useful when you have registered the same DNS name as your bucket name and have conﬁgured that name to be a canonical name (CNAME) alias for Amazon S3. The procedure for registering domain names and conﬁguring CNAME DNS records is beyond the scope of this guide, but the result is illustrated by the ﬁnal example in this section. Examples This section provides example URLs and requests. Example– Path-style URLs and requests This example uses the following: • Bucket Name ‐ example.com • Region ‐ US East (N. Virginia) • Key Name ‐ homepage.html The URL is as follows: http://s3.us-east-1.amazonaws.com/example.com/homepage.html The request is as follows: GET /example.com/homepage.html HTTP/1.1 Host: s3.us-east-1.amazonaws.com The request with HTTP 1.0 and omitting the Host header is as follows: Virtual hosting of general purpose buckets API Version 2006-03-01 86
+
+--------------------
+
+[Source 5]
+Document: tmp75187dp5.pdf
+Page: 527
+Chunk: 680
+
+URLs You can use presigned URLs to grant time-limited access to objects in Amazon S3 without updating your bucket policy. A presigned URL can be entered in a browser or used by a program to download an object. The credentials used by the presigned URL are those of the AWS Identity and Access Management (IAM) principal who generated the URL. Using presigned URLs to download and upload objects API Version 2006-03-01 502
+
+--------------------
+
+
+16:10:06 | DEBUG | src.prompt.prompt_builder | ================================================================================
+16:10:06 | DEBUG | src.prompt.prompt_builder | Prompt length: 9104 characters
+16:10:06 | DEBUG | src.prompt.prompt_builder | ====================================================================================================
+16:10:06 | DEBUG | src.prompt.prompt_builder | FINAL PROMPT SENT TO LLM
+16:10:06 | DEBUG | src.prompt.prompt_builder | ====================================================================================================
+16:10:06 | DEBUG | src.prompt.prompt_builder | You are a helpful AI assistant.
+
+            Treat the retrieved context as the ONLY source of truth.
+
+            If the answer cannot be found in the retrieved context, respond with exactly:
+
+            "I don't know based on the provided documents."
+
+            Do not invent facts.
+            Do not use outside knowledge.
+            Do not make assumptions.
+
+            ======================
+            Citation Rules
+            ======================
+
+            - Cite only the source(s) that directly support a statement.
+            - Prefer the highest-ranked source whenever possible.
+            - Prefer the smallest number of sources needed.
+            - Do NOT cite sources that merely repeat the same information.
+            - Never invent source numbers.
+            - Never cite a source that was not provided.
+
+            Use citations in the format:
+
+            [Source X]
+
+            Examples:
+
+            Good:
+
+            Amazon SageMaker is a fully managed machine learning service. [Source 1]
+
+            Amazon SageMaker supports SQL analytics and generative AI capabilities. [Source 2][Source 4]
+
+            Bad:
+
+            Amazon SageMaker is a fully managed machine learning service. [Source 1][Source 2][Source 3][Source 4][Source 5]
+
+            Amazon SageMaker is a fully managed machine learning service. [Source 8]
+
+            Amazon SageMaker is a fully managed machine learning service.
+            (no citation)
+
+            ========================
+            Previous Conversation
+            ========================
+
+            User:
+In Amazon S3, which format path-style URLs use?
+
+
+
+            ======================
+            RETRIEVED CONTEXT
+            ======================
+
+            [Source 1]
+Document: tmp75187dp5.pdf
+Page: 109
+Chunk: 148
+
+Amazon Simple Storage Service User Guide Important When you're using virtual-hosted–style general purpose buckets with SSL, the SSL wildcard certiﬁcate matches only buckets that do not contain dots (.). To work around this limitation, use HTTP or write your own certiﬁcate-veriﬁcation logic. For more information, see Amazon S3 Path Deprecation Plan on the AWS News Blog. Topics • Path-style requests • Virtual-hosted–style requests • HTTP Host header bucket speciﬁcation • Examples • Customizing Amazon S3 URLs with CNAME records • How to associate a hostname with an Amazon S3 bucket • Limitations • Backward compatibility Path-style requests Currently, Amazon S3 supports both virtual-hosted–style and path-style URL access in all AWS Regions. However, path-style URLs will be discontinued in the future. For more information, see the following Important note. In Amazon S3, path-style URLs use the following format: https://s3.region-code.amazonaws.com/bucket-name/key-name For example, if you create a bucket named amzn-s3-demo-bucket1 in the US West (Oregon) Region, and you want to access the puppy.jpg object in that bucket, you can use the following path-style URL: https://s3.us-west-2.amazonaws.com/amzn-s3-demo-bucket1/puppy.jpg Virtual hosting of general purpose buckets API Version 2006-03-01 84
+
+--------------------
+
+[Source 2]
+Document: tmp75187dp5.pdf
+Page: 115
+Chunk: 154
+
+Amazon Simple Storage Service User Guide images.example.com CNAME images.example.com.s3.us-west-2.amazonaws.com Important For request-routing reasons, the CNAME DNS record must be deﬁned exactly as shown in the preceding example. Otherwise, it might appear to operate correctly, but it will eventually result in unpredictable behavior. The procedure for conﬁguring CNAME DNS records depends on your DNS server or DNS provider. For speciﬁc information, see your server documentation or contact your provider. Limitations SOAP APIs for Amazon S3 are not available for new customers, and are approaching End of Life (EOL) on August 31, 2025. We recommend that you use either the REST API or the AWS SDKs. Backward compatibility The following sections cover various aspects of Amazon S3 backward compatibility that relate to path-style and virtual-hosted–style URL requests. Legacy endpoints Some Regions support legacy endpoints. You might see these endpoints in your server access logs or AWS CloudTrail logs. For more information, review the following information. For a complete list of Amazon S3 Regions and endpoints, see Amazon S3 endpoints and quotas in the Amazon Web Services General Reference. Important Although you might see legacy endpoints in your logs, we recommend that you always use the standard endpoint syntax to access your buckets. Amazon S3 virtual-hosted–style URLs use the following format: https://bucket-name.s3.region-code.amazonaws.com/key-name In Amazon S3, path-style URLs use the following format: Virtual hosting of general purpose buckets API Version 2006-03-01 90
+
+--------------------
+
+[Source 3]
+Document: tmp75187dp5.pdf
+Page: 110
+Chunk: 149
+
+Amazon Simple Storage Service User Guide Important Update (September 23, 2020) – To make sure that customers have the time that they need to transition to virtual-hosted–style URLs, we have decided to delay the deprecation of path-style URLs. For more information, see Amazon S3 Path Deprecation Plan – The Rest of the Story in the AWS News Blog. Warning When hosting website content that will be accessed from a web browser, avoid using path- style URLs, which might interfere with the browser same origin security model. To host website content, we recommend that you use either S3 website endpoints or a CloudFront distribution. For more information, see Website endpoints and Deploy a React-based single-page application to Amazon S3 and CloudFront in the AWS Perspective Guidance Patterns. Virtual-hosted–style requests In a virtual-hosted–style URI, the bucket name is part of the domain name in the URL. Amazon S3 virtual-hosted–style URLs use the following format: https://bucket-name.s3.region-code.amazonaws.com/key-name In this example, amzn-s3-demo-bucket1 is the bucket name, US West (Oregon) is the Region, and puppy.png is the key name: https://amzn-s3-demo-bucket1.s3.us-west-2.amazonaws.com/puppy.png HTTP Host header bucket speciﬁcation As long as your GET request does not use the SSL endpoint, you can specify the bucket for the request by using the HTTP Host header. The Host header in a REST request is interpreted as follows: • If the Host header is omitted or its value is s3.region-code.amazonaws.com, the bucket for the request will be the ﬁrst slash-delimited component of the Request-URI, and the key for Virtual hosting of general purpose buckets API Version 2006-03-01 85
+
+--------------------
+
+[Source 4]
+Document: tmp75187dp5.pdf
+Page: 111
+Chunk: 150
+
+Amazon Simple Storage Service User Guide the request will be the rest of the Request-URI. This is the ordinary method, as illustrated by the ﬁrst and second examples in this section. Omitting the Host header is valid only for HTTP 1.0 requests. • Otherwise, if the value of the Host header ends in .s3.region-code.amazonaws.com, the bucket name is the leading component of the Host header's value up to .s3.region- code.amazonaws.com. The key for the request is the Request-URI. This interpretation exposes buckets as subdomains of .s3.region-code.amazonaws.com, as illustrated by the third and fourth examples in this section. • Otherwise, the bucket for the request is the lowercase value of the Host header, and the key for the request is the Request-URI. This interpretation is useful when you have registered the same DNS name as your bucket name and have conﬁgured that name to be a canonical name (CNAME) alias for Amazon S3. The procedure for registering domain names and conﬁguring CNAME DNS records is beyond the scope of this guide, but the result is illustrated by the ﬁnal example in this section. Examples This section provides example URLs and requests. Example– Path-style URLs and requests This example uses the following: • Bucket Name ‐ example.com • Region ‐ US East (N. Virginia) • Key Name ‐ homepage.html The URL is as follows: http://s3.us-east-1.amazonaws.com/example.com/homepage.html The request is as follows: GET /example.com/homepage.html HTTP/1.1 Host: s3.us-east-1.amazonaws.com The request with HTTP 1.0 and omitting the Host header is as follows: Virtual hosting of general purpose buckets API Version 2006-03-01 86
+
+--------------------
+
+[Source 5]
+Document: tmp75187dp5.pdf
+Page: 527
+Chunk: 680
+
+URLs You can use presigned URLs to grant time-limited access to objects in Amazon S3 without updating your bucket policy. A presigned URL can be entered in a browser or used by a program to download an object. The credentials used by the presigned URL are those of the AWS Identity and Access Management (IAM) principal who generated the URL. Using presigned URLs to download and upload objects API Version 2006-03-01 502
+
+--------------------
+
+
+
+            ======================
+            CURRENT QUESTION
+            ======================
+
+            In Amazon S3, which format path-style URLs use?
+
+            ======================
+            ANSWER
+            ======================
+16:10:06 | DEBUG | src.prompt.prompt_builder | ====================================================================================================
+16:10:06 | DEBUG | src.chat.chat_engine | Prompt length: 9104 characters
+16:10:06 | INFO | src.chat.chat_engine | Generating answer...
+16:10:06 | DEBUG | src.llm.bedrock_provider | Sending synchronous request to Bedrock.
+16:10:07 | DEBUG | src.llm.bedrock_provider | Bedrock response received in 0.693 sec.
+16:10:07 | INFO | src.chat.chat_engine | Answer generation completed.
+16:42:14 | INFO | src.app.rag_engine | Initializing RAG Engine...
+16:42:22 | INFO | src.llm.bedrock_provider | Initialized Bedrock provider with model: amazon.nova-lite-v1:0
+16:42:22 | INFO | src.app.rag_engine | Using LLM model: amazon.nova-lite-v1:0
+16:42:22 | INFO | src.app.rag_engine | RAG Engine initialized.
+16:42:22 | INFO | src.app.rag_engine | Loading vector index from data\indexes\default
+16:42:22 | INFO | src.app.rag_engine | Loaded 94 vectors.
+16:42:22 | INFO | src.app.rag_engine | Building retrieval pipeline...
+16:42:22 | INFO | src.app.rag_engine | Loaded 94 chunks from vector store.
+16:42:30 | INFO | src.app.rag_engine | Building chat engine...
+16:42:30 | INFO | src.app.rag_engine | Chat engine built.
+16:42:31 | INFO | src.app.rag_engine | Indexing document: C:\Users\bikas\AppData\Local\Temp\tmpwqrzgmgc.pdf
+17:00:18 | INFO | src.app.rag_engine | Building retrieval pipeline...
+17:00:18 | INFO | src.app.rag_engine | Loaded 6193 chunks from vector store.
+17:00:30 | INFO | src.app.rag_engine | Building chat engine...
+17:00:30 | INFO | src.app.rag_engine | Chat engine built.
+17:00:30 | INFO | src.app.rag_engine | Document indexed and retriever refreshed.
+17:34:17 | INFO | src.app.rag_engine | Initializing RAG Engine...
+17:34:25 | INFO | src.llm.bedrock_provider | Initialized Bedrock provider with model: amazon.nova-lite-v1:0
+17:34:25 | INFO | src.app.rag_engine | Using LLM model: amazon.nova-lite-v1:0
+17:34:25 | INFO | src.app.rag_engine | RAG Engine initialized.
+17:34:25 | INFO | src.app.rag_engine | Loading vector index from data\indexes\default
+17:34:26 | INFO | src.app.rag_engine | Loaded 94 vectors.
+17:34:26 | INFO | src.app.rag_engine | Building retrieval pipeline...
+17:34:26 | INFO | src.app.rag_engine | Loaded 94 chunks from vector store.
+17:34:33 | INFO | src.app.rag_engine | Building chat engine...
+17:34:33 | INFO | src.app.rag_engine | Chat engine built.
+17:34:33 | INFO | src.app.rag_engine | Indexing document: C:\Users\bikas\AppData\Local\Temp\tmpfxepy0yh.pdf
+17:39:21 | INFO | src.app.rag_engine | Building retrieval pipeline...
+17:39:21 | INFO | src.app.rag_engine | Loaded 3384 chunks from vector store.
+17:39:30 | INFO | src.app.rag_engine | Building chat engine...
+17:39:30 | INFO | src.app.rag_engine | Chat engine built.
+17:39:30 | INFO | src.app.rag_engine | Document indexed and retriever refreshed.

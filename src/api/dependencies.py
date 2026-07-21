@@ -1,5 +1,6 @@
 from functools import lru_cache
 
+from src.api.job_manager import JobManager
 from src.app.rag_engine import RAGEngine
 from src.chat.chat_engine import ChatEngine
 
@@ -19,3 +20,8 @@ def get_rag_engine() -> RAGEngine:
 
 def get_chat_engine() -> ChatEngine:
     return get_rag_engine().chat_engine
+
+
+@lru_cache
+def get_job_manager() -> JobManager:
+    return JobManager()

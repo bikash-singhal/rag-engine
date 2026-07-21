@@ -176,7 +176,9 @@ class RAGEngine:
 
         self.indexer.index(pdf_file)
 
-        logger.info("Document indexed.")
+        self._reload_runtime_components()
+
+        logger.info("Document indexed and retriever refreshed.")
 
     def ingest_directory(
         self,
@@ -190,7 +192,14 @@ class RAGEngine:
 
         self.indexer.index_directory(directory)
 
-        logger.info("Finished indexing directory.")
+        self._reload_runtime_components()
+
+        logger.info("Directory indexed and refreshed retriever.")
+
+    def _reload_runtime_components(self) -> None:
+
+        self._build_retriever()
+        self._build_chat_engine()
 
     def retrieve(
         self,
@@ -235,9 +244,7 @@ class RAGEngine:
             self.vector_store.index.ntotal,
         )
 
-        self._build_retriever()
-        self._build_chat_engine()
-        logger.info("Retriever and chat engine rebuilt.")
+        self._reload_runtime_components()
 
     def _create_index(
         self,
@@ -248,8 +255,7 @@ class RAGEngine:
         logger.info("Building new vector index...")
 
         self.ingest_directory(document_directory)
-        self._build_retriever()
-        self._build_chat_engine()
+        self._reload_runtime_components()
         self.save_index(index_directory)
 
     def load_or_ingest(
