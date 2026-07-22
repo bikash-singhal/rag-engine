@@ -26,6 +26,7 @@ from src.query.llm_query_rewriter import LLMQueryRewriter
 from src.query.rewrite_prompt import RewritePromptBuilder
 from src.reranking.cross_encoder_reranker import CrossEncoderReranker
 from src.retrieval.bm25_retriever import BM25Retriever
+from src.retrieval.compressor.context_compressor import ContextCompressor
 from src.retrieval.dense_retriever import DenseRetriever
 from src.retrieval.hybrid_retriever import HybridRetriever
 from src.retrieval.reranking_retriever import RerankingRetriever
@@ -110,11 +111,14 @@ class RAGEngine:
             self.llm_provider,
         )
 
+        self.context_compressor = ContextCompressor()
+
         self.chat_engine = ChatEngine(
             memory=memory,
             query_rewriter=query_rewriter,
             retriever=self.retriever,
             reranker=self.reranker,
+            context_compressor=self.context_compressor,
             multi_query_generator=multi_query_generator,
             prompt_builder=prompt_builder,
             llm=self.llm_provider,

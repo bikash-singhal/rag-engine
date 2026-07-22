@@ -10,22 +10,28 @@ class ReportFormatter:
 
         lines = []
 
-        lines.append("=" * 50)
-        lines.append("Benchmark Summary")
-        lines.append("=" * 50)
+        lines.append("=" * 60)
+        lines.append("BENCHMARK SUMMARY")
+        lines.append("=" * 60)
         lines.append("")
 
-        lines.append(f"Benchmark : {summary.benchmark_name}")
-        lines.append(f"Cases     : {summary.total_cases}")
-        lines.append(f"Passed    : {summary.passed_cases}")
-        lines.append(f"Failed    : {summary.failed_cases}")
+        lines.append(f"Experiment : {summary.experiment_name}")
+        lines.append(f"Benchmark  : {summary.benchmark_name}")
+        lines.append("")
+
+        lines.append("Results")
+        lines.append("-" * 60)
+        lines.append(f"Total Cases : {summary.total_cases}")
+        lines.append(f"Passed      : {summary.passed_cases}")
+        lines.append(f"Failed      : {summary.failed_cases}")
+        lines.append(f"Success Rate: {summary.passed_cases / summary.total_cases:.1%}")
         lines.append("")
 
         lines.append("Metrics")
-        lines.append("")
+        lines.append("-" * 60)
 
-        for metric, score in summary.metric_scores.items():
+        for metric, score in sorted(summary.metric_scores.items()):
 
-            lines.append(f"  {metric:<10}: {score:.3f}")
+            lines.append(f"{metric:<15}: {score:.3f}")
 
         return "\n".join(lines)

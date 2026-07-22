@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 
 
@@ -44,3 +46,20 @@ class LatencyReport:
     @property
     def orchestration_ms(self) -> float:
         return self.total_ms - self.pipeline_ms
+
+    @classmethod
+    def average(cls, reports: list[LatencyReport]) -> LatencyReport:
+        if not reports:
+            return cls()
+
+        n = len(reports)
+
+        return cls(
+            query_rewrite_ms=sum(r.query_rewrite_ms for r in reports) / n,
+            multi_query_ms=sum(r.multi_query_ms for r in reports) / n,
+            retrieval_ms=sum(r.retrieval_ms for r in reports) / n,
+            reranking_ms=sum(r.reranking_ms for r in reports) / n,
+            prompt_build_ms=sum(r.prompt_build_ms for r in reports) / n,
+            answer_generation_ms=sum(r.answer_generation_ms for r in reports) / n,
+            total_ms=sum(r.total_ms for r in reports) / n,
+        )

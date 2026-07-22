@@ -21,6 +21,11 @@ class CrossEncoderReranker(Reranker):
         self.model = CrossEncoder(RERANKER_MODEL)
         self.max_candidates = max_candidates
 
+        logger.info(
+            "CrossEncoder device: %s",
+            self.model.device,
+        )
+
     def rerank(
         self,
         query: str,
@@ -70,16 +75,30 @@ class CrossEncoderReranker(Reranker):
 
         pairs = [(query, result.chunk.text) for result in pruned_results]
 
+        # scores = self.model.predict(pairs)
+
+        from time import perf_counter
+
+        logger.info(
+            "Running CrossEncoder on %d pairs",
+            len(pairs),
+        )
+
+        start = perf_counter()
+
         scores = self.model.predict(pairs)
 
-        reranked_results = []
+        logger.info(
+            "CrossEncoder.predict(): %.2f ms",
+            (perf_counter() - start) * 1000,
+        )
 
         reranked_results = [
             SearchResult(
                 chunk=result.chunk,
                 score=float(score),
             )
-            for result, score in zip(results, scores)
+            for result, score in zip(pruned_results, scores)
         ]
 
         reranked_results.sort(

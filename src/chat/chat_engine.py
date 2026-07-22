@@ -13,6 +13,7 @@ from src.prompt.prompt_builder import PromptBuilder
 from src.query.base import QueryRewriter
 from src.query.llm_multi_query_generator import LLMMultiQueryGenerator
 from src.reranking.reranker import Reranker
+from src.retrieval.compressor.context_compressor import ContextCompressor
 from src.retrieval.retrieval_printer import RetrievalPrinter
 from src.retrieval.retriever import Retriever
 from src.utils.logger import get_logger
@@ -29,6 +30,7 @@ class ChatEngine:
         query_rewriter: QueryRewriter,
         retriever: Retriever,
         reranker: Reranker,
+        context_compressor: ContextCompressor,
         multi_query_generator: LLMMultiQueryGenerator,
         prompt_builder: PromptBuilder,
         llm: LLMProvider,
@@ -37,6 +39,7 @@ class ChatEngine:
         self.query_rewriter = query_rewriter
         self.retriever = retriever
         self.reranker = reranker
+        self.context_compressor = context_compressor
         self.prompt_builder = prompt_builder
         self.multi_query_generator = multi_query_generator
         self.llm = llm
@@ -154,6 +157,8 @@ class ChatEngine:
             "Top %d candidates selected after reranking.",
             len(final_results),
         )
+
+        final_results = self.context_compressor.compress(final_results)
 
         logger.info("Building final prompt.")
         with timer(latency, "prompt_build_ms"):
