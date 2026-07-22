@@ -4,7 +4,6 @@ from time import perf_counter
 
 from src.chat.memory import Memory
 from src.chat.message import Message
-from src.config.settings import FINAL_TOP_K, RETRIEVAL_TOP_K
 from src.core.latency import LatencyReport
 from src.core.models import ChatResult, PreparedPrompt, SearchResult
 from src.evaluation.latency_printer import LatencyPrinter
@@ -13,6 +12,7 @@ from src.prompt.prompt_builder import PromptBuilder
 from src.query.base import QueryRewriter
 from src.query.llm_multi_query_generator import LLMMultiQueryGenerator
 from src.reranking.reranker import Reranker
+from src.retrieval.adaptive import AdaptiveRetriever
 from src.retrieval.compressor.context_compressor import ContextCompressor
 from src.retrieval.retrieval_printer import RetrievalPrinter
 from src.retrieval.retriever import Retriever
@@ -31,6 +31,7 @@ class ChatEngine:
         retriever: Retriever,
         reranker: Reranker,
         context_compressor: ContextCompressor,
+        adaptive_retriever: AdaptiveRetriever,
         multi_query_generator: LLMMultiQueryGenerator,
         prompt_builder: PromptBuilder,
         llm: LLMProvider,
@@ -40,6 +41,7 @@ class ChatEngine:
         self.retriever = retriever
         self.reranker = reranker
         self.context_compressor = context_compressor
+        self.adaptive_retriever = adaptive_retriever
         self.prompt_builder = prompt_builder
         self.multi_query_generator = multi_query_generator
         self.llm = llm
@@ -79,6 +81,11 @@ class ChatEngine:
     ) -> PreparedPrompt:
 
         latency = LatencyReport()
+
+        retrieval_config = self.adaptive_retriever.get_retrieval_config(
+            question,
+        )
+
         logger.info("Query rewriting started.")
         with timer(latency, "query_rewrite_ms"):
             rewritten_question = self.query_rewriter.rewrite(
@@ -121,7 +128,7 @@ class ChatEngine:
 
                 results = self.retriever.retrieve(
                     query,
-                    top_k=RETRIEVAL_TOP_K,
+                    top_k=retrieval_config.retrieval_top_k,
                 )
 
                 retrieval_results.extend(results)
@@ -145,7 +152,7 @@ class ChatEngine:
                 final_results = self.reranker.rerank(
                     query=rewritten_question,
                     results=retrieval_results,
-                    top_k=FINAL_TOP_K,
+                    top_k=retrieval_config.final_top_k,
                 )
 
                 RetrievalPrinter.print_results(
