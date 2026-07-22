@@ -1,9 +1,13 @@
 from collections.abc import Iterator
+from contextlib import contextmanager
+from time import perf_counter
 
 from src.chat.memory import Memory
 from src.chat.message import Message
 from src.config.settings import FINAL_TOP_K, RETRIEVAL_TOP_K
+from src.core.latency import LatencyReport
 from src.core.models import ChatResult, PreparedPrompt, SearchResult
+from src.evaluation.latency_printer import LatencyPrinter
 from src.llm.base import LLMProvider
 from src.prompt.prompt_builder import PromptBuilder
 from src.query.base import QueryRewriter
@@ -12,6 +16,7 @@ from src.reranking.reranker import Reranker
 from src.retrieval.retrieval_printer import RetrievalPrinter
 from src.retrieval.retriever import Retriever
 from src.utils.logger import get_logger
+from src.utils.timer import timer
 
 logger = get_logger(__name__)
 
@@ -70,12 +75,13 @@ class ChatEngine:
         question: str,
     ) -> PreparedPrompt:
 
+        latency = LatencyReport()
         logger.info("Query rewriting started.")
-
-        rewritten_question = self.query_rewriter.rewrite(
-            question=question,
-            history=self.memory.get_messages(),
-        )
+        with timer(latency, "query_rewrite_ms"):
+            rewritten_question = self.query_rewriter.rewrite(
+                question=question,
+                history=self.memory.get_messages(),
+            )
 
         logger.info("Query rewriting completed.")
 
@@ -84,7 +90,8 @@ class ChatEngine:
             rewritten_question,
         )
 
-        queries = self.multi_query_generator.generate(rewritten_question)
+        with timer(latency, "multi_query_ms"):
+            queries = self.multi_query_generator.generate(rewritten_question)
 
         logger.info(
             "Generated %d retrieval queries.",
@@ -100,20 +107,21 @@ class ChatEngine:
 
         logger.info("Starting retrieval.")
 
-        retrieval_results: list[SearchResult] = []
+        with timer(latency, "retrieval_ms"):
+            retrieval_results: list[SearchResult] = []
 
-        for query in queries:
-            logger.debug(
-                "Retrieving with query: %s",
-                query,
-            )
+            for query in queries:
+                logger.debug(
+                    "Retrieving with query: %s",
+                    query,
+                )
 
-            results = self.retriever.retrieve(
-                query,
-                top_k=RETRIEVAL_TOP_K,
-            )
+                results = self.retriever.retrieve(
+                    query,
+                    top_k=RETRIEVAL_TOP_K,
+                )
 
-            retrieval_results.extend(results)
+                retrieval_results.extend(results)
 
         logger.debug(
             "Retrieved %d candidates.",
@@ -130,17 +138,17 @@ class ChatEngine:
         logger.info("Starting CrossEncoder reranking.")
 
         if self.reranker is not None:
+            with timer(latency, "reranking_ms"):
+                final_results = self.reranker.rerank(
+                    query=rewritten_question,
+                    results=retrieval_results,
+                    top_k=FINAL_TOP_K,
+                )
 
-            final_results = self.reranker.rerank(
-                query=rewritten_question,
-                results=retrieval_results,
-                top_k=FINAL_TOP_K,
-            )
-
-            RetrievalPrinter.print_results(
-                "After CrossEncoder Reranking",
-                final_results,
-            )
+                RetrievalPrinter.print_results(
+                    "After CrossEncoder Reranking",
+                    final_results,
+                )
 
         logger.info(
             "Top %d candidates selected after reranking.",
@@ -148,12 +156,12 @@ class ChatEngine:
         )
 
         logger.info("Building final prompt.")
-
-        prompt = self.prompt_builder.build(
-            question=question,
-            history=self.memory.get_messages(),
-            context=final_results,
-        )
+        with timer(latency, "prompt_build_ms"):
+            prompt = self.prompt_builder.build(
+                question=question,
+                history=self.memory.get_messages(),
+                context=final_results,
+            )
 
         logger.debug(
             "Prompt length: %d characters",
@@ -164,6 +172,7 @@ class ChatEngine:
             prompt=prompt,
             rewritten_question=rewritten_question,
             retrieved_chunks=final_results,
+            latency=latency,
         )
 
     def chat(
@@ -171,23 +180,30 @@ class ChatEngine:
         question: str,
     ) -> ChatResult:
 
+        overall_start = perf_counter()
+
         self._add_user_message(question)
 
         prepared = self._prepare_prompt(question)
 
         logger.info("Generating answer...")
-
-        answer = self.llm.generate(prepared.prompt)
+        with timer(prepared.latency, "answer_generation_ms"):
+            answer = self.llm.generate(prepared.prompt)
 
         logger.info("Answer generation completed.")
 
         self._add_assistant_message(answer)
+
+        prepared.latency.total_ms = (perf_counter() - overall_start) * 1000
+
+        LatencyPrinter.print(prepared.latency)
 
         return ChatResult(
             question=question,
             rewritten_question=prepared.rewritten_question,
             answer=answer,
             retrieved_chunks=prepared.retrieved_chunks,
+            latency=prepared.latency,
         )
 
     def ask(

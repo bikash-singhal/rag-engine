@@ -1,14 +1,19 @@
+.env
+.venv/
+
 __pycache__/
 *.pyc
 
-.venv/
-.env
-
 .git/
+.gitignore
 
 .vscode/
 .idea/
 
+logs/
+*.log
+
+data/raw/
 data/processed/
 
-*.log
+tests/

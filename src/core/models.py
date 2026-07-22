@@ -6,6 +6,8 @@ from uuid import uuid4
 
 import numpy as np
 
+from src.core.latency import LatencyReport
+
 
 @dataclass(slots=True)
 class Document:
@@ -66,6 +68,7 @@ class ChatResult:
     rewritten_question: str
     answer: str
     retrieved_chunks: list[SearchResult]
+    latency: LatencyReport
 
 
 @dataclass(slots=True)
@@ -73,6 +76,7 @@ class PreparedPrompt:
     prompt: str
     rewritten_question: str
     retrieved_chunks: list[SearchResult]
+    latency: LatencyReport
 
 
 @dataclass(slots=True)

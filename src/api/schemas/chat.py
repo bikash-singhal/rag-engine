@@ -1,5 +1,7 @@
 from pydantic import BaseModel, Field
 
+from src.core.latency import LatencyReport
+
 
 class ChatRequest(BaseModel):
     """
@@ -44,4 +46,9 @@ class ChatResponse(BaseModel):
     sources: list[SourceResponse] = Field(
         ...,
         description="Supporting document citations.",
+    )
+
+    latency: LatencyReport = Field(
+        ...,
+        description="Latency of every steps.",
     )

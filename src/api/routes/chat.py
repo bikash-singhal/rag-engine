@@ -38,6 +38,7 @@ def chat(
             )
             for source in result.retrieved_chunks
         ],
+        latency=result.latency,
     )
 
 

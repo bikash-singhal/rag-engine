@@ -1,0 +1,16 @@
+services:
+
+  rag-engine:
+
+    build: .
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - ./data:/app/data
+      - C:\Users\bikas\.aws:/home/appuser/.aws:ro
+      - ./logs:/app/logs
+
+    env_file:
+      - .env
