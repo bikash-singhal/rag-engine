@@ -165,7 +165,10 @@ class ChatEngine:
             len(final_results),
         )
 
-        final_results = self.context_compressor.compress(final_results)
+        final_results = self.context_compressor.compress(
+            final_results,
+            max_context_tokens=retrieval_config.max_context_tokens,
+        )
 
         logger.info("Building final prompt.")
         with timer(latency, "prompt_build_ms"):

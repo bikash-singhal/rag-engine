@@ -21,7 +21,13 @@ def test_empty_results() -> None:
 
     compressor = ContextCompressor()
 
-    assert compressor.compress([]) == []
+    assert (
+        compressor.compress(
+            [],
+            max_context_tokens=2000,
+        )
+        == []
+    )
 
 
 def test_remove_duplicates() -> None:
@@ -34,7 +40,10 @@ def test_remove_duplicates() -> None:
         make_result("Different Text", 0.7),
     ]
 
-    compressed = compressor.compress(results)
+    compressed = compressor.compress(
+        results,
+        max_context_tokens=2000,
+    )
 
     assert len(compressed) == 2
 
@@ -45,9 +54,7 @@ def test_remove_duplicates() -> None:
 
 def test_token_budget() -> None:
 
-    compressor = ContextCompressor(
-        max_context_tokens=5,
-    )
+    compressor = ContextCompressor()
 
     results = [
         make_result("one two"),
@@ -55,7 +62,10 @@ def test_token_budget() -> None:
         make_result("five six"),
     ]
 
-    compressed = compressor.compress(results)
+    compressed = compressor.compress(
+        results,
+        max_context_tokens=4,
+    )
 
     assert len(compressed) == 2
 
@@ -70,6 +80,9 @@ def test_no_duplicates() -> None:
         make_result("C"),
     ]
 
-    compressed = compressor.compress(results)
+    compressed = compressor.compress(
+        results,
+        max_context_tokens=2000,
+    )
 
     assert len(compressed) == 3

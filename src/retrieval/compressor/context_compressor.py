@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from src.config.settings import MAX_CONTEXT_TOKENS
 from src.core.models import SearchResult
 from src.utils.logger import get_logger
 from src.utils.timer import timer
@@ -20,15 +19,10 @@ class ContextCompressor:
     LLM compression) can be added later.
     """
 
-    def __init__(
-        self,
-        max_context_tokens: int = MAX_CONTEXT_TOKENS,
-    ) -> None:
-        self.max_context_tokens = max_context_tokens
-
     def compress(
         self,
         results: list[SearchResult],
+        max_context_tokens: int,
     ) -> list[SearchResult]:
         """
         Compress retrieval results.
@@ -49,13 +43,18 @@ class ContextCompressor:
 
         after_duplicates = len(results)
 
-        results = self._apply_token_budget(results)
+        results = self._apply_token_budget(results, max_context_tokens)
 
         logger.debug(
-            ("Context compression: " "%d -> %d chunks " "(duplicates removed=%d)"),
+            (
+                "Context compression: "
+                "%d -> %d chunks "
+                "(duplicates removed=%d) (budget=%d)"
+            ),
             input_count,
             len(results),
             input_count - after_duplicates,
+            max_context_tokens,
         )
 
         return results
@@ -91,6 +90,7 @@ class ContextCompressor:
     def _apply_token_budget(
         self,
         results: list[SearchResult],
+        max_context_tokens: int,
     ) -> list[SearchResult]:
         """
         Keeps chunks until the configured token budget is reached.
@@ -106,7 +106,7 @@ class ContextCompressor:
 
             estimated_tokens = len(result.chunk.text.split())
 
-            if total_tokens + estimated_tokens > self.max_context_tokens:
+            if total_tokens + estimated_tokens > max_context_tokens:
                 break
 
             compressed.append(result)
