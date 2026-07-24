@@ -68,19 +68,14 @@ class DocumentIndexer:
         pdf_files = sorted(directory.rglob("*.pdf"))
 
         if not pdf_files:
-            print(f"No PDF files found in {directory}")
             return
 
         indexed = 0
         failed = 0
 
-        print(f"\nFound {len(pdf_files)} PDF(s).\n")
-
         for pdf_file in pdf_files:
 
             try:
-
-                print(f"Indexing: {pdf_file.name}")
 
                 self.index(pdf_file)
 
@@ -89,13 +84,3 @@ class DocumentIndexer:
             except Exception as exc:
 
                 failed += 1
-
-                print(f"Failed: {pdf_file.name}")
-
-                print(exc)
-
-        print()
-
-        print(f"Indexed : {indexed}")
-
-        print(f"Failed  : {failed}")

@@ -1,5 +1,25 @@
 # settings.py
 
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+def required_env(name: str) -> str:
+    value = os.getenv(name)
+    if value is None:
+        raise ValueError(f"Missing required environment variable: {name}")
+    return value
+
+
+AWS_PROFILE: str = required_env("AWS_PROFILE")
+AWS_REGION: str = required_env("AWS_REGION")
+
+BEDROCK_GENERATION_MODEL: str = required_env("BEDROCK_GENERATION_MODEL")
+BEDROCK_EVALUATION_MODEL: str = required_env("BEDROCK_EVALUATION_MODEL")
+
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 RERANKER_MODEL = "BAAI/bge-reranker-base"
 

@@ -30,8 +30,14 @@ class ReportFormatter:
         lines.append("Metrics")
         lines.append("-" * 60)
 
+        display_names = {
+            "MRR": "MRR",
+            "Recall@K": "Recall@K",
+            "faithfulness": "Faithfulness",
+            "nDCG": "nDCG",
+        }
         for metric, score in sorted(summary.metric_scores.items()):
 
-            lines.append(f"{metric:<15}: {score:.3f}")
+            lines.append(f"{display_names.get(metric, metric):<15}: {score:.3f}")
 
         return "\n".join(lines)

@@ -73,10 +73,12 @@ class RAGEngine:
         # LLM
         # ------------------------------------------------------------------
 
-        model_id = os.getenv("BEDROCK_MODEL")
+        model_id = os.getenv("BEDROCK_GENERATION_MODEL")
 
         if model_id is None:
-            raise RuntimeError("BEDROCK_MODEL environment variable is not set.")
+            raise RuntimeError(
+                "BEDROCK_GENERATION_MODEL environment variable is not set."
+            )
 
         self.llm_provider = BedrockProvider(model_id)
 

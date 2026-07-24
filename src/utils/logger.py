@@ -36,3 +36,13 @@ def get_logger(name: str) -> logging.Logger:
     logger.propagate = False
 
     return logger
+
+
+def set_console_log_level(level: int) -> None:
+    for logger_obj in logging.root.manager.loggerDict.values():
+        if not isinstance(logger_obj, logging.Logger):
+            continue
+
+        for handler in logger_obj.handlers:
+            if isinstance(handler, logging.StreamHandler):
+                handler.setLevel(level)

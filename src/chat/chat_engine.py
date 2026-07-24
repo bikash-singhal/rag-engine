@@ -14,7 +14,6 @@ from src.query.llm_multi_query_generator import LLMMultiQueryGenerator
 from src.reranking.reranker import Reranker
 from src.retrieval.adaptive import AdaptiveRetriever
 from src.retrieval.compressor.context_compressor import ContextCompressor
-from src.retrieval.retrieval_printer import RetrievalPrinter
 from src.retrieval.retriever import Retriever
 from src.utils.logger import get_logger
 from src.utils.timer import timer
@@ -51,7 +50,7 @@ class ChatEngine:
         question: str,
     ) -> None:
 
-        logger.info("Processing user question.")
+        logger.debug("Processing user question.")
         logger.debug("Original Question: %s", question)
 
         user_message = Message(
@@ -86,14 +85,14 @@ class ChatEngine:
             question,
         )
 
-        logger.info("Query rewriting started.")
+        logger.debug("Query rewriting started.")
         with timer(latency, "query_rewrite_ms"):
             rewritten_question = self.query_rewriter.rewrite(
                 question=question,
                 history=self.memory.get_messages(),
             )
 
-        logger.info("Query rewriting completed.")
+        logger.debug("Query rewriting completed.")
 
         logger.debug(
             "Rewritten Question: %s",
@@ -103,7 +102,7 @@ class ChatEngine:
         with timer(latency, "multi_query_ms"):
             queries = self.multi_query_generator.generate(rewritten_question)
 
-        logger.info(
+        logger.debug(
             "Generated %d retrieval queries.",
             len(queries),
         )
@@ -115,7 +114,7 @@ class ChatEngine:
                 query,
             )
 
-        logger.info("Starting retrieval.")
+        logger.debug("Starting retrieval.")
 
         with timer(latency, "retrieval_ms"):
             retrieval_results: list[SearchResult] = []
@@ -138,14 +137,9 @@ class ChatEngine:
             len(retrieval_results),
         )
 
-        RetrievalPrinter.print_results(
-            "Hybrid Retrieval",
-            retrieval_results,
-        )
-
         final_results = retrieval_results
 
-        logger.info("Starting CrossEncoder reranking.")
+        logger.debug("Starting CrossEncoder reranking.")
 
         if self.reranker is not None:
             with timer(latency, "reranking_ms"):
@@ -155,12 +149,7 @@ class ChatEngine:
                     top_k=retrieval_config.final_top_k,
                 )
 
-                RetrievalPrinter.print_results(
-                    "After CrossEncoder Reranking",
-                    final_results,
-                )
-
-        logger.info(
+        logger.debug(
             "Top %d candidates selected after reranking.",
             len(final_results),
         )
@@ -170,7 +159,7 @@ class ChatEngine:
             max_context_tokens=retrieval_config.max_context_tokens,
         )
 
-        logger.info("Building final prompt.")
+        logger.debug("Building final prompt.")
         with timer(latency, "prompt_build_ms"):
             prompt = self.prompt_builder.build(
                 question=question,
@@ -201,13 +190,40 @@ class ChatEngine:
 
         prepared = self._prepare_prompt(question)
 
-        logger.info("Generating answer...")
+        logger.debug("Generating answer...")
         with timer(prepared.latency, "answer_generation_ms"):
             answer = self.llm.generate(prepared.prompt)
 
-        logger.info("Answer generation completed.")
+        logger.debug("Answer generation completed.")
 
         self._add_assistant_message(answer)
+
+        prepared.latency.total_ms = (perf_counter() - overall_start) * 1000
+
+        LatencyPrinter.print(prepared.latency)
+
+        return ChatResult(
+            question=question,
+            rewritten_question=prepared.rewritten_question,
+            answer=answer,
+            retrieved_chunks=prepared.retrieved_chunks,
+            latency=prepared.latency,
+        )
+
+    def evaluate(
+        self,
+        question: str,
+    ) -> ChatResult:
+
+        overall_start = perf_counter()
+
+        prepared = self._prepare_prompt(question)
+
+        logger.debug("Generating answer...")
+        with timer(prepared.latency, "answer_generation_ms"):
+            answer = self.llm.generate(prepared.prompt)
+
+        logger.debug("Answer generation completed.")
 
         prepared.latency.total_ms = (perf_counter() - overall_start) * 1000
 
@@ -230,7 +246,7 @@ class ChatEngine:
 
         prepared = self._prepare_prompt(question)
 
-        logger.info("Generating answer...")
+        logger.debug("Generating answer...")
 
         response = ""
 
@@ -238,6 +254,6 @@ class ChatEngine:
             response += token
             yield token
 
-        logger.info("Answer generation completed.")
+        logger.debug("Answer generation completed.")
 
         self._add_assistant_message(response)

@@ -198,12 +198,6 @@ class BenchmarkSummary:
     results: list[BenchmarkResult]
 
 
-@dataclass(slots=True, frozen=True)
-class Experiment:
-    name: str
-    retriever: Any
-
-
 class JobStatus(str, Enum):
     """
     Lifecycle of an ingestion job.
