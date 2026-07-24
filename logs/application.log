@@ -1307,3 +1307,1439 @@ Amazon SageMaker User Guide Additionally, SageMaker is built upon an open lakeho
 19:34:21 | DEBUG | src.llm.bedrock_provider | Sending synchronous request to Bedrock.
 19:34:22 | DEBUG | src.llm.bedrock_provider | Bedrock response received in 0.643 sec.
 19:34:22 | INFO | src.chat.chat_engine | Answer generation completed.
+16:04:42 | INFO | src.app.rag_engine | Initializing RAG Engine...
+16:04:49 | INFO | src.llm.bedrock_provider | Initialized Bedrock provider with model: amazon.nova-lite-v1:0
+16:04:49 | INFO | src.app.rag_engine | Using LLM model: amazon.nova-lite-v1:0
+16:04:49 | INFO | src.app.rag_engine | RAG Engine initialized.
+16:04:49 | INFO | src.app.rag_engine | Loading vector index from data\indexes\default
+16:04:49 | INFO | src.app.rag_engine | Loaded 94 vectors.
+16:04:49 | INFO | src.app.rag_engine | Building retrieval pipeline...
+16:04:49 | INFO | src.app.rag_engine | Loaded 94 chunks from vector store.
+16:04:56 | INFO | src.reranking.cross_encoder_reranker | CrossEncoder device: cpu
+16:04:56 | INFO | src.app.rag_engine | Building chat engine...
+16:04:56 | INFO | src.app.rag_engine | Chat engine built.
+16:04:56 | INFO | src.evaluation.benchmark_loader | Loading benchmark dataset: data\benchmark\sagemaker.json
+16:04:56 | INFO | src.evaluation.benchmark_loader | Loaded 10 benchmark cases.
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.156 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (45 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.8635
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.6052
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=1 | 0.5049
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.4327
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.3873
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.3229
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.2987
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=16 | 0.2695
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.2657
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=22 | 0.2098
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=19 | 0.1999
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=56 | 0.1981
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=23 | 0.1760
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=39 | 0.1678
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1673
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=9 | 0.1641
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=91 | 0.1608
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=21 | 0.1418
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=12 | 0.1417
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=43 | 0.1401
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=84 | 0.1396
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=49 | 0.1362
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=93 | 0.1303
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.1123
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=66 | 0.1054
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.0985
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=72 | 0.0928
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=34 | 0.0812
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=17 | 0.0380
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=18 | 0.0325
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=53 | 0.0322
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=61 | 0.0298
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=85 | 0.0278
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=30 | 0.0246
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=58 | 0.0223
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=60 | 0.0203
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=7 | 0.0196
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=28 | 0.0189
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=87 | 0.0100
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=89 | 0.0069
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=35 | 0.0060
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=71 | 0.0027
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=38 | 0.0000
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=50 | 0.0000
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.019 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (47 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.8145
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.7202
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.6129
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.4444
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.3948
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.3928
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=1 | 0.3538
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=56 | 0.2665
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.2644
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=21 | 0.2098
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=84 | 0.1751
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=22 | 0.1681
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=7 | 0.1625
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=16 | 0.1613
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1492
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=49 | 0.1460
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=39 | 0.1428
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=9 | 0.1387
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=34 | 0.1375
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.1101
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=43 | 0.0952
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=23 | 0.0909
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.0831
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=12 | 0.0785
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=72 | 0.0574
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=5 | 0.0413
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=54 | 0.0402
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=91 | 0.0296
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=53 | 0.0278
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=67 | 0.0262
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=52 | 0.0256
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=68 | 0.0232
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=66 | 0.0220
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=24 | 0.0185
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=42 | 0.0176
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=86 | 0.0143
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=46 | 0.0142
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=85 | 0.0122
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=19 | 0.0113
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=89 | 0.0097
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=17 | 0.0079
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=44 | 0.0066
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=80 | 0.0060
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=55 | 0.0043
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=28 | 0.0030
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=93 | 0.0023
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.0003
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.014 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (47 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.8226
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=12 | 0.7000
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.6887
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.6438
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=7 | 0.5777
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.5275
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.5031
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=16 | 0.4558
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.3847
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.3646
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=68 | 0.3494
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=19 | 0.3493
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=21 | 0.3225
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.3000
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=34 | 0.2814
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=22 | 0.2731
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=91 | 0.2527
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=84 | 0.2119
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=50 | 0.1770
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=49 | 0.1646
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=43 | 0.1622
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=66 | 0.1574
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=1 | 0.1490
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1489
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=93 | 0.1475
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=87 | 0.1062
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=72 | 0.0974
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=56 | 0.0905
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=82 | 0.0904
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.0840
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.0838
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=17 | 0.0338
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=39 | 0.0276
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=30 | 0.0245
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=85 | 0.0238
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=74 | 0.0228
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=71 | 0.0223
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=53 | 0.0196
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=44 | 0.0195
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=28 | 0.0189
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=58 | 0.0153
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=36 | 0.0144
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=35 | 0.0122
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=60 | 0.0119
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=61 | 0.0118
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=67 | 0.0024
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=38 | 0.0000
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.011 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.000 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (46 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.7745
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=7 | 0.7000
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.6736
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.5233
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.4843
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.4068
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=12 | 0.3318
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.3122
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=66 | 0.3000
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.2390
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.2308
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=56 | 0.2203
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=19 | 0.2170
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=84 | 0.2046
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.1939
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.1749
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=68 | 0.1735
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.1601
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=49 | 0.1530
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=16 | 0.1473
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=9 | 0.1040
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=22 | 0.1016
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=85 | 0.0980
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=91 | 0.0888
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=87 | 0.0663
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=17 | 0.0644
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=30 | 0.0467
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=74 | 0.0434
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=71 | 0.0426
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=72 | 0.0377
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=28 | 0.0359
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=1 | 0.0354
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=58 | 0.0291
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=36 | 0.0274
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=35 | 0.0233
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=60 | 0.0227
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=61 | 0.0224
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=39 | 0.0160
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=82 | 0.0155
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=67 | 0.0046
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=53 | 0.0045
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=44 | 0.0032
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=23 | 0.0032
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=21 | 0.0019
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=34 | 0.0000
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=38 | 0.0000
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.007 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.000 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (45 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.9338
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.9214
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=10 | 0.6724
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=68 | 0.6394
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=9 | 0.6088
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.5618
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=65 | 0.5350
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=66 | 0.4756
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.4436
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=24 | 0.4312
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=83 | 0.3966
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=13 | 0.3764
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=22 | 0.3700
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=46 | 0.3652
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=82 | 0.3177
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=7 | 0.3177
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=44 | 0.2674
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.2593
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=58 | 0.2445
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=84 | 0.2329
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=12 | 0.1677
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.1666
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.1583
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=48 | 0.1367
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.1183
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=63 | 0.1142
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=62 | 0.1054
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=74 | 0.1006
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=69 | 0.0894
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=61 | 0.0797
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=27 | 0.0660
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=25 | 0.0619
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=30 | 0.0610
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=40 | 0.0522
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=35 | 0.0513
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=71 | 0.0493
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=72 | 0.0479
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=36 | 0.0281
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=32 | 0.0232
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=33 | 0.0229
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=85 | 0.0184
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=19 | 0.0145
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=29 | 0.0117
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=26 | 0.0084
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=42 | 0.0000
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.009 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (43 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.8897
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.8842
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=13 | 0.7000
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=7 | 0.6563
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=9 | 0.5317
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=12 | 0.4898
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.4874
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=82 | 0.4627
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=74 | 0.4192
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=65 | 0.3819
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=68 | 0.3690
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=66 | 0.3665
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=84 | 0.3040
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=75 | 0.3033
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=31 | 0.3000
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=83 | 0.2960
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.2431
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.2363
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=26 | 0.1791
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=32 | 0.1678
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=30 | 0.1624
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1614
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=16 | 0.1142
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.1009
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.0951
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=10 | 0.0949
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=76 | 0.0896
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=25 | 0.0879
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=24 | 0.0838
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=85 | 0.0767
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.0697
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=19 | 0.0659
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=62 | 0.0460
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=27 | 0.0457
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=67 | 0.0367
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=35 | 0.0322
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=36 | 0.0187
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=72 | 0.0178
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=29 | 0.0072
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=79 | 0.0036
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=80 | 0.0003
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=54 | 0.0000
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=58 | 0.0000
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.010 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.000 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (45 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=66 | 0.8261
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=10 | 0.8021
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=9 | 0.6234
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=84 | 0.5648
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.4257
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=88 | 0.4230
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=32 | 0.4193
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=26 | 0.4082
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=60 | 0.3835
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=82 | 0.3246
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=65 | 0.3036
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=54 | 0.2313
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=56 | 0.2295
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=29 | 0.2099
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.1848
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.1794
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.1727
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.1513
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.1347
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=30 | 0.1164
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=73 | 0.1143
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=61 | 0.0999
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=12 | 0.0898
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=74 | 0.0877
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=52 | 0.0840
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=85 | 0.0765
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=83 | 0.0759
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=47 | 0.0738
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.0661
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.0625
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=13 | 0.0521
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=80 | 0.0456
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=72 | 0.0451
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=40 | 0.0436
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=78 | 0.0349
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=34 | 0.0344
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=69 | 0.0282
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=79 | 0.0185
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=27 | 0.0178
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=21 | 0.0133
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=87 | 0.0050
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=25 | 0.0048
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=17 | 0.0038
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=31 | 0.0000
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=36 | 0.0000
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.011 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (47 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 1.0000
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=12 | 0.5887
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=10 | 0.5737
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.5695
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=9 | 0.5226
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=65 | 0.5179
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=66 | 0.4829
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=82 | 0.4332
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=24 | 0.4223
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=85 | 0.3378
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=44 | 0.2998
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.2840
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=58 | 0.2806
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=7 | 0.2622
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=68 | 0.2615
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=83 | 0.2135
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.2097
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=49 | 0.2066
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=84 | 0.1998
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=22 | 0.1836
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=46 | 0.1659
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1459
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=5 | 0.1375
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.1264
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=13 | 0.1162
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.1048
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=61 | 0.0976
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=87 | 0.0949
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=89 | 0.0869
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.0719
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=76 | 0.0669
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=69 | 0.0631
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=63 | 0.0550
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=74 | 0.0333
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=42 | 0.0312
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=80 | 0.0275
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=88 | 0.0244
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=78 | 0.0217
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=25 | 0.0173
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=27 | 0.0094
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=77 | 0.0057
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=48 | 0.0039
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=72 | 0.0036
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=29 | 0.0013
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=32 | 0.0011
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.0000
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=56 | 0.0000
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.011 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (42 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.8173
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.7699
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=69 | 0.7231
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=72 | 0.7000
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=7 | 0.6820
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.6321
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=22 | 0.6107
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.5953
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.5902
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=84 | 0.5622
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=68 | 0.5303
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=66 | 0.5030
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=43 | 0.4971
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.4728
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=9 | 0.4710
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=82 | 0.4593
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=34 | 0.4542
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.3992
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=24 | 0.3907
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=12 | 0.3625
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=46 | 0.3061
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=16 | 0.2541
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.2368
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=23 | 0.2270
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.2066
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=61 | 0.1225
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=19 | 0.1204
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=65 | 0.1110
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=33 | 0.0869
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=27 | 0.0817
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=35 | 0.0719
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=39 | 0.0644
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=80 | 0.0581
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=49 | 0.0425
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=44 | 0.0345
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=71 | 0.0341
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.0297
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=74 | 0.0191
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=85 | 0.0121
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=83 | 0.0073
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=86 | 0.0043
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=58 | 0.0000
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:04:56 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.011 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:04:56 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (30 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (47 results)
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.7907
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.6933
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.5482
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.4423
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.4322
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=22 | 0.3328
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=16 | 0.2897
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=19 | 0.2705
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.2564
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.2539
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=21 | 0.2139
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=24 | 0.1970
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=91 | 0.1663
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=12 | 0.1640
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=7 | 0.1617
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=84 | 0.1500
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.1306
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=66 | 0.1271
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=25 | 0.1079
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=9 | 0.0963
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.0888
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=1 | 0.0883
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.0877
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=82 | 0.0841
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=68 | 0.0793
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=76 | 0.0775
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=34 | 0.0730
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=60 | 0.0724
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=87 | 0.0660
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=50 | 0.0532
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=67 | 0.0529
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=69 | 0.0514
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=17 | 0.0501
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=39 | 0.0484
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=23 | 0.0477
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=42 | 0.0463
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=70 | 0.0451
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=74 | 0.0410
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=44 | 0.0381
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=89 | 0.0356
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=49 | 0.0286
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=58 | 0.0246
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=85 | 0.0167
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=80 | 0.0152
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.0128
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=93 | 0.0055
+16:04:56 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=55 | 0.0000
+16:05:16 | INFO | src.app.rag_engine | Initializing RAG Engine...
+16:05:23 | INFO | src.llm.bedrock_provider | Initialized Bedrock provider with model: amazon.nova-lite-v1:0
+16:05:23 | INFO | src.app.rag_engine | Using LLM model: amazon.nova-lite-v1:0
+16:05:23 | INFO | src.app.rag_engine | RAG Engine initialized.
+16:05:23 | INFO | src.app.rag_engine | Loading vector index from data\indexes\default
+16:05:23 | INFO | src.app.rag_engine | Loaded 94 vectors.
+16:05:23 | INFO | src.app.rag_engine | Building retrieval pipeline...
+16:05:23 | INFO | src.app.rag_engine | Loaded 94 chunks from vector store.
+16:05:30 | INFO | src.reranking.cross_encoder_reranker | CrossEncoder device: cpu
+16:05:30 | INFO | src.app.rag_engine | Building chat engine...
+16:05:30 | INFO | src.app.rag_engine | Chat engine built.
+16:06:10 | INFO | __main__ | User question received.
+16:06:10 | INFO | __main__ | Searching...
+16:06:10 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:06:10 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 30 results.
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.027 sec (30 results)
+16:06:10 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:06:10 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 30 results.
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.001 sec (30 results)
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (45 results)
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.8635
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.6052
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=1 | 0.5049
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.4327
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.3873
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.3229
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.2987
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=16 | 0.2695
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.2657
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=22 | 0.2098
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=19 | 0.1999
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=56 | 0.1981
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=23 | 0.1760
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=39 | 0.1678
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1673
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=9 | 0.1641
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=91 | 0.1608
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=21 | 0.1418
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=12 | 0.1417
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=43 | 0.1401
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=84 | 0.1396
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=49 | 0.1362
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=93 | 0.1303
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.1123
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=66 | 0.1054
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.0985
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=72 | 0.0928
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=34 | 0.0812
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=17 | 0.0380
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=18 | 0.0325
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=53 | 0.0322
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=61 | 0.0298
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=85 | 0.0278
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=30 | 0.0246
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=58 | 0.0223
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=60 | 0.0203
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=7 | 0.0196
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=28 | 0.0189
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=87 | 0.0100
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=89 | 0.0069
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=35 | 0.0060
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=71 | 0.0027
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=38 | 0.0000
+16:06:10 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=50 | 0.0000
+16:06:10 | INFO | __main__ | Retrieved 30 search results
+16:06:10 | DEBUG | __main__ | Result 1
+16:06:10 | DEBUG | __main__ | Score: 0.8635
+16:06:10 | DEBUG | __main__ | Page: 3
+16:06:10 | DEBUG | __main__ | Chunk Index: 2
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Table of Contents What is Amazon SageMaker? .......................................................................................................... 1 Guide to SageMaker ....................................................................................................
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 2
+16:06:10 | DEBUG | __main__ | Score: 0.7000
+16:06:10 | DEBUG | __main__ | Page: 1
+16:06:10 | DEBUG | __main__ | Chunk Index: 0
+16:06:10 | DEBUG | __main__ | User Guide Amazon SageMaker Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved.
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 3
+16:06:10 | DEBUG | __main__ | Score: 0.6052
+16:06:10 | DEBUG | __main__ | Page: 6
+16:06:10 | DEBUG | __main__ | Chunk Index: 6
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide What is Amazon SageMaker? Bringing together widely adopted artiﬁcial intelligence (AI) and analytics capabilities, the next generation of Amazon SageMaker delivers an integrated experience for analytics and AI with uniﬁed access to all your data. Collaborate and build in 
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 4
+16:06:10 | DEBUG | __main__ | Score: 0.5049
+16:06:10 | DEBUG | __main__ | Page: 2
+16:06:10 | DEBUG | __main__ | Chunk Index: 1
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Amazon SageMaker: User Guide Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved. Amazon's trademarks and trade dress may not be used in connection with any product or service that is not Amazon's, in any manner that is likely to cause conf
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 5
+16:06:10 | DEBUG | __main__ | Score: 0.4327
+16:06:10 | DEBUG | __main__ | Page: 7
+16:06:10 | DEBUG | __main__ | Chunk Index: 8
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Additionally, SageMaker is built upon an open lakehouse architecture that uniﬁes access to all your data across Amazon Simple Storage Service (Amazon S3) data lakes, Amazon Redshift data warehouses, and other external sources Uniﬁed Studio Amazon SageMaker Uniﬁed Studio i
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 6
+16:06:10 | DEBUG | __main__ | Score: 0.3873
+16:06:10 | DEBUG | __main__ | Page: 67
+16:06:10 | DEBUG | __main__ | Chunk Index: 92
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide API Documentation for Amazon SageMaker You can use the following guides to work with Amazon SageMaker programmatically: • SQL analytics • Amazon Redshift API reference • Data processing • Amazon EMR API reference • AWS Glue API reference • Amazon Athena API reference • Mo
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 7
+16:06:10 | DEBUG | __main__ | Score: 0.3229
+16:06:10 | DEBUG | __main__ | Page: 12
+16:06:10 | DEBUG | __main__ | Chunk Index: 15
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Prerequisites for Amazon SageMaker Complete the following prerequisite tasks before you can set up Amazon SageMaker and proceed with the use cases in this guide. Topics • Sign up for an AWS account Sign up for an AWS account To get started with AWS, you need an AWS accoun
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 8
+16:06:10 | DEBUG | __main__ | Score: 0.2987
+16:06:10 | DEBUG | __main__ | Page: 11
+16:06:10 | DEBUG | __main__ | Chunk Index: 14
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Get started with Amazon SageMaker You can view demos of Amazon SageMaker and get started by setting up a domain and project. View demos of Amazon SageMaker To see Amazon SageMaker before using it yourself, you can review the following clickthrough demos: • For an end-to-e
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 9
+16:06:10 | DEBUG | __main__ | Score: 0.2695
+16:06:10 | DEBUG | __main__ | Page: 13
+16:06:10 | DEBUG | __main__ | Chunk Index: 16
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Setting up Amazon SageMaker Complete the following tasks to set up Amazon SageMaker. Topics • Step 1 - Create an Amazon SageMaker uniﬁed domain • Step 2 - Create a new project Step 1 - Create an Amazon SageMaker uniﬁed domain Complete the following procedure to create an 
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 10
+16:06:10 | DEBUG | __main__ | Score: 0.2657
+16:06:10 | DEBUG | __main__ | Page: 9
+16:06:10 | DEBUG | __main__ | Chunk Index: 11
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Data processing Prepare, orchestrate, and process your data with capabilities in SageMaker, allowing you to run Apache Spark, Trino, and other open-source analytics frameworks in a uniﬁed data and AI development environment. Process your data, wherever it lives, with conn
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 11
+16:06:10 | DEBUG | __main__ | Score: 0.2098
+16:06:10 | DEBUG | __main__ | Page: 17
+16:06:10 | DEBUG | __main__ | Chunk Index: 22
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Get started with uploading and querying data in Amazon SageMaker Uniﬁed Studio You can use the query editor to perform analysis using SQL. The query editor tool provides a place to write and run queries, view results, and share your work with your team. Prerequisites Befo
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 12
+16:06:10 | DEBUG | __main__ | Score: 0.1999
+16:06:10 | DEBUG | __main__ | Page: 15
+16:06:10 | DEBUG | __main__ | Chunk Index: 19
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Step 2 - Create a new project In Amazon SageMaker, projects enable a group of users to collaborate on various business use cases. Within projects, you can manage data assets in the Amazon SageMaker catalog, perform data analysis, organize workﬂows, develop machine learnin
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 13
+16:06:10 | DEBUG | __main__ | Score: 0.1981
+16:06:10 | DEBUG | __main__ | Page: 42
+16:06:10 | DEBUG | __main__ | Chunk Index: 56
+16:06:10 | DEBUG | __main__ | agent app. Additional capabilities Amazon Bedrock in SageMaker Uniﬁed Studio oﬀers many additional capabilities to the ones covered in this walkthrough, including the following. Additional capabilities 37
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 14
+16:06:10 | DEBUG | __main__ | Score: 0.1760
+16:06:10 | DEBUG | __main__ | Page: 18
+16:06:10 | DEBUG | __main__ | Chunk Index: 23
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Query sample data using Amazon Athena in Amazon SageMaker 13
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 15
+16:06:10 | DEBUG | __main__ | Score: 0.1678
+16:06:10 | DEBUG | __main__ | Page: 31
+16:06:10 | DEBUG | __main__ | Chunk Index: 39
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide • Navigate to Amazon SageMaker Uniﬁed Studio using the URL from your admin and log in using your SSO or conﬁgure credentials with IAM Identity Center. Query AWS Glue sample data using Amazon Athena in Amazon SageMaker Uniﬁed Studio After you create a project, you can use 
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 16
+16:06:10 | DEBUG | __main__ | Score: 0.1673
+16:06:10 | DEBUG | __main__ | Page: 43
+16:06:10 | DEBUG | __main__ | Chunk Index: 57
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide • You can customize and inﬂuence model behavior using inference parameters and system prompts. For more information, see What is a prompt?. • You can enhance your chat agent app by adding data sources and guardrails. For more information, see Build a chat agent app. • You
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 17
+16:06:10 | DEBUG | __main__ | Score: 0.1641
+16:06:10 | DEBUG | __main__ | Page: 8
+16:06:10 | DEBUG | __main__ | Chunk Index: 9
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Amazon Bedrock Guardrails to protect and ﬁlter your model outputs, helping ensure responsible gen AI application development. Build trust throughout your organization with data quality monitoring, sensitive data detection, and data and machine learning (ML) lineage. Lakeh
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 18
+16:06:10 | DEBUG | __main__ | Score: 0.1608
+16:06:10 | DEBUG | __main__ | Page: 66
+16:06:10 | DEBUG | __main__ | Chunk Index: 91
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Note Some models require acceptance of an end-user license agreement (EULA). If this applies to the model that you choose to ﬁne-tune, Amazon SageMaker Uniﬁed Studio prompts you with a window that contains the EULA content. You are responsible for reviewing and complying 
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 19
+16:06:10 | DEBUG | __main__ | Score: 0.1418
+16:06:10 | DEBUG | __main__ | Page: 16
+16:06:10 | DEBUG | __main__ | Chunk Index: 21
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Review parameters On the next page of project creation, you can review and optionally edit the names and values for diﬀerent resources that are created when the project is created. You can leave all the defaults and then choose Continue. Review Use the last page of projec
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 20
+16:06:10 | DEBUG | __main__ | Score: 0.1417
+16:06:10 | DEBUG | __main__ | Page: 10
+16:06:10 | DEBUG | __main__ | Chunk Index: 12
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Currently, SageMaker Uniﬁed Studio should be used when you are looking to unify and share your data as a single integrated experience across analytics, ML, and gen AI workloads. You are able to eliminate data silos with an open lakehouse architecture to unify access to da
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 21
+16:06:10 | DEBUG | __main__ | Score: 0.1401
+16:06:10 | DEBUG | __main__ | Page: 35
+16:06:10 | DEBUG | __main__ | Chunk Index: 43
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide After you've ﬁnished querying the data, you can choose to view the queries in your query history and save them to share with other project members. Query AWS Glue sample data using Amazon Athena in Amazon SageMaker Uniﬁed Studio 30
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 22
+16:06:10 | DEBUG | __main__ | Score: 0.1396
+16:06:10 | DEBUG | __main__ | Page: 62
+16:06:10 | DEBUG | __main__ | Chunk Index: 84
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Guide. For more information about extending your SageMaker Lakehouse environment, see Add Data to SageMaker Lakehouse and Publishing Data in the Amazon SageMaker Uniﬁed Studio User Guide. For more information about speciﬁc use cases and implementation examples, see Simpli
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 23
+16:06:10 | DEBUG | __main__ | Score: 0.1362
+16:06:10 | DEBUG | __main__ | Page: 39
+16:06:10 | DEBUG | __main__ | Chunk Index: 49
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Get started using Amazon Bedrock in SageMaker Uniﬁed Studio Amazon Bedrock in SageMaker Uniﬁed Studio oﬀers multiple playgrounds that allow you to easily access and experiment with Amazon Bedrock models. With the chat playground, you can chat with a model through text and
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 24
+16:06:10 | DEBUG | __main__ | Score: 0.1303
+16:06:10 | DEBUG | __main__ | Page: 68
+16:06:10 | DEBUG | __main__ | Chunk Index: 93
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Document history for the Amazon SageMaker User Guide The following table describes the documentation releases for Amazon SageMaker. Change Description Date Initial release Initial release of the Amazon SageMaker User Guide June 13, 2025 63
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 25
+16:06:10 | DEBUG | __main__ | Score: 0.1123
+16:06:10 | DEBUG | __main__ | Page: 40
+16:06:10 | DEBUG | __main__ | Chunk Index: 51
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide 4. Under Data and model catalog, choose Amazon Bedrock models. This opens the model catalog in the Amazon Bedrock in SageMaker Uniﬁed Studio playground. 5. (Optional) Choose Group by: Modality and select Provider to sort the list by model provider. 6. Choose a model from 
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 26
+16:06:10 | DEBUG | __main__ | Score: 0.1054
+16:06:10 | DEBUG | __main__ | Page: 51
+16:06:10 | DEBUG | __main__ | Chunk Index: 66
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide SageMaker Lakehouse interface. Federated queries use these connections to run SQL statements across multiple data sources simultaneously, breaking down data silos for comprehensive analysis. What you'll learn This guide shows you how to use SageMaker Lakehouse with integr
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 27
+16:06:10 | DEBUG | __main__ | Score: 0.0985
+16:06:10 | DEBUG | __main__ | Page: 4
+16:06:10 | DEBUG | __main__ | Chunk Index: 3
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide Create a new Lakehouse catalog ....................................................................................................... 20 Add data and create an AWS Glue table ......................................................................................... 21 Ver
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 28
+16:06:10 | DEBUG | __main__ | Score: 0.0928
+16:06:10 | DEBUG | __main__ | Page: 56
+16:06:10 | DEBUG | __main__ | Chunk Index: 72
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide 4. In the Data explorer, choose the plus icon to add a data source. 5. Under Add data, choose Add connection, choose Next. 6. Choose Amazon DynamoDB, and choose Next. 7. For Name, enter the name for your data source of DynamoDB. 8. Choose Add data. SageMaker Uniﬁed Studio
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 29
+16:06:10 | DEBUG | __main__ | Score: 0.0812
+16:06:10 | DEBUG | __main__ | Page: 27
+16:06:10 | DEBUG | __main__ | Chunk Index: 34
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide 12. Choose Create table. The table appears under your database, such as in this example showing the new table myreviewtable added. Verify access to your AWS Glue table from the Amazon SageMaker Uniﬁed Studio query editor To verify that you can access the existing AWS Glue
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | DEBUG | __main__ | Result 30
+16:06:10 | DEBUG | __main__ | Score: 0.0380
+16:06:10 | DEBUG | __main__ | Page: 14
+16:06:10 | DEBUG | __main__ | Chunk Index: 17
+16:06:10 | DEBUG | __main__ | Amazon SageMaker User Guide 3. If you see the following note No VPC has been speciﬁcally set up for use with Amazon SageMaker Uniﬁed Studio, you can use the Choose VPC or Create VPC buttons to Create a new VPC (recommended) or choose an existing properly-conﬁgured VPC. If you plan to choose your own
+16:06:10 | DEBUG | __main__ | --------------------------------------------------------------------------------
+16:06:10 | INFO | __main__ | Generating answer...
+16:06:10 | INFO | src.chat.chat_engine | Processing user question.
+16:06:10 | DEBUG | src.chat.chat_engine | Original Question: What is Amazon Sagemaker?
+16:06:10 | DEBUG | src.chat.chat_engine | Conversation history size: 1 messages
+16:06:10 | INFO | src.retrieval.adaptive.adaptive_retriever | Adaptive retrieval strategy=simple, retrieval_top_k=8, final_top_k=4, max_context_tokens=2000
+16:06:10 | INFO | src.chat.chat_engine | Query rewriting started.
+16:06:10 | DEBUG | src.llm.bedrock_provider | Sending synchronous request to Bedrock.
+16:06:11 | DEBUG | src.llm.bedrock_provider | Bedrock response received in 1.213 sec.
+16:06:11 | INFO | src.chat.chat_engine | Query rewriting completed.
+16:06:11 | DEBUG | src.chat.chat_engine | Rewritten Question: What is Amazon Sagemaker?
+16:06:11 | DEBUG | src.llm.bedrock_provider | Sending synchronous request to Bedrock.
+16:06:12 | DEBUG | src.llm.bedrock_provider | Bedrock response received in 0.580 sec.
+16:06:12 | DEBUG | src.query.llm_multi_query_generator | Multi-query generation produced 4 unique queries.
+16:06:12 | INFO | src.chat.chat_engine | Generated 4 retrieval queries.
+16:06:12 | DEBUG | src.chat.chat_engine | Query 1: What is Amazon Sagemaker?
+16:06:12 | DEBUG | src.chat.chat_engine | Query 2: What is Amazon SageMaker?
+16:06:12 | DEBUG | src.chat.chat_engine | Query 3: Amazon SageMaker: What is it?
+16:06:12 | DEBUG | src.chat.chat_engine | Query 4: Overview of Amazon SageMaker
+16:06:12 | INFO | src.chat.chat_engine | Starting retrieval.
+16:06:12 | DEBUG | src.chat.chat_engine | Retrieving with query: What is Amazon Sagemaker?
+16:06:12 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:06:12 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 8 results.
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.008 sec (8 results)
+16:06:12 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:06:12 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 8 results.
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.000 sec (8 results)
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (13 results)
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.7806
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.3788
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=1 | 0.3208
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.2599
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.2007
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.1854
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1242
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.0939
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.0805
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=66 | 0.0725
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.0645
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.0000
+16:06:12 | DEBUG | src.chat.chat_engine | Retrieving with query: What is Amazon SageMaker?
+16:06:12 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:06:12 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 8 results.
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.008 sec (8 results)
+16:06:12 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:06:12 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 8 results.
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.000 sec (8 results)
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (13 results)
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.7806
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.3788
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=1 | 0.3208
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.2599
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.2007
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.1854
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1242
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.0939
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.0805
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=66 | 0.0725
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.0645
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.0000
+16:06:12 | DEBUG | src.chat.chat_engine | Retrieving with query: Amazon SageMaker: What is it?
+16:06:12 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:06:12 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 8 results.
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.010 sec (8 results)
+16:06:12 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:06:12 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 8 results.
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.000 sec (8 results)
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (12 results)
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.7154
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=1 | 0.5764
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.3000
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.2251
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.1911
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.1201
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.0551
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.0521
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.0216
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.0081
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=66 | 0.0000
+16:06:12 | DEBUG | src.chat.chat_engine | Retrieving with query: Overview of Amazon SageMaker
+16:06:12 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+16:06:12 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 8 results.
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.012 sec (8 results)
+16:06:12 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+16:06:12 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 8 results.
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.000 sec (8 results)
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (13 results)
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.4082
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.3866
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.3419
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=44 | 0.2121
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.1961
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.1163
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.1026
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=36 | 0.0746
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.0321
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.0098
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=22 | 0.0000
+16:06:12 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=93 | 0.0000
+16:06:12 | DEBUG | src.chat.chat_engine | Retrieved 32 candidates.
+16:06:12 | INFO | src.chat.chat_engine | Starting CrossEncoder reranking.
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Received 32 candidates: 
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Deduplicated to  11 unique candidates: 
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Unique candidates:
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=2 | 0.7806
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=6 | 0.3788
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=1 | 0.3208
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=11 | 0.2599
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=8 | 0.2007
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=92 | 0.1854
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1242
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=14 | 0.3000
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=15 | 0.0551
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=44 | 0.2121
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Candidates after pruning:
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=2 | 0.7806
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=6 | 0.3788
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=1 | 0.3208
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=11 | 0.2599
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=8 | 0.2007
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=92 | 0.1854
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1242
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=14 | 0.3000
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=15 | 0.0551
+16:06:12 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=44 | 0.2121
+16:06:12 | INFO | src.reranking.cross_encoder_reranker | Running CrossEncoder on 11 pairs
+16:06:16 | INFO | src.reranking.cross_encoder_reranker | CrossEncoder.predict(): 4172.75 ms
+16:06:16 | DEBUG | src.reranking.cross_encoder_reranker | Top after CrossEncoder:
+16:06:16 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=6 | 0.9893
+16:06:16 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=8 | 0.9887
+16:06:16 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=1 | 0.9350
+16:06:16 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=0 | 0.9304
+16:06:16 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=2 | 0.7345
+16:06:16 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=11 | 0.7251
+16:06:16 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=14 | 0.6484
+16:06:16 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=15 | 0.2125
+16:06:16 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=57 | 0.0657
+16:06:16 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=92 | 0.0437
+16:06:16 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=44 | 0.0162
+16:06:16 | INFO | src.chat.chat_engine | Top 4 candidates selected after reranking.
+16:06:16 | DEBUG | src.retrieval.compressor.context_compressor | Estimated context tokens: 602
+16:06:16 | DEBUG | src.retrieval.compressor.context_compressor | Context compression: 4 -> 4 chunks (duplicates removed=0) (budget=2000)
+16:06:16 | INFO | src.chat.chat_engine | Building final prompt.
+16:06:16 | DEBUG | src.prompt.prompt_builder | History messages: 1 | Context chunks: 4
+16:06:16 | DEBUG | src.prompt.prompt_builder | ================================================================================
+16:06:16 | DEBUG | src.prompt.prompt_builder | [Source 1]
+Document: Amazon SageMaker User Guide.pdf
+Page: 6
+Chunk: 6
+
+Amazon SageMaker User Guide What is Amazon SageMaker? Bringing together widely adopted artiﬁcial intelligence (AI) and analytics capabilities, the next generation of Amazon SageMaker delivers an integrated experience for analytics and AI with uniﬁed access to all your data. Collaborate and build in Amazon SageMaker Uniﬁed Studio using familiar AWS tools for SQL analytics, data processing, model development, and generative AI, accelerated by Amazon Q Developer. Access all your data whether it's stored in data lakes, data warehouses, or third-party or federated data sources, with governance built in to meet enterprise security needs. The next generation of Amazon SageMaker overview Guide to SageMaker The next generation of Amazon SageMaker was announced at re:Invent 2024 serves as the center for all data, analytics, and AI. Analytics and AI workﬂows are converging, with organizations now using the same data sources for traditional analytics, machine learning, and generative AI. In response, AWS has created the next generation of SageMaker to serve as a uniﬁed platform for these workﬂows. The next generation of SageMaker brings together the purpose-built components needed for data exploration, preparation and integration, big data processing, SQL analytics, machine learning (ML) model development and training, and generative AI application development. Note The original Amazon SageMaker has been renamed SageMaker AI. It is available in the next generation Amazon SageMaker for those who wish to use it alongside additional capabilities, or as a standalone service for those who wish to focus speciﬁcally on building, training, and deploying AI and ML models at scale. The next generation of Amazon SageMaker consists of two primary components: 1. Amazon SageMaker Uniﬁed Studio, which provides an integrated experience to use all your data and tools for analytics and AI 2. Data and AI governance, which applies enterprise-level security and data management with built-in governance throughout the entire data and AI lifecycle Guide to SageMaker 1
+
+--------------------
+
+[Source 2]
+Document: Amazon SageMaker User Guide.pdf
+Page: 7
+Chunk: 8
+
+Amazon SageMaker User Guide Additionally, SageMaker is built upon an open lakehouse architecture that uniﬁes access to all your data across Amazon Simple Storage Service (Amazon S3) data lakes, Amazon Redshift data warehouses, and other external sources Uniﬁed Studio Amazon SageMaker Uniﬁed Studio is a single data and AI development environment that brings together functionality and tools that AWS oﬀers in Amazon EMR, AWS Glue, Amazon Athena, Amazon Redshift, Amazon MWAA, Amazon Bedrock, and Amazon SageMaker AI. From within the uniﬁed studio, you can discover, access, and query data and AI assets, then collaborate to build and share analytics and AI artifacts, including data, models, and generative AI applications. Data & AI governance The next generation of Amazon SageMaker simpliﬁes the discovery, governance, and collaboration for data and AI. With Amazon SageMaker Catalog, users can securely discover and access approved data and assets using semantic search with generative AI–created metadata, or you could just ask Amazon Q Developer with natural language to ﬁnd your data. Seamlessly share and collaborate on data and AI assets through publishing and subscribing workﬂows. With SageMaker, you can apply Uniﬁed Studio 2
+
+--------------------
+
+[Source 3]
+Document: Amazon SageMaker User Guide.pdf
+Page: 2
+Chunk: 1
+
+Amazon SageMaker User Guide Amazon SageMaker: User Guide Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved. Amazon's trademarks and trade dress may not be used in connection with any product or service that is not Amazon's, in any manner that is likely to cause confusion among customers, or in any manner that disparages or discredits Amazon. All other trademarks not owned by Amazon are the property of their respective owners, who may or may not be aﬃliated with, connected to, or sponsored by Amazon.
+
+--------------------
+
+[Source 4]
+Document: Amazon SageMaker User Guide.pdf
+Page: 1
+Chunk: 0
+
+User Guide Amazon SageMaker Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved.
+
+--------------------
+
+
+16:06:16 | DEBUG | src.prompt.prompt_builder | ================================================================================
+16:06:16 | DEBUG | src.prompt.prompt_builder | Prompt length: 6306 characters
+16:06:16 | DEBUG | src.prompt.prompt_builder | ====================================================================================================
+16:06:16 | DEBUG | src.prompt.prompt_builder | FINAL PROMPT SENT TO LLM
+16:06:16 | DEBUG | src.prompt.prompt_builder | ====================================================================================================
+16:06:16 | DEBUG | src.prompt.prompt_builder | You are a helpful AI assistant.
+
+            Treat the retrieved context as the ONLY source of truth.
+
+            If the answer cannot be found in the retrieved context, respond with exactly:
+
+            "I don't know based on the provided documents."
+
+            Do not invent facts.
+            Do not use outside knowledge.
+            Do not make assumptions.
+
+            ======================
+            Citation Rules
+            ======================
+
+            - Cite only the source(s) that directly support a statement.
+            - Prefer the highest-ranked source whenever possible.
+            - Prefer the smallest number of sources needed.
+            - Do NOT cite sources that merely repeat the same information.
+            - Never invent source numbers.
+            - Never cite a source that was not provided.
+
+            Use citations in the format:
+
+            [Source X]
+
+            Examples:
+
+            Good:
+
+            Amazon SageMaker is a fully managed machine learning service. [Source 1]
+
+            Amazon SageMaker supports SQL analytics and generative AI capabilities. [Source 2][Source 4]
+
+            Bad:
+
+            Amazon SageMaker is a fully managed machine learning service. [Source 1][Source 2][Source 3][Source 4][Source 5]
+
+            Amazon SageMaker is a fully managed machine learning service. [Source 8]
+
+            Amazon SageMaker is a fully managed machine learning service.
+            (no citation)
+
+            ========================
+            Previous Conversation
+            ========================
+
+            User:
+What is Amazon Sagemaker?
+
+
+
+            ======================
+            RETRIEVED CONTEXT
+            ======================
+
+            [Source 1]
+Document: Amazon SageMaker User Guide.pdf
+Page: 6
+Chunk: 6
+
+Amazon SageMaker User Guide What is Amazon SageMaker? Bringing together widely adopted artiﬁcial intelligence (AI) and analytics capabilities, the next generation of Amazon SageMaker delivers an integrated experience for analytics and AI with uniﬁed access to all your data. Collaborate and build in Amazon SageMaker Uniﬁed Studio using familiar AWS tools for SQL analytics, data processing, model development, and generative AI, accelerated by Amazon Q Developer. Access all your data whether it's stored in data lakes, data warehouses, or third-party or federated data sources, with governance built in to meet enterprise security needs. The next generation of Amazon SageMaker overview Guide to SageMaker The next generation of Amazon SageMaker was announced at re:Invent 2024 serves as the center for all data, analytics, and AI. Analytics and AI workﬂows are converging, with organizations now using the same data sources for traditional analytics, machine learning, and generative AI. In response, AWS has created the next generation of SageMaker to serve as a uniﬁed platform for these workﬂows. The next generation of SageMaker brings together the purpose-built components needed for data exploration, preparation and integration, big data processing, SQL analytics, machine learning (ML) model development and training, and generative AI application development. Note The original Amazon SageMaker has been renamed SageMaker AI. It is available in the next generation Amazon SageMaker for those who wish to use it alongside additional capabilities, or as a standalone service for those who wish to focus speciﬁcally on building, training, and deploying AI and ML models at scale. The next generation of Amazon SageMaker consists of two primary components: 1. Amazon SageMaker Uniﬁed Studio, which provides an integrated experience to use all your data and tools for analytics and AI 2. Data and AI governance, which applies enterprise-level security and data management with built-in governance throughout the entire data and AI lifecycle Guide to SageMaker 1
+
+--------------------
+
+[Source 2]
+Document: Amazon SageMaker User Guide.pdf
+Page: 7
+Chunk: 8
+
+Amazon SageMaker User Guide Additionally, SageMaker is built upon an open lakehouse architecture that uniﬁes access to all your data across Amazon Simple Storage Service (Amazon S3) data lakes, Amazon Redshift data warehouses, and other external sources Uniﬁed Studio Amazon SageMaker Uniﬁed Studio is a single data and AI development environment that brings together functionality and tools that AWS oﬀers in Amazon EMR, AWS Glue, Amazon Athena, Amazon Redshift, Amazon MWAA, Amazon Bedrock, and Amazon SageMaker AI. From within the uniﬁed studio, you can discover, access, and query data and AI assets, then collaborate to build and share analytics and AI artifacts, including data, models, and generative AI applications. Data & AI governance The next generation of Amazon SageMaker simpliﬁes the discovery, governance, and collaboration for data and AI. With Amazon SageMaker Catalog, users can securely discover and access approved data and assets using semantic search with generative AI–created metadata, or you could just ask Amazon Q Developer with natural language to ﬁnd your data. Seamlessly share and collaborate on data and AI assets through publishing and subscribing workﬂows. With SageMaker, you can apply Uniﬁed Studio 2
+
+--------------------
+
+[Source 3]
+Document: Amazon SageMaker User Guide.pdf
+Page: 2
+Chunk: 1
+
+Amazon SageMaker User Guide Amazon SageMaker: User Guide Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved. Amazon's trademarks and trade dress may not be used in connection with any product or service that is not Amazon's, in any manner that is likely to cause confusion among customers, or in any manner that disparages or discredits Amazon. All other trademarks not owned by Amazon are the property of their respective owners, who may or may not be aﬃliated with, connected to, or sponsored by Amazon.
+
+--------------------
+
+[Source 4]
+Document: Amazon SageMaker User Guide.pdf
+Page: 1
+Chunk: 0
+
+User Guide Amazon SageMaker Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved.
+
+--------------------
+
+
+
+            ======================
+            CURRENT QUESTION
+            ======================
+
+            What is Amazon Sagemaker?
+
+            ======================
+            ANSWER
+            ======================
+16:06:16 | DEBUG | src.prompt.prompt_builder | ====================================================================================================
+16:06:16 | DEBUG | src.chat.chat_engine | Prompt length: 6306 characters
+16:06:16 | INFO | src.chat.chat_engine | Generating answer...
+16:06:16 | DEBUG | src.llm.bedrock_provider | Starting Bedrock streaming request.
+16:06:16 | INFO | src.llm.bedrock_provider | Streaming started.
+16:06:17 | DEBUG | src.llm.bedrock_provider | Streaming completed in 0.901 sec (29 chunks).
+16:06:17 | INFO | src.chat.chat_engine | Answer generation completed.
+10:38:52 | INFO | src.app.rag_engine | Initializing RAG Engine...
+10:39:28 | INFO | src.llm.bedrock_provider | Initialized Bedrock provider with model: amazon.nova-lite-v1:0
+10:39:28 | INFO | src.app.rag_engine | Using LLM model: amazon.nova-lite-v1:0
+10:39:28 | INFO | src.app.rag_engine | RAG Engine initialized.
+10:39:28 | INFO | src.app.rag_engine | Loading vector index from data/indexes/default
+10:39:28 | INFO | src.app.rag_engine | Loaded 94 vectors.
+10:39:28 | INFO | src.app.rag_engine | Building retrieval pipeline...
+10:39:28 | INFO | src.app.rag_engine | Loaded 94 chunks from vector store.
+10:44:41 | INFO | src.reranking.cross_encoder_reranker | CrossEncoder device: cpu
+10:44:41 | INFO | src.app.rag_engine | Building chat engine...
+10:44:41 | INFO | src.app.rag_engine | Chat engine built.
+10:44:41 | INFO | src.chat.chat_engine | Processing user question.
+10:44:41 | DEBUG | src.chat.chat_engine | Original Question: What is Amazon SageMaker?
+10:44:41 | DEBUG | src.chat.chat_engine | Conversation history size: 1 messages
+10:44:41 | INFO | src.retrieval.adaptive.adaptive_retriever | Adaptive retrieval strategy=simple, retrieval_top_k=8, final_top_k=4, max_context_tokens=2000
+10:44:41 | INFO | src.chat.chat_engine | Query rewriting started.
+10:44:41 | DEBUG | src.llm.bedrock_provider | Sending synchronous request to Bedrock.
+10:44:42 | DEBUG | src.llm.bedrock_provider | Bedrock response received in 1.202 sec.
+10:44:42 | INFO | src.chat.chat_engine | Query rewriting completed.
+10:44:42 | DEBUG | src.chat.chat_engine | Rewritten Question: What is Amazon SageMaker?
+10:44:42 | DEBUG | src.llm.bedrock_provider | Sending synchronous request to Bedrock.
+10:44:43 | DEBUG | src.llm.bedrock_provider | Bedrock response received in 0.768 sec.
+10:44:43 | DEBUG | src.query.llm_multi_query_generator | Multi-query generation produced 4 unique queries.
+10:44:43 | INFO | src.chat.chat_engine | Generated 4 retrieval queries.
+10:44:43 | DEBUG | src.chat.chat_engine | Query 1: What is Amazon SageMaker?
+10:44:43 | DEBUG | src.chat.chat_engine | Query 2: Amazon SageMaker explained
+10:44:43 | DEBUG | src.chat.chat_engine | Query 3: Amazon SageMaker details
+10:44:43 | DEBUG | src.chat.chat_engine | Query 4: Overview of Amazon SageMaker
+10:44:43 | INFO | src.chat.chat_engine | Starting retrieval.
+10:44:43 | DEBUG | src.chat.chat_engine | Retrieving with query: What is Amazon SageMaker?
+10:44:43 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+10:44:43 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 8 results.
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.143 sec (8 results)
+10:44:43 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+10:44:43 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 8 results.
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.003 sec (8 results)
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (13 results)
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.7806
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.3788
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=1 | 0.3208
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.2599
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.2007
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.1854
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1242
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.0939
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=51 | 0.0805
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=66 | 0.0725
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.0645
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.0000
+10:44:43 | DEBUG | src.chat.chat_engine | Retrieving with query: Amazon SageMaker explained
+10:44:43 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+10:44:43 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 8 results.
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.011 sec (8 results)
+10:44:43 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+10:44:43 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 8 results.
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.005 sec (8 results)
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (11 results)
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.5851
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.3000
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.2997
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.1368
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=1 | 0.1361
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.1310
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=16 | 0.0721
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.0487
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=67 | 0.0453
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=93 | 0.0242
+10:44:43 | DEBUG | src.chat.chat_engine | Retrieving with query: Amazon SageMaker details
+10:44:43 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+10:44:43 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 8 results.
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.011 sec (8 results)
+10:44:43 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+10:44:43 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 8 results.
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.003 sec (8 results)
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (16 results)
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.4132
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=86 | 0.3000
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.2648
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=28 | 0.1939
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.1803
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=91 | 0.1440
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=69 | 0.1403
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=87 | 0.0891
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=1 | 0.0677
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=85 | 0.0126
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=22 | 0.0074
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.0059
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=89 | 0.0025
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=65 | 0.0000
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.0000
+10:44:43 | DEBUG | src.chat.chat_engine | Retrieving with query: Overview of Amazon SageMaker
+10:44:43 | DEBUG | src.retrieval.dense_retriever | Dense retrieval started.
+10:44:43 | DEBUG | src.retrieval.dense_retriever | Dense retrieval returned 8 results.
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Dense retrieval: 0.015 sec (8 results)
+10:44:43 | DEBUG | src.retrieval.bm25_retriever | BM25 retrieval started.
+10:44:43 | DEBUG | src.retrieval.bm25_retriever | Dense retrieval returned 8 results.
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | BM25 retrieval: 0.004 sec (8 results)
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Hybrid merge: 0.000 sec (13 results)
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | After Hybrdiretriever:
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=92 | 0.4082
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=6 | 0.3866
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=2 | 0.3419
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=44 | 0.2121
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=8 | 0.1961
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=15 | 0.1163
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=14 | 0.1026
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=36 | 0.0746
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=3 | 0.0321
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=11 | 0.0098
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=22 | 0.0000
+10:44:43 | DEBUG | src.retrieval.hybrid_retriever | Amazon SageMaker User Guide.pdf | chunk=93 | 0.0000
+10:44:43 | DEBUG | src.chat.chat_engine | Retrieved 32 candidates.
+10:44:43 | INFO | src.chat.chat_engine | Starting CrossEncoder reranking.
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Received 32 candidates: 
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Deduplicated to  16 unique candidates: 
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Unique candidates:
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=2 | 0.7806
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=6 | 0.3788
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=1 | 0.3208
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=11 | 0.2599
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=8 | 0.2007
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=92 | 0.1854
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1242
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=14 | 0.3000
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=15 | 0.1368
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=16 | 0.0721
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=86 | 0.3000
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=28 | 0.1939
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=91 | 0.1440
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=69 | 0.1403
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=44 | 0.2121
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Candidates after pruning:
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=2 | 0.7806
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=0 | 0.7000
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=6 | 0.3788
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=1 | 0.3208
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=11 | 0.2599
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=8 | 0.2007
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=92 | 0.1854
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1242
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=14 | 0.3000
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=15 | 0.1368
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=16 | 0.0721
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=86 | 0.3000
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=28 | 0.1939
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=91 | 0.1440
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=69 | 0.1403
+10:44:43 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=44 | 0.2121
+10:44:43 | INFO | src.reranking.cross_encoder_reranker | Running CrossEncoder on 16 pairs
+10:44:52 | INFO | src.reranking.cross_encoder_reranker | CrossEncoder.predict(): 8133.58 ms
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Top after CrossEncoder:
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=6 | 0.9948
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=8 | 0.9873
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=0 | 0.9702
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=1 | 0.9599
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=2 | 0.7657
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=11 | 0.7464
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=14 | 0.5869
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=16 | 0.3450
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=15 | 0.2791
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=91 | 0.1885
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=57 | 0.1051
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=69 | 0.0427
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=92 | 0.0370
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=28 | 0.0265
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=44 | 0.0102
+10:44:52 | DEBUG | src.reranking.cross_encoder_reranker | Amazon SageMaker User Guide.pdf | chunk=86 | 0.0018
+10:44:52 | INFO | src.chat.chat_engine | Top 4 candidates selected after reranking.
+10:44:52 | DEBUG | src.retrieval.compressor.context_compressor | Estimated context tokens: 602
+10:44:52 | DEBUG | src.retrieval.compressor.context_compressor | Context compression: 4 -> 4 chunks (duplicates removed=0) (budget=2000)
+10:44:52 | INFO | src.chat.chat_engine | Building final prompt.
+10:44:52 | DEBUG | src.prompt.prompt_builder | History messages: 1 | Context chunks: 4
+10:44:52 | DEBUG | src.prompt.prompt_builder | ================================================================================
+10:44:52 | DEBUG | src.prompt.prompt_builder | [Source 1]
+Document: Amazon SageMaker User Guide.pdf
+Page: 6
+Chunk: 6
+
+Amazon SageMaker User Guide What is Amazon SageMaker? Bringing together widely adopted artiﬁcial intelligence (AI) and analytics capabilities, the next generation of Amazon SageMaker delivers an integrated experience for analytics and AI with uniﬁed access to all your data. Collaborate and build in Amazon SageMaker Uniﬁed Studio using familiar AWS tools for SQL analytics, data processing, model development, and generative AI, accelerated by Amazon Q Developer. Access all your data whether it's stored in data lakes, data warehouses, or third-party or federated data sources, with governance built in to meet enterprise security needs. The next generation of Amazon SageMaker overview Guide to SageMaker The next generation of Amazon SageMaker was announced at re:Invent 2024 serves as the center for all data, analytics, and AI. Analytics and AI workﬂows are converging, with organizations now using the same data sources for traditional analytics, machine learning, and generative AI. In response, AWS has created the next generation of SageMaker to serve as a uniﬁed platform for these workﬂows. The next generation of SageMaker brings together the purpose-built components needed for data exploration, preparation and integration, big data processing, SQL analytics, machine learning (ML) model development and training, and generative AI application development. Note The original Amazon SageMaker has been renamed SageMaker AI. It is available in the next generation Amazon SageMaker for those who wish to use it alongside additional capabilities, or as a standalone service for those who wish to focus speciﬁcally on building, training, and deploying AI and ML models at scale. The next generation of Amazon SageMaker consists of two primary components: 1. Amazon SageMaker Uniﬁed Studio, which provides an integrated experience to use all your data and tools for analytics and AI 2. Data and AI governance, which applies enterprise-level security and data management with built-in governance throughout the entire data and AI lifecycle Guide to SageMaker 1
+
+--------------------
+
+[Source 2]
+Document: Amazon SageMaker User Guide.pdf
+Page: 7
+Chunk: 8
+
+Amazon SageMaker User Guide Additionally, SageMaker is built upon an open lakehouse architecture that uniﬁes access to all your data across Amazon Simple Storage Service (Amazon S3) data lakes, Amazon Redshift data warehouses, and other external sources Uniﬁed Studio Amazon SageMaker Uniﬁed Studio is a single data and AI development environment that brings together functionality and tools that AWS oﬀers in Amazon EMR, AWS Glue, Amazon Athena, Amazon Redshift, Amazon MWAA, Amazon Bedrock, and Amazon SageMaker AI. From within the uniﬁed studio, you can discover, access, and query data and AI assets, then collaborate to build and share analytics and AI artifacts, including data, models, and generative AI applications. Data & AI governance The next generation of Amazon SageMaker simpliﬁes the discovery, governance, and collaboration for data and AI. With Amazon SageMaker Catalog, users can securely discover and access approved data and assets using semantic search with generative AI–created metadata, or you could just ask Amazon Q Developer with natural language to ﬁnd your data. Seamlessly share and collaborate on data and AI assets through publishing and subscribing workﬂows. With SageMaker, you can apply Uniﬁed Studio 2
+
+--------------------
+
+[Source 3]
+Document: Amazon SageMaker User Guide.pdf
+Page: 1
+Chunk: 0
+
+User Guide Amazon SageMaker Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved.
+
+--------------------
+
+[Source 4]
+Document: Amazon SageMaker User Guide.pdf
+Page: 2
+Chunk: 1
+
+Amazon SageMaker User Guide Amazon SageMaker: User Guide Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved. Amazon's trademarks and trade dress may not be used in connection with any product or service that is not Amazon's, in any manner that is likely to cause confusion among customers, or in any manner that disparages or discredits Amazon. All other trademarks not owned by Amazon are the property of their respective owners, who may or may not be aﬃliated with, connected to, or sponsored by Amazon.
+
+--------------------
+
+
+10:44:52 | DEBUG | src.prompt.prompt_builder | ================================================================================
+10:44:52 | DEBUG | src.prompt.prompt_builder | Prompt length: 6306 characters
+10:44:52 | DEBUG | src.prompt.prompt_builder | ====================================================================================================
+10:44:52 | DEBUG | src.prompt.prompt_builder | FINAL PROMPT SENT TO LLM
+10:44:52 | DEBUG | src.prompt.prompt_builder | ====================================================================================================
+10:44:52 | DEBUG | src.prompt.prompt_builder | You are a helpful AI assistant.
+
+            Treat the retrieved context as the ONLY source of truth.
+
+            If the answer cannot be found in the retrieved context, respond with exactly:
+
+            "I don't know based on the provided documents."
+
+            Do not invent facts.
+            Do not use outside knowledge.
+            Do not make assumptions.
+
+            ======================
+            Citation Rules
+            ======================
+
+            - Cite only the source(s) that directly support a statement.
+            - Prefer the highest-ranked source whenever possible.
+            - Prefer the smallest number of sources needed.
+            - Do NOT cite sources that merely repeat the same information.
+            - Never invent source numbers.
+            - Never cite a source that was not provided.
+
+            Use citations in the format:
+
+            [Source X]
+
+            Examples:
+
+            Good:
+
+            Amazon SageMaker is a fully managed machine learning service. [Source 1]
+
+            Amazon SageMaker supports SQL analytics and generative AI capabilities. [Source 2][Source 4]
+
+            Bad:
+
+            Amazon SageMaker is a fully managed machine learning service. [Source 1][Source 2][Source 3][Source 4][Source 5]
+
+            Amazon SageMaker is a fully managed machine learning service. [Source 8]
+
+            Amazon SageMaker is a fully managed machine learning service.
+            (no citation)
+
+            ========================
+            Previous Conversation
+            ========================
+
+            User:
+What is Amazon SageMaker?
+
+
+
+            ======================
+            RETRIEVED CONTEXT
+            ======================
+
+            [Source 1]
+Document: Amazon SageMaker User Guide.pdf
+Page: 6
+Chunk: 6
+
+Amazon SageMaker User Guide What is Amazon SageMaker? Bringing together widely adopted artiﬁcial intelligence (AI) and analytics capabilities, the next generation of Amazon SageMaker delivers an integrated experience for analytics and AI with uniﬁed access to all your data. Collaborate and build in Amazon SageMaker Uniﬁed Studio using familiar AWS tools for SQL analytics, data processing, model development, and generative AI, accelerated by Amazon Q Developer. Access all your data whether it's stored in data lakes, data warehouses, or third-party or federated data sources, with governance built in to meet enterprise security needs. The next generation of Amazon SageMaker overview Guide to SageMaker The next generation of Amazon SageMaker was announced at re:Invent 2024 serves as the center for all data, analytics, and AI. Analytics and AI workﬂows are converging, with organizations now using the same data sources for traditional analytics, machine learning, and generative AI. In response, AWS has created the next generation of SageMaker to serve as a uniﬁed platform for these workﬂows. The next generation of SageMaker brings together the purpose-built components needed for data exploration, preparation and integration, big data processing, SQL analytics, machine learning (ML) model development and training, and generative AI application development. Note The original Amazon SageMaker has been renamed SageMaker AI. It is available in the next generation Amazon SageMaker for those who wish to use it alongside additional capabilities, or as a standalone service for those who wish to focus speciﬁcally on building, training, and deploying AI and ML models at scale. The next generation of Amazon SageMaker consists of two primary components: 1. Amazon SageMaker Uniﬁed Studio, which provides an integrated experience to use all your data and tools for analytics and AI 2. Data and AI governance, which applies enterprise-level security and data management with built-in governance throughout the entire data and AI lifecycle Guide to SageMaker 1
+
+--------------------
+
+[Source 2]
+Document: Amazon SageMaker User Guide.pdf
+Page: 7
+Chunk: 8
+
+Amazon SageMaker User Guide Additionally, SageMaker is built upon an open lakehouse architecture that uniﬁes access to all your data across Amazon Simple Storage Service (Amazon S3) data lakes, Amazon Redshift data warehouses, and other external sources Uniﬁed Studio Amazon SageMaker Uniﬁed Studio is a single data and AI development environment that brings together functionality and tools that AWS oﬀers in Amazon EMR, AWS Glue, Amazon Athena, Amazon Redshift, Amazon MWAA, Amazon Bedrock, and Amazon SageMaker AI. From within the uniﬁed studio, you can discover, access, and query data and AI assets, then collaborate to build and share analytics and AI artifacts, including data, models, and generative AI applications. Data & AI governance The next generation of Amazon SageMaker simpliﬁes the discovery, governance, and collaboration for data and AI. With Amazon SageMaker Catalog, users can securely discover and access approved data and assets using semantic search with generative AI–created metadata, or you could just ask Amazon Q Developer with natural language to ﬁnd your data. Seamlessly share and collaborate on data and AI assets through publishing and subscribing workﬂows. With SageMaker, you can apply Uniﬁed Studio 2
+
+--------------------
+
+[Source 3]
+Document: Amazon SageMaker User Guide.pdf
+Page: 1
+Chunk: 0
+
+User Guide Amazon SageMaker Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved.
+
+--------------------
+
+[Source 4]
+Document: Amazon SageMaker User Guide.pdf
+Page: 2
+Chunk: 1
+
+Amazon SageMaker User Guide Amazon SageMaker: User Guide Copyright © 2026 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved. Amazon's trademarks and trade dress may not be used in connection with any product or service that is not Amazon's, in any manner that is likely to cause confusion among customers, or in any manner that disparages or discredits Amazon. All other trademarks not owned by Amazon are the property of their respective owners, who may or may not be aﬃliated with, connected to, or sponsored by Amazon.
+
+--------------------
+
+
+
+            ======================
+            CURRENT QUESTION
+            ======================
+
+            What is Amazon SageMaker?
+
+            ======================
+            ANSWER
+            ======================
+10:44:52 | DEBUG | src.prompt.prompt_builder | ====================================================================================================
+10:44:52 | DEBUG | src.chat.chat_engine | Prompt length: 6306 characters
+10:44:52 | INFO | src.chat.chat_engine | Generating answer...
+10:44:52 | DEBUG | src.llm.bedrock_provider | Sending synchronous request to Bedrock.
+10:44:52 | DEBUG | src.llm.bedrock_provider | Bedrock response received in 0.678 sec.
+10:44:52 | INFO | src.chat.chat_engine | Answer generation completed.
+16:15:31 | INFO | __main__ | User question received.
+16:15:31 | INFO | __main__ | Exiting application.
