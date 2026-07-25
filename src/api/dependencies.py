@@ -11,7 +11,7 @@ def get_rag_engine() -> RAGEngine:
     engine = RAGEngine()
 
     engine.load_or_ingest(
-        document_directory="data/raw",
+        document_directory="data/documents",
         index_directory="data/indexes/default",
     )
 

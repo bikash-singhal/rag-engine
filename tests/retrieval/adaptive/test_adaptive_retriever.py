@@ -90,3 +90,5 @@ def test_empty_question_uses_default_strategy(
     config = adaptive_retriever.get_retrieval_config("   ")
 
     assert config.strategy == "default"
+    assert config.retrieval_top_k == 12
+    assert config.final_top_k == 5

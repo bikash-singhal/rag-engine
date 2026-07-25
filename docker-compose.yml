@@ -9,7 +9,12 @@ services:
 
     volumes:
       - ./data:/app/data
-      - C:\Users\bikas\.aws:/home/appuser/.aws:ro
+      # Mount your AWS credentials
+      # Linux/macOS:
+      # - ${HOME}/.aws:/home/appuser/.aws:ro
+
+      # Windows:
+      - ${USERPROFILE}\.aws:/home/appuser/.aws:ro
       - ./logs:/app/logs
 
     env_file:

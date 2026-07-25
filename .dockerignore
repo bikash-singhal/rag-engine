@@ -1,19 +1,23 @@
+# Environment
 .env
 .venv/
 
+# Python
 __pycache__/
 *.pyc
 
+# Git
 .git/
 .gitignore
 
+# IDE
 .vscode/
 .idea/
 
+# Logs
 logs/
 *.log
 
-data/raw/
-data/processed/
-
-tests/
+# Generated data
+data/indexes/
+scratch/

@@ -29,12 +29,12 @@ def main() -> None:
     engine = RAGEngine()
 
     engine.load_or_ingest(
-        document_directory="data/raw",
+        document_directory="data/documents",
         index_directory="data/indexes/default",
     )
 
     dataset = BenchmarkLoader.load(
-        "data/benchmark/sagemaker.json",
+        "data/benchmarks/sagemaker.json",
     )
 
     retrieval_evaluator = RetrievalEvaluator(

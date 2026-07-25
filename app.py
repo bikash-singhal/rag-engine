@@ -13,13 +13,15 @@ def main():
     engine = RAGEngine()
 
     engine.load_or_ingest(
-        document_directory="data/raw",
+        document_directory="data/documents",
         index_directory="data/indexes/default",
     )
 
     while True:
 
-        question = input("\nQuestion (type 'exit' to quit): ")
+        question = input("\nQuestion (type 'exit' to quit): ").strip()
+        if not question:
+            continue
 
         logger.info("User question received.")
 

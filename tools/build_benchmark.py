@@ -3,7 +3,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 from src.app.rag_engine import RAGEngine
-from utilities.benchmark_builder import BenchmarkBuilder
+from src.evaluation.benchmark_builder import BenchmarkBuilder
 
 QUESTIONS = [
     "What is Amazon SageMaker?",
@@ -26,7 +26,7 @@ def main() -> None:
     engine = RAGEngine()
 
     engine.load_or_ingest(
-        document_directory="data/raw",
+        document_directory="data/documents",
         index_directory="data/indexes/default",
     )
 
@@ -43,7 +43,7 @@ def main() -> None:
     )
 
     output_path = Path(
-        "data/benchmark/sagemaker.json",
+        "data/benchmarks/sagemaker.json",
     )
 
     builder.save(

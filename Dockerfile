@@ -7,9 +7,10 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src ./src
+COPY data/documents ./data/documents
 
 RUN useradd -m appuser && \
-    mkdir -p logs && \
+    mkdir -p data/indexes logs && \
     chown -R appuser:appuser /app
 
 USER appuser

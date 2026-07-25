@@ -1,48 +1,202 @@
-# RAG Engine
+# Production AI RAG Engine
 
-A production-style Retrieval-Augmented Generation (RAG) application built from scratch using:
+A production-style Retrieval-Augmented Generation (RAG) system that demonstrates the complete lifecycle of an enterprise AI application—from document ingestion and hybrid retrieval to response generation, evaluation, and deployment.
 
-- Python
-- Sentence Transformers
-- FAISS
-- OpenAI
-- Docker
+Built using **Hybrid Retrieval (BM25 + Dense Search)**, **CrossEncoder Reranking**, **Amazon Bedrock**, **FastAPI**, and a modular architecture inspired by production AI systems.
 
----
-
-# Features
-
-- PDF document ingestion
-- Intelligent text chunking
-- Sentence Transformer embeddings
-- FAISS vector search
-- Prompt engineering
-- OpenAI-powered answer generation
-- Dockerized deployment
+> 🚧 **Project Status**
+>
+> This project is under active development. Additional features, documentation, architecture diagrams, and benchmarks will continue to be added.
 
 ---
 
-# Quick Start (Docker) ⭐ Recommended
+## Highlights
 
-Docker is the recommended way to run this application.
-
-## Prerequisites
-
-- Docker Desktop
+- 🚀 Hybrid Retrieval (BM25 + Dense Search)
+- 🎯 CrossEncoder Reranking
+- 🤖 Amazon Bedrock (Nova Lite)
+- 🌊 Streaming REST API
+- ⚡ FastAPI
+- 📄 PDF Document Ingestion Pipeline
+- 📊 Automated Evaluation Framework inspired by **RAGAS**
+- 🐳 Dockerized Deployment
+- 📝 Structured Logging
+- 🏗️ Modular Production Architecture
 
 ---
 
-## 1. Clone the Repository
+# Architecture
 
-```bash
-git clone <repository-url>
+> Architecture diagram coming soon.
 
-cd rag-engine
+```text
+                 Documents (PDF)
+                        │
+                        ▼
+                  PDF Parsing
+                        │
+                        ▼
+                   Chunking
+                        │
+                        ▼
+             Sentence Embeddings
+                        │
+                        ▼
+                  FAISS Index
+                        │
+         ┌──────────────┴──────────────┐
+         │                             │
+         ▼                             ▼
+   Dense Retrieval                BM25 Search
+         │                             │
+         └──────────────┬──────────────┘
+                        ▼
+                Hybrid Retrieval
+                        │
+                        ▼
+            CrossEncoder Reranker
+                        │
+                        ▼
+              Prompt Construction
+                        │
+                        ▼
+         Amazon Bedrock (Nova Lite)
+                        │
+                        ▼
+                 Generated Answer
 ```
 
 ---
 
-## 2. Configure Environment Variables
+# Capabilities
+
+## Document Processing
+
+- PDF document ingestion
+- Intelligent document chunking
+- Sentence Transformer embeddings
+- Automatic vector index generation
+
+---
+
+## Retrieval
+
+- Hybrid Retrieval (BM25 + Dense Search)
+- FAISS Vector Search
+- CrossEncoder Reranking
+- Configurable Top-K Retrieval
+
+---
+
+## Generation
+
+- Amazon Bedrock Nova Lite
+- Context-aware prompt construction
+- Streaming API responses
+- Source-grounded answer generation
+
+---
+
+## Evaluation
+
+The project includes an automated evaluation framework inspired by the **RAGAS methodology** for measuring both retrieval quality and answer quality.
+
+Current metrics include:
+
+- Recall@K
+- Mean Reciprocal Rank (MRR)
+- nDCG
+- Faithfulness
+
+---
+
+## Deployment
+
+- FastAPI REST API
+- Docker Support
+- Configuration Management
+- Structured Logging
+
+---
+
+# Tech Stack
+
+| Category | Technology |
+|-----------|------------|
+| Language | Python 3.12 |
+| API | FastAPI |
+| LLM | Amazon Bedrock (Nova Lite) |
+| Embeddings | Sentence Transformers |
+| Dense Retrieval | FAISS |
+| Sparse Retrieval | BM25 |
+| Reranking | CrossEncoder |
+| Evaluation | RAGAS-inspired Evaluation Framework |
+| Containerization | Docker |
+
+---
+
+# Project Structure
+
+```text
+rag-engine/
+│
+├── data/
+│   ├── documents/
+│   ├── indexes/
+│   └── benchmarks/
+│
+├── src/
+│   ├── api/
+│   ├── app/
+│   ├── chunking/
+│   ├── config/
+│   ├── embedding/
+│   ├── evaluation/
+│   ├── generation/
+│   ├── indexing/
+│   ├── ingestion/
+│   ├── parsing/
+│   ├── prompting/
+│   ├── reranking/
+│   ├── retrieval/
+│   ├── storage/
+│   └── utils/
+│
+├── tools/
+│
+├── app.py
+├── evaluate.py
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+├── README.md
+└── LICENSE
+```
+
+---
+
+# Getting Started
+
+## Prerequisites
+
+- Python 3.12+
+- Docker Desktop (Recommended)
+- AWS CLI configured
+- Access to Amazon Bedrock
+
+---
+
+## Clone the Repository
+
+```bash
+git clone https://github.com/bikash-singhal/<repository-name>.git
+
+cd <repository-name>
+```
+
+---
+
+## Configure Environment Variables
 
 Copy
 
@@ -56,54 +210,49 @@ to
 .env
 ```
 
-Example:
+Update the following values:
 
-```text
-OPENAI_API_KEY=your_openai_api_key_here
+```env
+AWS_PROFILE=<your_profile>
 
-# Optional
-HF_TOKEN=your_huggingface_token
+AWS_REGION=us-east-1
+
+BEDROCK_GENERATION_MODEL=amazon.nova-lite-v1:0
+
+BEDROCK_EVALUATION_MODEL=amazon.nova-lite-v1:0
 ```
 
 ---
 
-## 3. Build the Docker Image
+# Docker (Recommended)
+
+Build and start the application.
 
 ```bash
-docker build -t rag-engine:v1 .
+docker compose up --build
 ```
+
+> **Note**
+>
+> Update the AWS credentials volume in `docker-compose.yml` to point to your local AWS credentials directory.
+>
+> **Windows**
+>
+> ```
+> C:\Users\<username>\.aws
+> ```
+>
+> **Linux/macOS**
+>
+> ```
+> ${HOME}/.aws
+> ```
 
 ---
 
-## 4. Run the Application
+# Local Development
 
-### Windows (PowerShell)
-
-```powershell
-docker run -it `
---env-file .env `
-rag-engine:v1 `
---pdf data/raw/next-generation-sagemaker-ug.pdf `
---question "What is Amazon Bedrock?"
-```
-
-### Linux / macOS
-
-```bash
-docker run -it \
---env-file .env \
-rag-engine:v1 \
---pdf data/raw/next-generation-sagemaker-ug.pdf \
---question "What is Amazon Bedrock?"
-```
-
----
-
-# Local Development (Optional)
-
-This section is intended for contributors and developers.
-
-## Create a Virtual Environment
+Create a virtual environment.
 
 ### Windows
 
@@ -113,7 +262,7 @@ python -m venv .venv
 .venv\Scripts\activate
 ```
 
-### Linux / macOS
+### Linux/macOS
 
 ```bash
 python3 -m venv .venv
@@ -121,9 +270,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
----
-
-## Install Dependencies
+Install dependencies.
 
 ```bash
 pip install -r requirements.txt
@@ -131,112 +278,113 @@ pip install -r requirements.txt
 
 ---
 
-## Run the Application
+# Running the Application
 
-### Windows (PowerShell)
-
-```powershell
-python app.py `
---pdf data/raw/next-generation-sagemaker-ug.pdf `
---question "What is Amazon Bedrock?"
-```
-
-### Linux / macOS
+## Interactive CLI
 
 ```bash
-python app.py \
---pdf data/raw/next-generation-sagemaker-ug.pdf \
---question "What is Amazon Bedrock?"
+python app.py
 ```
+
+The application automatically:
+
+- Loads documents
+- Builds the vector index (if required)
+- Starts an interactive RAG session
 
 ---
 
-# Running Tests
+## REST API
+
+Start the FastAPI server.
 
 ```bash
-python -m tests.sanity_check
+uvicorn src.api.app:app --host 0.0.0.0 --port 8000
 ```
+
+Interactive API documentation:
+
+```
+http://localhost:8000/docs
+```
+
+Health endpoint:
+
+```
+GET /health
+```
+
+> Swagger UI screenshots will be added soon.
 
 ---
 
-# Project Structure
+# Evaluation Framework
 
-```text
-rag-engine/
-│
-├── data/
-│   ├── raw/
-│   └── processed/
-│
-├── src/
-│   ├── __init__.py
-│   ├── chunker.py
-│   ├── embedder.py
-│   ├── faiss_store.py
-│   ├── llm.py
-│   ├── models.py
-│   ├── pdf_reader.py
-│   ├── prompt_builder.py
-│   └── rag_pipeline.py
-│
-├── tests/
-│   ├── __init__.py
-│   └── sanity_check.py
-│
-├── .dockerignore
-├── .env.example
-├── Dockerfile
-├── app.py
-├── config.py
-├── README.md
-└── requirements.txt
+Run the benchmark suite.
+
+```bash
+python evaluate.py
 ```
+
+## Benchmark Dataset
+
+Amazon SageMaker Documentation
 
 ---
 
-# Technologies Used
+## Results
 
-- Python
-- Sentence Transformers
-- FAISS
-- OpenAI API
-- Docker
+| Metric | Score |
+|---------|------:|
+| Recall@K | **1.000** |
+| Mean Reciprocal Rank (MRR) | **0.833** |
+| nDCG | **0.907** |
+| Faithfulness | **0.849** |
+
+---
+
+## Overall Performance
+
+| Metric | Value |
+|---------|------:|
+| Test Cases | 10 |
+| Passed | 10 |
+| Failed | 0 |
+| Success Rate | **100%** |
+
+> Evaluation screenshots and benchmark reports will be added soon.
 
 ---
 
 # Roadmap
 
-Planned improvements include:
+Planned enhancements include:
 
-- AWS Bedrock integration
-- Anthropic Claude support
-- Hugging Face models
-- FastAPI REST API
-- Streamlit UI
-- Persistent vector database
-- Separate ingestion and querying pipelines
-- Incremental document indexing
-- Conversation memory
-- Hybrid search
-- CI/CD pipeline
-- Unit testing
+- Authentication & Authorization
+- CI/CD Pipeline
+- Kubernetes Deployment
+- Observability & Monitoring
+- Query Expansion
+- Hybrid Score Fusion Experiments
+- Additional RAGAS-inspired Evaluation Metrics
+- Multi-document Collections
 
 ---
 
-# Learning Objectives
+# Author
 
-This project demonstrates:
+**Bikash Singhal**
 
-- Retrieval-Augmented Generation (RAG)
-- Embeddings
-- Vector Databases
-- Prompt Engineering
-- Large Language Models
-- Docker
-- Production-ready Python project structure
+GitHub
+
+https://github.com/bikash-singhal
+
+LinkedIn
+
+https://www.linkedin.com/in/bikashsinghal
 
 ---
 
 # License
 
-This project is intended for educational purposes.
+This project is licensed under the **MIT License**.
