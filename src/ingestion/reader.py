@@ -22,11 +22,11 @@ def reader(
     pdf_path = Path(pdf_path)
 
     try:
-        reader = PdfReader(pdf_path)
+        pdf_reader = PdfReader(pdf_path)
     except Exception as exc:
         raise RuntimeError(f"Could not read PDF: {pdf_path}") from exc
 
-    for page_number, page in enumerate(reader.pages, start=1):
+    for page_number, page in enumerate(pdf_reader.pages, start=1):
 
         text = page.extract_text()
 

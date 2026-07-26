@@ -1,8 +1,8 @@
-import os
 from collections.abc import Iterator
 
 from openai import OpenAI
 
+from src.config.settings import OPENAI_API_KEY
 from src.llm.base import LLMProvider
 
 
@@ -10,7 +10,10 @@ class OpenAIProvider(LLMProvider):
 
     def __init__(self, model: str) -> None:
 
-        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        if OPENAI_API_KEY is None:
+            raise RuntimeError("OPENAI_API_KEY is required to use OpenAIProvider.")
+
+        self.client = OpenAI(api_key=OPENAI_API_KEY)
 
         self.model = model
 
@@ -26,15 +29,17 @@ class OpenAIProvider(LLMProvider):
             ],
         )
 
-        val = response.choices[0].message.content
+        content = response.choices[0].message.content
 
-        if val is None:
-            raise RuntimeError("OpenAI did not generate response")
+        if content is None:
+            raise RuntimeError("OpenAI did not generate a response.")
 
-        return val
+        return content
 
     def stream(
         self,
         prompt: str,
     ) -> Iterator[str]:
+
+        # TODO: Implement streaming.
         raise NotImplementedError()

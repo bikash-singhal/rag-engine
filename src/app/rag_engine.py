@@ -5,6 +5,7 @@ from pathlib import Path
 from src.chat.chat_engine import ChatEngine
 from src.chat.in_memory import InMemoryMemory
 from src.config.settings import (
+    BEDROCK_GENERATION_MODEL,
     BM25_WEIGHT,
     CHUNK_OVERLAP,
     CHUNK_SIZE,
@@ -73,18 +74,11 @@ class RAGEngine:
         # LLM
         # ------------------------------------------------------------------
 
-        model_id = os.getenv("BEDROCK_GENERATION_MODEL")
-
-        if model_id is None:
-            raise RuntimeError(
-                "BEDROCK_GENERATION_MODEL environment variable is not set."
-            )
-
-        self.llm_provider = BedrockProvider(model_id)
+        self.llm_provider = BedrockProvider(BEDROCK_GENERATION_MODEL)
 
         logger.info(
             "Using LLM model: %s",
-            model_id,
+            BEDROCK_GENERATION_MODEL,
         )
 
         # ------------------------------------------------------------------
@@ -111,7 +105,7 @@ class RAGEngine:
         )
 
         multi_query_generator = LLMMultiQueryGenerator(
-            self.llm_provider,
+            llm=self.llm_provider,
         )
 
         self.context_compressor = ContextCompressor()
@@ -258,14 +252,13 @@ class RAGEngine:
 
     def _create_index(
         self,
-        document_directory,
-        index_directory,
+        document_directory: str | Path,
+        index_directory: str | Path,
     ) -> None:
 
         logger.info("Building new vector index...")
 
         self.ingest_directory(document_directory)
-        self._reload_runtime_components()
         self.save_index(index_directory)
 
     def load_or_ingest(

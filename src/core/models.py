@@ -73,6 +73,10 @@ class ChatResult:
 
 @dataclass(slots=True)
 class PreparedPrompt:
+    """
+    Prompt and retrieval state prepared for answer generation.
+    """
+
     prompt: str
     rewritten_question: str
     retrieved_chunks: list[SearchResult]
@@ -115,7 +119,7 @@ class RetrievalReport:
     statistics: RetrievalStatistics
 
 
-@dataclass
+@dataclass(slots=True)
 class RetrievalEvaluation:
     hit_rate: float
     precision: float
@@ -183,7 +187,7 @@ class BenchmarkResult:
     case_id: str
     question: str
     retrieved_chunks: list[SearchResult]
-    metric_scores: dict[str, float]
+    metric_scores: dict[str, float | None]
     passed: bool
 
 
@@ -209,6 +213,7 @@ class JobStatus(str, Enum):
     FAILED = "failed"
 
 
+@dataclass(slots=True)
 class IngestJob:
     """
     Tracks one ingestion task.

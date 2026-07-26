@@ -11,11 +11,13 @@ class IngestResponse(BaseModel):
 
     status: str = Field(
         ...,
+        description="Status of the ingestion request.",
         examples=["accepted"],
     )
 
     document: str = Field(
         ...,
+        description="Name of the document submitted for ingestion.",
         examples=["annual_report.pdf"],
     )
 
@@ -31,10 +33,22 @@ class JobStatusResponse(BaseModel):
     Status of an ingestion job.
     """
 
-    job_id: str
+    job_id: str = Field(
+        ...,
+        description="Unique identifier of the ingestion job.",
+    )
 
-    filename: str
+    filename: str = Field(
+        ...,
+        description="Name of the document being processed.",
+    )
 
-    status: JobStatus
+    status: JobStatus = Field(
+        ...,
+        description="Current state of the ingestion job.",
+    )
 
-    error: str | None = None
+    error: str | None = Field(
+        default=None,
+        description="Error message if the ingestion job failed.",
+    )

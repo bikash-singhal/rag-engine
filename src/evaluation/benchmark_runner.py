@@ -97,7 +97,7 @@ class BenchmarkRunner:
         index: int,
         total_cases: int,
         question: str,
-        metric_scores: dict[str, float],
+        metric_scores: dict[str, float | None],
     ) -> None:
 
         recall = metric_scores.get("Recall@K")

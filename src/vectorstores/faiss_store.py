@@ -67,6 +67,9 @@ class FAISSVectorStore:
         Searches the FAISS index for the most similar chunks.
         """
 
+        if top_k <= 0:
+            raise ValueError("top_k must be greater than zero.")
+
         if self.index.ntotal == 0:
             return []
 
@@ -98,6 +101,9 @@ class FAISSVectorStore:
                 continue
 
             embedded_chunk = self.chunk_lookup[idx]
+
+            if embedded_chunk is None:
+                raise RuntimeError(f"Missing metadata for FAISS index {idx}.")
 
             results.append(
                 SearchResult(

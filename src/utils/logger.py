@@ -2,7 +2,10 @@ import logging
 from pathlib import Path
 
 LOG_DIRECTORY = Path("logs")
-LOG_DIRECTORY.mkdir(exist_ok=True)
+LOG_DIRECTORY.mkdir(
+    parents=True,
+    exist_ok=True,
+)
 
 
 def get_logger(name: str) -> logging.Logger:

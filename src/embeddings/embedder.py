@@ -59,6 +59,7 @@ class Embedder:
         for chunk, embedding in zip(
             chunks,
             embeddings,
+            strict=True,
         ):
             embedded_chunks.append(
                 EmbeddedChunk(

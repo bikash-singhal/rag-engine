@@ -1,5 +1,4 @@
 from collections.abc import Iterator
-from contextlib import contextmanager
 from time import perf_counter
 
 from src.chat.memory import Memory
@@ -141,13 +140,12 @@ class ChatEngine:
 
         logger.debug("Starting CrossEncoder reranking.")
 
-        if self.reranker is not None:
-            with timer(latency, "reranking_ms"):
-                final_results = self.reranker.rerank(
-                    query=rewritten_question,
-                    results=retrieval_results,
-                    top_k=retrieval_config.final_top_k,
-                )
+        with timer(latency, "reranking_ms"):
+            final_results = self.reranker.rerank(
+                query=rewritten_question,
+                results=retrieval_results,
+                top_k=retrieval_config.final_top_k,
+            )
 
         logger.debug(
             "Top %d candidates selected after reranking.",
@@ -190,11 +188,14 @@ class ChatEngine:
 
         prepared = self._prepare_prompt(question)
 
-        logger.debug("Generating answer...")
+        logger.info("Generating answer...")
         with timer(prepared.latency, "answer_generation_ms"):
             answer = self.llm.generate(prepared.prompt)
 
-        logger.debug("Answer generation completed.")
+        logger.info(
+            "Answer generated in %.1f ms",
+            prepared.latency.answer_generation_ms,
+        )
 
         self._add_assistant_message(answer)
 
@@ -241,6 +242,9 @@ class ChatEngine:
         self,
         question: str,
     ) -> Iterator[str]:
+
+        # TODO: Capture streaming-specific latency metrics
+        # (TTFT, stream duration, total latency).
 
         self._add_user_message(question)
 

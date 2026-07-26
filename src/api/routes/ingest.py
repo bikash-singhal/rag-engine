@@ -11,17 +11,36 @@ from src.core.models import JobStatus
 
 router = APIRouter(
     prefix="/ingest",
-    tags=["Ingest"],
+    tags=["Ingestion"],
 )
 
 
 @router.post(
     "",
     response_model=IngestResponse,
+    summary="Upload a document for ingestion",
+    description="""
+Uploads a PDF document and starts an asynchronous ingestion job.
+
+The ingestion pipeline performs:
+
+- PDF parsing
+- Text chunking
+- Embedding generation
+- FAISS index update
+- BM25 index update
+
+The endpoint immediately returns a job identifier that can be used to
+track ingestion progress.
+""",
+    response_description="Accepted ingestion request with job identifier.",
 )
 async def ingest(
     background_tasks: BackgroundTasks,
-    file: UploadFile = File(...),
+    file: UploadFile = File(
+        ...,
+        description="PDF document to ingest into the knowledge base.",
+    ),
     engine: RAGEngine = Depends(get_rag_engine),
     job_manager: JobManager = Depends(get_job_manager),
 ) -> IngestResponse:
@@ -112,6 +131,18 @@ def ingest_uploaded_file(
 @router.get(
     "/jobs/{job_id}",
     response_model=JobStatusResponse,
+    summary="Retrieve ingestion job status",
+    description="""
+Returns the current status of an asynchronous ingestion job.
+
+Possible states include:
+
+- PENDING
+- RUNNING
+- COMPLETED
+- FAILED
+""",
+    response_description="Current ingestion job status.",
 )
 async def get_job_status(
     job_id: str,

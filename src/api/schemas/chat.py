@@ -11,7 +11,7 @@ class ChatRequest(BaseModel):
     question: str = Field(
         ...,
         description="User question.",
-        examples=["What is Amazon SageMaker?"],
+        examples=["What are the prerequisites for the RAG evaluation pipeline?"],
     )
 
 
@@ -20,11 +20,19 @@ class SourceResponse(BaseModel):
     Supporting document used to answer the question.
     """
 
-    document: str
-    page: int
+    document: str = Field(
+        ...,
+        description="Source document used to generate the answer.",
+    )
+
+    page: int = Field(
+        ...,
+        description="Page number in the source document.",
+    )
+
     score: float = Field(
         ...,
-        description="Retrieval relevance score.",
+        description="Retrieval relevance score after reranking.",
     )
 
 
@@ -40,15 +48,15 @@ class ChatResponse(BaseModel):
 
     rewritten_question: str = Field(
         ...,
-        description="Question after conversational query rewriting.",
+        description="Query after conversational rewriting and normalization.",
     )
 
     sources: list[SourceResponse] = Field(
         ...,
-        description="Supporting document citations.",
+        description="Supporting source documents used to generate the answer.",
     )
 
     latency: LatencyReport = Field(
         ...,
-        description="Latency of every steps.",
+        description="Latency breakdown for each stage of the RAG pipeline.",
     )

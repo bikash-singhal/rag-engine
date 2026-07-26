@@ -8,6 +8,9 @@ class Preprocessor:
     Cleans document pages before chunking.
     """
 
+    def __init__(self) -> None:
+        pass
+
     def preprocess(
         self,
         pages: Iterator[Page],

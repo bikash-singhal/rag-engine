@@ -1,4 +1,14 @@
+from collections.abc import Callable, Iterator
 from pathlib import Path
+
+from src.core.models import Page
+from src.embeddings.embedder import Embedder
+from src.ingestion.chunker import Chunker
+from src.ingestion.preprocessor import Preprocessor
+from src.utils.logger import get_logger
+from src.vectorstores.faiss_store import FAISSVectorStore
+
+logger = get_logger(__name__)
 
 
 class DocumentIndexer:
@@ -7,21 +17,23 @@ class DocumentIndexer:
 
     Pipeline:
         Reader
-            ↓
+          ↓
+        Preprocessor
+          ↓
         Chunker
-            ↓
+          ↓
         Embedder
-            ↓
+          ↓
         Vector Store
     """
 
     def __init__(
         self,
-        reader,
-        preprocessor,
-        chunker,
-        embedder,
-        vector_store,
+        reader: Callable[[str | Path], Iterator[Page]],
+        preprocessor: Preprocessor,
+        chunker: Chunker,
+        embedder: Embedder,
+        vector_store: FAISSVectorStore,
     ) -> None:
         self.reader = reader
         self.preprocessor = preprocessor
@@ -70,17 +82,14 @@ class DocumentIndexer:
         if not pdf_files:
             return
 
-        indexed = 0
-        failed = 0
-
         for pdf_file in pdf_files:
 
             try:
 
                 self.index(pdf_file)
 
-                indexed += 1
-
             except Exception as exc:
-
-                failed += 1
+                logger.exception(
+                    "Failed to index %s",
+                    pdf_file,
+                )

@@ -3,8 +3,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass
+@dataclass(slots=True)
 class LatencyReport:
+    """
+    Latency measurements for a single RAG pipeline execution.
+    """
 
     query_rewrite_ms: float = 0.0
     multi_query_ms: float = 0.0
@@ -45,7 +48,7 @@ class LatencyReport:
 
     @property
     def orchestration_ms(self) -> float:
-        return self.total_ms - self.pipeline_ms
+        return max(0.0, self.total_ms - self.pipeline_ms)
 
     @classmethod
     def average(cls, reports: list[LatencyReport]) -> LatencyReport:
