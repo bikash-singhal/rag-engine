@@ -219,17 +219,24 @@ class IngestJob:
     Tracks one ingestion task.
     """
 
-    def __init__(
-        self,
-        filename: str,
-    ) -> None:
+    filename: str
 
-        self.id = str(uuid4())
+    id: str = field(
+        default_factory=lambda: str(uuid4()),
+        init=False,
+    )
 
-        self.filename = filename
+    status: JobStatus = field(
+        default=JobStatus.QUEUED,
+        init=False,
+    )
 
-        self.status = JobStatus.QUEUED
+    created_at: datetime = field(
+        default_factory=lambda: datetime.now(UTC),
+        init=False,
+    )
 
-        self.created_at = datetime.now(UTC)
-
-        self.error: str | None = None
+    error: str | None = field(
+        default=None,
+        init=False,
+    )

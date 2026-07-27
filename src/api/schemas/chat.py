@@ -11,7 +11,13 @@ class ChatRequest(BaseModel):
     question: str = Field(
         ...,
         description="User question.",
-        examples=["What are the prerequisites for the RAG evaluation pipeline?"],
+        examples=[
+            "What is Amazon SageMaker?",
+            "What are the prerequisites for Amazon SageMaker?",
+            "What is the Lakehouse architecture?",
+            "What frameworks are supported for data processing?",
+            "What data sources can SageMaker connect to?",
+        ],
     )
 
 

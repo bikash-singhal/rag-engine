@@ -48,7 +48,10 @@ logs/
 # =============================================================================
 # Generated Vector Indexes
 # =============================================================================
-data/indexes/
+data/indexes/*
+# Pre-built With 1 Vector Index
+!data/indexes/default/
+!data/indexes/default/**
 
 # =============================================================================
 # Temporary Files

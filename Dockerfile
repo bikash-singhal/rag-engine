@@ -6,8 +6,19 @@ COPY requirements.txt ./
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Pre-download HF models
+RUN python - <<'PY'
+from sentence_transformers import SentenceTransformer, CrossEncoder
+
+SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+CrossEncoder("cross-encoder/ms-marco-MiniLM-L6-v2")
+
+print("Models downloaded successfully.")
+PY
+
 COPY src ./src
 COPY data/documents ./data/documents
+COPY data/indexes/default ./data/indexes/default
 
 RUN useradd -m appuser && \
     mkdir -p data/indexes logs && \

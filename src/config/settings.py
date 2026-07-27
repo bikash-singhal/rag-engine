@@ -35,7 +35,7 @@ OPENAI_API_KEY: str | None = optional_env("OPENAI_API_KEY")
 
 # Embedding and reranking
 EMBEDDING_MODEL: str = "sentence-transformers/all-MiniLM-L6-v2"
-RERANKER_MODEL: str = "BAAI/bge-reranker-base"
+RERANKER_MODEL = "cross-encoder/ms-marco-MiniLM-L6-v2"
 
 
 # Chunking

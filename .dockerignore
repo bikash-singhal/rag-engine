@@ -18,6 +18,12 @@ __pycache__/
 logs/
 *.log
 
-# Generated data
-data/indexes/
+# Local dev playground
 scratch/
+
+# Ignore all generated indexes
+data/indexes/*
+
+# But include the default demo index
+!data/indexes/default/
+!data/indexes/default/**

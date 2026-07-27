@@ -5,6 +5,9 @@ import faiss
 import numpy as np
 
 from src.core.models import Chunk, EmbeddedChunk, SearchResult
+from src.utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 class FAISSVectorStore:
@@ -135,7 +138,7 @@ class FAISSVectorStore:
         )
 
         with open(
-            directory / "metadata.pkl",
+            directory / "embedded_chunks.pkl",
             "wb",
         ) as file:
 
@@ -143,6 +146,12 @@ class FAISSVectorStore:
                 self.chunk_lookup,
                 file,
             )
+
+        logger.info(
+            "Saved %d vectors/chunks to %s",
+            len(self.chunk_lookup),
+            directory,
+        )
 
     @classmethod
     def load(
@@ -158,7 +167,7 @@ class FAISSVectorStore:
         index = faiss.read_index(str(directory / "faiss.index"))
 
         with open(
-            directory / "metadata.pkl",
+            directory / "embedded_chunks.pkl",
             "rb",
         ) as file:
 
@@ -171,6 +180,12 @@ class FAISSVectorStore:
         vector_store.index = index
 
         vector_store.chunk_lookup = chunk_lookup
+
+        logger.info(
+            "Loaded %d vectors/chunks from %s",
+            len(chunk_lookup),
+            directory,
+        )
 
         return vector_store
 

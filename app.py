@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from dotenv import load_dotenv
 
 from src.app.rag_engine import RAGEngine
@@ -13,8 +15,8 @@ def main():
     engine = RAGEngine()
 
     engine.load_or_ingest(
-        document_directory="data/documents",
-        index_directory="data/indexes/default",
+        document_directory=Path("data/documents"),
+        index_directory=Path("data/indexes/default"),
     )
 
     while True:

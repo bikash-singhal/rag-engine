@@ -1,8 +1,11 @@
 from functools import lru_cache
+from pathlib import Path
 
 from src.api.job_manager import JobManager
 from src.app.rag_engine import RAGEngine
-from src.chat.chat_engine import ChatEngine
+from src.utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 @lru_cache
@@ -10,16 +13,23 @@ def get_rag_engine() -> RAGEngine:
 
     engine = RAGEngine()
 
-    engine.load_or_ingest(
-        document_directory="data/documents",
-        index_directory="data/indexes/default",
-    )
+    index_dir = Path("data/indexes/default")
+
+    faiss = index_dir / "faiss.index"
+    embedded_chunks = index_dir / "embedded_chunks.pkl"
+
+    if faiss.exists() and embedded_chunks.exists():
+        logger.info("Loading default index from %s", index_dir)
+
+        try:
+            engine.load_index(index_dir)
+            logger.info("Default index loaded successfully.")
+        except Exception:
+            logger.exception("Failed to load default index.")
+    else:
+        logger.info("No default index found. Start by ingesting a document.")
 
     return engine
-
-
-def get_chat_engine() -> ChatEngine:
-    return get_rag_engine().chat_engine
 
 
 @lru_cache

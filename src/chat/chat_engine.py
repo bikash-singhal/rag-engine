@@ -1,5 +1,6 @@
 from collections.abc import Iterator
 from time import perf_counter
+from typing import TYPE_CHECKING
 
 from src.chat.memory import Memory
 from src.chat.message import Message

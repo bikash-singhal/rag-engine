@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
 
-from src.api.dependencies import get_chat_engine
+from src.api.dependencies import get_rag_engine
 from src.api.schemas.chat import ChatRequest, ChatResponse, SourceResponse
-from src.chat.chat_engine import ChatEngine
+from src.app.rag_engine import RAGEngine
 
 router = APIRouter(
     prefix="/chat",
@@ -18,14 +18,23 @@ router = APIRouter(
     description="""
 Answers a user question using the complete Retrieval-Augmented Generation pipeline.
 
-The workflow includes:
-
+## The workflow includes:
 - Query rewriting
 - Multi-query generation
 - Hybrid retrieval using BM25 and FAISS
 - CrossEncoder reranking
 - Context-aware prompt construction
 - Response generation using AWS Bedrock Nova Lite
+
+## Demo Knowledge Base
+    This project ships with a **pre-built knowledge base** created from the **Amazon SageMaker User Guide**.
+
+## Try these questions:
+- "What is Amazon SageMaker?",
+- "What are the prerequisites for Amazon SageMaker?"
+- "What is the Lakehouse architecture?"
+- "What frameworks are supported for data processing?"
+- "What data sources can SageMaker connect to?"
 """,
     response_description=(
         "Generated answer with the rewritten question, supporting sources, "
@@ -34,11 +43,17 @@ The workflow includes:
 )
 def chat(
     request: ChatRequest,
-    engine: ChatEngine = Depends(get_chat_engine),
+    engine: RAGEngine = Depends(get_rag_engine),
 ) -> ChatResponse:
     """
     Answers a user question using the RAG pipeline.
     """
+
+    if not engine.is_ready:
+        raise HTTPException(
+            status_code=409,
+            detail="Knowledge base is empty. Please upload and ingest a document before chatting.",
+        )
 
     result = engine.chat(
         request.question,
@@ -72,11 +87,16 @@ but returns the model output as it is generated.
 )
 def chat_stream(
     request: ChatRequest,
-    engine: ChatEngine = Depends(get_chat_engine),
+    engine: RAGEngine = Depends(get_rag_engine),
 ):
     """
     Streams the LLM response token-by-token.
     """
+    if not engine.is_ready:
+        raise HTTPException(
+            status_code=409,
+            detail="Knowledge base is empty. Please upload and ingest a document before chatting.",
+        )
 
     return StreamingResponse(
         engine.ask(request.question),

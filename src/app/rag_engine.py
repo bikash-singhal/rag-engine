@@ -1,4 +1,3 @@
-import os
 from collections.abc import Iterator
 from pathlib import Path
 
@@ -13,7 +12,7 @@ from src.config.settings import (
     EMBEDDING_MODEL,
     RETRIEVAL_TOP_K,
 )
-from src.core.models import RetrievalReport, SearchResult
+from src.core.models import ChatResult, RetrievalReport, SearchResult
 from src.embeddings.embedder import Embedder
 from src.evaluation.retrieval_analyzer import RetrievalAnalyzer
 from src.ingestion.chunker import Chunker
@@ -46,7 +45,6 @@ class RAGEngine:
     def __init__(self) -> None:
 
         logger.info("Initializing RAG Engine...")
-
         # ------------------------------------------------------------------
         # Infrastructure
         # ------------------------------------------------------------------
@@ -88,6 +86,10 @@ class RAGEngine:
         self.retrieval_analyzer = RetrievalAnalyzer()
 
         logger.info("RAG Engine initialized.")
+
+    @property
+    def is_ready(self) -> bool:
+        return hasattr(self, "retriever") and hasattr(self, "chat_engine")
 
     def _build_chat_engine(self) -> None:
 
@@ -160,6 +162,9 @@ class RAGEngine:
 
         # Default retriever
         self.retriever = self.hybrid_retriever
+
+    def chat(self, question: str) -> ChatResult:
+        return self.chat_engine.chat(question)
 
     def ask(
         self,
@@ -274,7 +279,7 @@ class RAGEngine:
         index_directory = Path(index_directory)
 
         faiss_file = index_directory / "faiss.index"
-        metadata_file = index_directory / "metadata.pkl"
+        metadata_file = index_directory / "embedded_chunks.pkl"
 
         if faiss_file.exists() and metadata_file.exists():
 
