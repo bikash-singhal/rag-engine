@@ -10,6 +10,15 @@
 ![License](https://img.shields.io/badge/License-MIT-success)
 
 ---
+## Live Demo
+
+🌐 Swagger UI:
+http://98.82.190.68:8000/docs
+
+❤️ Health Endpoint:
+http://98.82.190.68:8000/health
+
+---
 
 ## Architecture at a Glance
 
@@ -48,7 +57,7 @@
 
 ---
 
-# About this Project
+## About this Project
 
 Retrieval-Augmented Generation (RAG) has become a standard approach for building AI applications that answer questions using external knowledge instead of relying solely on a language model's internal training.
 
@@ -60,7 +69,7 @@ Each stage of the pipeline is implemented as an independent component with clear
 
 ---
 
-# Technology Stack
+## Technology Stack
 
 | Category | Technology |
 |-----------|------------|
@@ -77,7 +86,7 @@ Each stage of the pipeline is implemented as an independent component with clear
 
 ---
 
-# System Architecture
+## System Architecture
 
 ```mermaid
 flowchart TD
@@ -115,7 +124,7 @@ L --> M[Generated Response]
 
 ---
 
-# Request Flow
+## Request Flow
 
 Every request follows the same processing pipeline from query submission to response generation.
 
@@ -131,7 +140,7 @@ Every request follows the same processing pipeline from query submission to resp
 
 ---
 
-# Key Features
+## Key Features
 
 - PDF document ingestion
 - Intelligent document chunking
@@ -146,7 +155,7 @@ Every request follows the same processing pipeline from query submission to resp
 
 ---
 
-# REST API
+## REST API
 
 The application exposes a REST API built with FastAPI for document ingestion, question answering, and service monitoring. Interactive API documentation is automatically generated through OpenAPI.
 
@@ -171,7 +180,7 @@ The `/chat` endpoint processes natural language queries using the complete RAG p
 - Amazon Bedrock Nova Lite
 - Grounded Response Generation
 
-> **Screenshot:** Swagger UI - `/chat`
+> **Screenshot:** Chat Endpoint - ![Chat](docs/images/swagger-chat.png)
 
 ---
 
@@ -187,7 +196,7 @@ The ingestion pipeline performs:
 - FAISS indexing
 - BM25 indexing
 
-> **Screenshot:** Swagger UI - `/ingest`
+> **Screenshot:** Document Ingestion - ![Ingest](docs/images/swagger-ingest.png)
 
 ---
 
@@ -205,9 +214,9 @@ Example response:
 }
 ```
 
-> **Screenshot:** Swagger UI - `/health`
+> **Screenshot:** Health Check - ![Health](docs/images/swagger-health.png)
 
-# Evaluation Methodology
+## Evaluation Methodology
 
 The retrieval and generation pipeline is evaluated using a benchmark dataset derived from the **Amazon SageMaker User Guide**.
 
@@ -242,7 +251,7 @@ Generated responses are evaluated using a faithfulness metric inspired by the RA
 
 ---
 
-# Evaluation Results
+## Evaluation Results
 
 The benchmark was executed against a curated evaluation dataset derived from the Amazon SageMaker documentation.
 
@@ -268,11 +277,11 @@ The benchmark was executed against a curated evaluation dataset derived from the
 
 These results indicate that the retrieval pipeline consistently identified the expected supporting documents while maintaining a high level of answer faithfulness across the benchmark dataset.
 
-> **Screenshot:** Evaluation Report
+> **Screenshot:** Evaluation Report - ![Evaluation Report](docs/images/evaluation_report.png)
 
 ---
 
-# Performance Optimization
+## Performance Optimization
 
 During development, application startup time was significantly longer than expected. Instead of replacing components immediately, the startup sequence was instrumented to measure the initialization time of each major subsystem and identify the bottleneck.
 
@@ -338,7 +347,7 @@ This investigation highlights the importance of measuring system performance bef
 
 ---
 
-# Design Decisions
+## Design Decisions
 
 Every major technology choice in this project was made to address a specific engineering requirement rather than simply using popular tools.
 
@@ -409,7 +418,7 @@ Each stage of the pipeline is implemented as an independent module with a single
 
 This separation simplifies maintenance, testing, benchmarking, and future enhancements while reducing coupling across the application.
 
-# Project Structure
+## Project Structure
 
 The project is organized into independent modules, each responsible for a specific stage of the Retrieval-Augmented Generation pipeline. This modular structure simplifies development, testing, maintenance, and future enhancements.
 
@@ -467,9 +476,9 @@ Ensure the following software and services are available before running the proj
 ## Clone the Repository
 
 ```bash
-git clone https://github.com/<username>/<repository>.git
+git clone https://github.com/bikash-singhal/rag-engine.git
 
-cd <repository>
+cd rag-engine
 ```
 
 ---
@@ -496,7 +505,7 @@ BEDROCK_EVALUATION_MODEL=amazon.nova-lite-v1:0
 
 ---
 
-# Run with Docker
+## Run with Docker
 
 Docker is the recommended way to run the application because it provides a consistent execution environment with all required dependencies preconfigured.
 
@@ -505,6 +514,17 @@ Build and start the application.
 ```bash
 docker compose up --build
 ```
+
+---
+
+## Deployment
+
+This project is deployed on AWS EC2 using Docker Compose.
+
+- FastAPI + Uvicorn
+- Docker Compose
+- AWS Bedrock integration
+- Pre-built knowledge base for fast startup
 
 ---
 
@@ -533,13 +553,14 @@ ${HOME}/.aws
 After the container starts successfully:
 
 - Open Swagger UI at `http://localhost:8000/docs`
-- Verify the `/health` endpoint
-- Ingest a sample PDF
-- Submit a query through the `/chat` endpoint
+- Verify the /health endpoint
+- Open the Swagger UI
+- Submit a query through the /chat endpoint
+- (Optional) Ingest a sample PDF to build a new knowledge base
 
 ---
 
-# Run Locally
+## Run Locally
 
 Create a virtual environment.
 
@@ -618,7 +639,7 @@ The evaluation report includes:
 - nDCG
 - Faithfulness Score
 
-# Verify the Setup
+## Verify the Setup
 
 After starting the application, verify that everything is working correctly.
 
@@ -631,7 +652,7 @@ After starting the application, verify that everything is working correctly.
 
 ---
 
-# Acknowledgements
+## Acknowledgements
 
 This project builds upon the work of the open-source AI community and the tools that make modern AI application development possible.
 
@@ -648,7 +669,7 @@ Special thanks to the teams behind:
 
 ---
 
-# Author
+## Author
 
 **Bikash Singhal**
 
@@ -668,7 +689,7 @@ https://www.linkedin.com/in/bikashsinghal/
 
 ---
 
-# License
+## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
 
