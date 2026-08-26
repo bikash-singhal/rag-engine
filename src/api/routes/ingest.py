@@ -1,8 +1,7 @@
+import tempfile
 from pathlib import Path
-from tempfile import NamedTemporaryFile
 
 from fastapi import APIRouter, BackgroundTasks, Depends, File, HTTPException, UploadFile
-
 from src.api.dependencies import get_job_manager, get_rag_engine
 from src.api.job_manager import JobManager
 from src.api.schemas.ingest import IngestResponse, JobStatusResponse
@@ -70,21 +69,25 @@ def save_upload_to_temp(
     file: UploadFile,
 ) -> Path:
     """
-    Save uploaded PDF to a temporary file.
+    Save uploaded PDF to a unique temporary directory while
+    preserving the original filename for document metadata.
     """
 
-    suffix = Path(file.filename or "upload.pdf").suffix
+    filename = Path(file.filename or "upload.pdf").name
 
-    with NamedTemporaryFile(
-        delete=False,
-        suffix=suffix,
-    ) as temp_file:
+    temp_dir = Path(
+        tempfile.mkdtemp(
+            prefix="rag-engine-",
+        )
+    )
 
+    temp_path = temp_dir / filename
+
+    with temp_path.open("wb") as temp_file:
         data = file.file.read()
-
         temp_file.write(data)
 
-        return Path(temp_file.name)
+    return temp_path
 
 
 def ingest_uploaded_file(
@@ -122,10 +125,14 @@ def ingest_uploaded_file(
         raise
 
     finally:
-
         temp_path.unlink(
             missing_ok=True,
         )
+
+        try:
+            temp_path.parent.rmdir()
+        except OSError:
+            pass
 
 
 @router.get(
