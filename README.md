@@ -10,15 +10,6 @@
 ![License](https://img.shields.io/badge/License-MIT-success)
 
 ---
-## Live Demo
-
-🌐 Swagger UI:
-http://98.82.190.68:8000/docs
-
-❤️ Health Endpoint:
-http://98.82.190.68:8000/health
-
----
 
 ## Architecture at a Glance
 
